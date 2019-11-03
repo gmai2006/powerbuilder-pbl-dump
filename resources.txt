@@ -1,0 +1,8 @@
+.sra - Application Object (The entry point to the application)
+.srd - DataWindow Object (Retrieves, represents and modifies data in the database)
+.srw - Window Object
+.sru - User Object
+.srm - Menu Object (List of commands and handlers)
+.srf - Function Object
+.srs - Structure Object (Structure definition)
+.srq - Query Object
