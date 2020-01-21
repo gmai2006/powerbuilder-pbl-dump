@@ -1,5 +1,5 @@
 # PowerBuilder pbl file extraction
-This program extract source code from PowerBuilder pbl files
+This program extracts source code from PowerBuilder pbl files
 
 #Instruction
 To extract source from PowerBuilder pbl files
