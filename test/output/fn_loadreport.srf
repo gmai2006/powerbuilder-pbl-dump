@@ -1,0 +1,44 @@
+HA$PBExportHeader$fn_loadreport.srf
+$PBExportComments$
+global type fn_loadreport from function_object
+end type
+
+forward prototypes
+global subroutine fn_loadreport (string as_kodreport, ref sc_misth_report asc_report)
+end prototypes
+
+global subroutine fn_loadreport (string as_kodreport, ref sc_misth_report asc_report);// Öüñôùìá ôçò asc_report ìå ôá äåäïìÝíá áðü misth_report
+
+select	
+	kodreport,
+	kodxrisi,
+	descreport,
+	print_margin_top,
+	print_margin_bottom,
+	print_margin_left,
+	print_margin_right,
+	print_orientation,
+	print_paper_size,
+	print_scale
+into
+	:asc_report.kodreport,
+	:asc_report.kodxrisi,
+	:asc_report.descreport,
+	:asc_report.print_margin_top,
+	:asc_report.print_margin_bottom,
+	:asc_report.print_margin_left,
+	:asc_report.print_margin_right,
+	:asc_report.print_orientation,
+	:asc_report.print_paper_size,
+	:asc_report.print_scale
+from
+	misth_report
+where
+	kodreport = :as_kodreport and kodxrisi = :gs_kodxrisi;
+	
+fn_sqlerror()
+
+	
+
+end subroutine
+

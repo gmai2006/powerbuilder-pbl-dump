@@ -1,0 +1,12 @@
+HA$PBExportHeader$fn_kodxrisi.srf
+$PBExportComments$
+global type fn_kodxrisi from function_object
+end type
+
+forward prototypes
+global function string fn_kodxrisi ()
+end prototypes
+
+global function string fn_kodxrisi ();return gs_kodxrisi
+end function
+

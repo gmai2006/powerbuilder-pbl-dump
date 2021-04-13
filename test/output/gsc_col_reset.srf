@@ -1,0 +1,37 @@
+HA$PBExportHeader$gsc_col_reset.srf
+$PBExportComments$
+global type gsc_col_reset from function_object
+end type
+
+forward prototypes
+global subroutine gsc_col_reset (ref sc_col asc_col)
+end prototypes
+
+global subroutine gsc_col_reset (ref sc_col asc_col);setnull(asc_col.kodcol)
+setnull(asc_col.kodreport)
+setnull(asc_col.kodxrisi)
+setnull(asc_col.expr)
+setnull(asc_col.header_color)
+setnull(asc_col.header_alignment)
+setnull(asc_col.header_border)
+setnull(asc_col.header_text)
+setnull(asc_col.header_font_face)
+setnull(asc_col.header_font_height)
+setnull(asc_col.header_font_weight)
+setnull(asc_col.header_font_italic)
+setnull(asc_col.header_font_underline)
+setnull(asc_col.header_background_mode)
+setnull(asc_col.header_background_color)
+setnull(asc_col.data_color)
+setnull(asc_col.data_alignment)
+setnull(asc_col.data_border)
+setnull(asc_col.data_font_face)
+setnull(asc_col.data_font_height)
+setnull(asc_col.data_font_weight)
+setnull(asc_col.data_font_italic)
+setnull(asc_col.data_font_underline)
+setnull(asc_col.data_background_mode)
+setnull(asc_col.data_background_color)
+setnull(asc_col.width)
+end subroutine
+

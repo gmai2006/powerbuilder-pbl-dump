@@ -1,0 +1,48 @@
+HA$PBExportHeader$fn_parse_stath.srf
+$PBExportComments$
+global type fn_parse_stath from function_object
+end type
+
+forward prototypes
+global function string fn_parse_stath (string as_expr)
+end prototypes
+
+global function string fn_parse_stath (string as_expr);// parser ãéá óôáèåñÝò (misth_zpstath)
+// Äéá÷ùñéóôéêü: @....@
+// ÁíôéêáôÜóôáóç ìå ôçí ôéìÞ ôçò óôáèåñÜò ç 0 áí äåí õðÜñ÷åé
+
+integer	li_pos1, li_pos2
+string		ls_char_start, ls_char_end
+string		ls_expr
+string		ls_stath
+double	ld_poso		// ç ôéìÞ ôçò óôáèåñÜò ls_staht (áðü misth_zpstath)
+
+ls_char_start = "@"
+ls_char_end = "@"
+
+ls_expr = as_expr
+
+do
+
+// Âñßóêïõìå ôçí åðüìåíç óôáèåñÜ
+	li_pos1 = pos(ls_expr, ls_char_start)
+		if li_pos1 = 0 then return ls_expr
+	li_pos2 = pos(ls_expr, ls_char_end, li_pos1+1)
+		if li_pos2 = 0 then return ls_expr
+	
+	ls_stath = mid(ls_expr, li_pos1 + 1, li_pos2 - (li_pos1 + 1))
+	
+// Ðáßñíïõìå ôçí ôéìÞ áðü misth_zpstath
+	select poso into :ld_poso from misth_zpstath where kodstath = :ls_stath and kodxrisi = :gs_kodxrisi;
+	fn_sqlerror()
+	if isnull(ld_poso) then ld_poso = 0
+	
+// Áíôéêáèéóôïýìå ôçí óôáèåñÜ ìå ôï ðïóü 
+	ls_expr = Replace(ls_expr, li_pos1, li_pos2 - li_pos1 + 1, string(ld_poso) )
+	
+loop until (ls_expr = "")		// never happens
+
+
+
+end function
+

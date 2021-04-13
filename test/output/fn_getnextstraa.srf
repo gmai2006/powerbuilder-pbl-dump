@@ -1,0 +1,37 @@
+HA$PBExportHeader$fn_getnextstraa.srf
+$PBExportComments$
+global type fn_getnextstraa from function_object
+end type
+
+forward prototypes
+global function string fn_getnextstraa (string as_aa, integer ai_digits)
+end prototypes
+
+global function string fn_getnextstraa (string as_aa, integer ai_digits);// ÅðéóôñÝöåé ôïí åðüìåíï áðü ôïí as_aa áñéèìü óå ìïñöÞ string
+// Ç ìïñöÞ åßíáé 001, 010, 011, .... áíÜëïãá ìå ôï ai_digits
+
+// Áí ôï as_aa åßíáé null Þ "" ôï êÜíïõìå 0
+	if isnull(as_aa) or as_aa = "" then as_aa = "0"
+
+// ÌåôáôñïðÞ óå number êáé áýîçóç êáôÜ 1
+	long		ll_nextaa
+	ll_nextaa = long(as_aa) + 1
+	
+// ÌåôáôñïðÞ îáíÜ óå string êáé âñßóêïõìå ôïí íÝï áñéèìü øçößùí
+	string	ls_nextaa
+	integer	li_nextdigits
+	
+	ls_nextaa = string(ll_nextaa)
+	li_nextdigits = len(ls_nextaa)
+	
+// Ôá øçößá ðïõ ðåñéóåýïõí ðñïò ôá áñéóôåñÜ ôá êÜíïõìå 0
+	integer	li_zeros, i
+	li_zeros = ai_digits - li_nextdigits
+	for i = 1 to li_zeros
+		ls_nextaa = "0" + ls_nextaa
+	next
+	
+// ÅðéóôñïöÞ
+	return ls_nextaa
+end function
+

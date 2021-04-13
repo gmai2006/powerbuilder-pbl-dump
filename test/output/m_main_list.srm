@@ -1,0 +1,728 @@
+HA$PBExportHeader$m_main_list.srm
+$PBExportComments$
+forward
+global type m_main_list from m_main
+end type
+type m_edit from menu within m_main_list
+end type
+type m_edit_add from menu within m_edit
+end type
+type m_edit_view from menu within m_edit
+end type
+type m_edit_delete from menu within m_edit
+end type
+type m_edit_line1 from menu within m_edit
+end type
+type m_edit_refresh from menu within m_edit
+end type
+type m_edit_line2 from menu within m_edit
+end type
+type m_edit_close from menu within m_edit
+end type
+type m_edit from menu within m_main_list
+m_edit_add m_edit_add
+m_edit_view m_edit_view
+m_edit_delete m_edit_delete
+m_edit_line1 m_edit_line1
+m_edit_refresh m_edit_refresh
+m_edit_line2 m_edit_line2
+m_edit_close m_edit_close
+end type
+type m_view from menu within m_main_list
+end type
+type m_view_search from menu within m_view
+end type
+type m_view_filter from menu within m_view
+end type
+type m_view_all from menu within m_view
+end type
+type m_view_line2 from menu within m_view
+end type
+type m_view_prevwhere from menu within m_view
+end type
+type m_view_nextwhere from menu within m_view
+end type
+type m_view_line3 from menu within m_view
+end type
+type m_view_clearhistory from menu within m_view
+end type
+type m_view from menu within m_main_list
+m_view_search m_view_search
+m_view_filter m_view_filter
+m_view_all m_view_all
+m_view_line2 m_view_line2
+m_view_prevwhere m_view_prevwhere
+m_view_nextwhere m_view_nextwhere
+m_view_line3 m_view_line3
+m_view_clearhistory m_view_clearhistory
+end type
+type m_popup from menu within m_main_list
+end type
+type m_popup_add from menu within m_popup
+end type
+type m_popup_edit from menu within m_popup
+end type
+type m_popup_del from menu within m_popup
+end type
+type m_popup from menu within m_main_list
+m_popup_add m_popup_add
+m_popup_edit m_popup_edit
+m_popup_del m_popup_del
+end type
+global type m_main_list from m_main
+m_edit m_edit
+m_view m_view
+m_popup m_popup
+end type
+end forward
+
+global type m_main_list from m_main
+m_edit m_edit
+m_view m_view
+m_popup m_popup
+event ie_nofilter ( )
+event ie_noview ( )
+end type
+global m_main_list m_main_list
+
+event ie_nofilter();// Áðüêñõøç ôçò åðéëïãÞò "Óýíèåôï ößëôñï"
+	m_view.m_view_filter.visible = false
+	m_view.m_view_filter.toolbaritemvisible = false
+end event
+
+event ie_noview();// Áðüêñõøç ôçò åðéëïãÞò view ("ÐñïâïëÞ")
+	m_view.visible = false
+	m_view.m_view_search.toolbaritemvisible = false
+	m_view.m_view_filter.toolbaritemvisible = false
+	m_view.m_view_all.toolbaritemvisible = false
+	m_view.m_view_prevwhere.toolbaritemvisible = false
+	m_view.m_view_nextwhere.toolbaritemvisible = false
+	m_view.m_view_clearhistory.toolbaritemvisible = false
+	
+end event
+
+on m_main_list.create
+m_main_list=this
+call super::create
+this.text = "m_list2"
+this.m_edit=create m_edit
+this.m_view=create m_view
+this.m_popup=create m_popup
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_view
+this.Item[UpperBound(this.Item)+1]=this.m_popup
+end on
+
+on m_main_list.destroy
+call super::destroy
+destroy(this.m_edit)
+destroy(this.m_view)
+destroy(this.m_popup)
+end on
+
+event ie_checkmenu;call super::ie_checkmenu;// Ïé åðéëïãÝò ðñïçãïýìåíï êáé åðüìåíï ößëôñï
+// åîáñôþíôáé áðü ôçí ilst_histoyr
+	w_list		iw_parent
+	iw_parent = dw.Getparent()
+
+	if isvalid(iw_parent.ilst_history) then
+		
+		// head
+			if iw_parent.ilst_history.ishead() then
+				m_view.m_view_prevwhere.enabled = false
+			else
+				m_view.m_view_prevwhere.enabled = true
+			end if
+			
+		// tail
+			if iw_parent.ilst_history.istail() then
+				m_view.m_view_nextwhere.enabled = false
+			else	
+				m_view.m_view_nextwhere.enabled = true
+			end if
+			
+		// clear history
+			if iw_parent.ilst_history.count() < 2 then
+				m_view.m_view_clearhistory.enabled = false
+			else
+				m_view.m_view_clearhistory.enabled = true
+			end if
+			
+	end if
+
+// Ðáßñíïõìå ôçí ôñÝ÷ïõóá åããñáöÞ
+	long	ll_row
+	ll_row = dw.getrow()
+	
+	if ll_row = 0 then
+		
+		// Åðåîåñãáóßá
+		m_edit.m_edit_view.enabled = false
+		m_edit.m_edit_delete.enabled = false
+		
+		// pop-up
+		m_popup.m_popup_edit.enabled = false
+		m_popup.m_popup_del.enabled = false
+	
+	else
+	
+		// Åðåîåñãáóßá
+		m_edit.m_edit_view.enabled = true
+		m_edit.m_edit_delete.enabled = true
+		
+		// pop-up
+		m_popup.m_popup_edit.enabled = true
+		m_popup.m_popup_del.enabled = true
+		
+		
+	end if
+
+end event
+
+type m_window from m_main`m_window within m_main_list
+end type
+
+on m_window.create
+call super::create
+this.shifttoright = true
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_window_hor from m_main`m_window_hor within m_window
+end type
+
+on m_window_hor.create
+call super::create
+end on
+
+on m_window_hor.destroy
+call super::destroy
+end on
+
+type m_window_ver from m_main`m_window_ver within m_window
+end type
+
+on m_window_ver.create
+call super::create
+end on
+
+on m_window_ver.destroy
+call super::destroy
+end on
+
+type m_window_cascade from m_main`m_window_cascade within m_window
+end type
+
+on m_window_cascade.create
+call super::create
+end on
+
+on m_window_cascade.destroy
+call super::destroy
+end on
+
+type m_window_icons from m_main`m_window_icons within m_window
+end type
+
+on m_window_icons.create
+call super::create
+end on
+
+on m_window_icons.destroy
+call super::destroy
+end on
+
+type m_l1 from m_main`m_l1 within m_window
+end type
+
+on m_l1.create
+call super::create
+end on
+
+on m_l1.destroy
+call super::destroy
+end on
+
+type m_view_tv from m_main`m_view_tv within m_window
+end type
+
+on m_view_tv.create
+call super::create
+this.toolbaritemorder = 8
+this.toolbaritemspace = 2
+end on
+
+on m_view_tv.destroy
+call super::destroy
+end on
+
+type m_help from m_main`m_help within m_main_list
+end type
+
+on m_help.create
+call super::create
+this.shifttoright = true
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+
+type m_help_about from m_main`m_help_about within m_help
+end type
+
+on m_help_about.create
+call super::create
+this.toolbaritemorder = 9
+end on
+
+on m_help_about.destroy
+call super::destroy
+end on
+
+type m_áíáíÝùóçÜäåéáò÷ñÞóçò from m_main`m_áíáíÝùóçÜäåéáò÷ñÞóçò within m_help
+end type
+
+on m_áíáíÝùóçÜäåéáò÷ñÞóçò.create
+call super::create
+end on
+
+on m_áíáíÝùóçÜäåéáò÷ñÞóçò.destroy
+call super::destroy
+end on
+
+type m_help_line1 from m_main`m_help_line1 within m_help
+end type
+
+on m_help_line1.create
+call super::create
+end on
+
+on m_help_line1.destroy
+call super::destroy
+end on
+
+type m_help_exit from m_main`m_help_exit within m_help
+end type
+
+on m_help_exit.create
+call super::create
+end on
+
+on m_help_exit.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_main_list
+m_edit_add m_edit_add
+m_edit_view m_edit_view
+m_edit_delete m_edit_delete
+m_edit_line1 m_edit_line1
+m_edit_refresh m_edit_refresh
+m_edit_line2 m_edit_line2
+m_edit_close m_edit_close
+end type
+
+on m_edit.create
+call super::create
+this.text = trn(15)
+this.m_edit_add=create m_edit_add
+this.m_edit_view=create m_edit_view
+this.m_edit_delete=create m_edit_delete
+this.m_edit_line1=create m_edit_line1
+this.m_edit_refresh=create m_edit_refresh
+this.m_edit_line2=create m_edit_line2
+this.m_edit_close=create m_edit_close
+this.Item[UpperBound(this.Item)+1]=this.m_edit_add
+this.Item[UpperBound(this.Item)+1]=this.m_edit_view
+this.Item[UpperBound(this.Item)+1]=this.m_edit_delete
+this.Item[UpperBound(this.Item)+1]=this.m_edit_line1
+this.Item[UpperBound(this.Item)+1]=this.m_edit_refresh
+this.Item[UpperBound(this.Item)+1]=this.m_edit_line2
+this.Item[UpperBound(this.Item)+1]=this.m_edit_close
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_edit_add)
+destroy(this.m_edit_view)
+destroy(this.m_edit_delete)
+destroy(this.m_edit_line1)
+destroy(this.m_edit_refresh)
+destroy(this.m_edit_line2)
+destroy(this.m_edit_close)
+end on
+
+type m_edit_add from menu within m_edit
+event clicked ( )
+end type
+
+event clicked;parentwindow.TriggerEvent("me_add")
+end event
+
+on m_edit_add.create
+call super::create
+this.text = trn(43) + "..."
+this.microhelp = trn(569)
+this.toolbaritemname = "SelectScript!"
+this.toolbaritemtext = trn(568)
+end on
+
+on m_edit_add.destroy
+call super::destroy
+end on
+
+type m_edit_view from menu within m_edit
+event clicked ( )
+end type
+
+event clicked;parentwindow.TriggerEvent("me_edit")
+end event
+
+on m_edit_view.create
+call super::create
+this.text = trn(22) + "..."
+this.microhelp = trn(558)
+this.toolbaritemname = "DosEdit!"
+this.toolbaritemtext = trn(302)
+end on
+
+on m_edit_view.destroy
+call super::destroy
+end on
+
+type m_edit_delete from menu within m_edit
+event clicked ( )
+end type
+
+event clicked;parentwindow.TriggerEvent("me_delete")
+end event
+
+on m_edit_delete.create
+call super::create
+this.text = trn(13)
+this.microhelp = trn(225)
+this.toolbaritemname = "Custom094!"
+this.toolbaritemtext = trn(222)
+end on
+
+on m_edit_delete.destroy
+call super::destroy
+end on
+
+type m_edit_line1 from menu within m_edit
+end type
+
+on m_edit_line1.create
+call super::create
+this.text = "-"
+end on
+
+on m_edit_line1.destroy
+call super::destroy
+end on
+
+type m_edit_refresh from menu within m_edit
+end type
+
+event clicked;parentwindow.TriggerEvent("me_refresh")
+
+end event
+
+on m_edit_refresh.create
+call super::create
+this.text = trn(67)
+this.microhelp = trn(79)
+this.toolbaritemname = "Continue!"
+this.toolbaritemtext = trn(78)
+end on
+
+on m_edit_refresh.destroy
+call super::destroy
+end on
+
+type m_edit_line2 from menu within m_edit
+end type
+
+on m_edit_line2.create
+call super::create
+this.text = "-"
+end on
+
+on m_edit_line2.destroy
+call super::destroy
+end on
+
+type m_edit_close from menu within m_edit
+end type
+
+on m_edit_close.create
+call super::create
+this.text = trn(28)
+this.microhelp = trn(406)
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = trn(404)
+this.toolbaritemorder = 10
+end on
+
+on m_edit_close.destroy
+call super::destroy
+end on
+
+event clicked;close(parentwindow)
+end event
+
+type m_view from menu within m_main_list
+m_view_search m_view_search
+m_view_filter m_view_filter
+m_view_all m_view_all
+m_view_line2 m_view_line2
+m_view_prevwhere m_view_prevwhere
+m_view_nextwhere m_view_nextwhere
+m_view_line3 m_view_line3
+m_view_clearhistory m_view_clearhistory
+end type
+
+on m_view.create
+call super::create
+this.text = trn(494)
+this.m_view_search=create m_view_search
+this.m_view_filter=create m_view_filter
+this.m_view_all=create m_view_all
+this.m_view_line2=create m_view_line2
+this.m_view_prevwhere=create m_view_prevwhere
+this.m_view_nextwhere=create m_view_nextwhere
+this.m_view_line3=create m_view_line3
+this.m_view_clearhistory=create m_view_clearhistory
+this.Item[UpperBound(this.Item)+1]=this.m_view_search
+this.Item[UpperBound(this.Item)+1]=this.m_view_filter
+this.Item[UpperBound(this.Item)+1]=this.m_view_all
+this.Item[UpperBound(this.Item)+1]=this.m_view_line2
+this.Item[UpperBound(this.Item)+1]=this.m_view_prevwhere
+this.Item[UpperBound(this.Item)+1]=this.m_view_nextwhere
+this.Item[UpperBound(this.Item)+1]=this.m_view_line3
+this.Item[UpperBound(this.Item)+1]=this.m_view_clearhistory
+end on
+
+on m_view.destroy
+call super::destroy
+destroy(this.m_view_search)
+destroy(this.m_view_filter)
+destroy(this.m_view_all)
+destroy(this.m_view_line2)
+destroy(this.m_view_prevwhere)
+destroy(this.m_view_nextwhere)
+destroy(this.m_view_line3)
+destroy(this.m_view_clearhistory)
+end on
+
+type m_view_search from menu within m_view
+event clicked ( )
+end type
+
+event clicked;parentwindow.TriggerEvent("me_search")
+
+end event
+
+on m_view_search.create
+call super::create
+this.text = trn(3) + "..."
+this.microhelp = trn(69)
+this.toolbaritemname = "Find!"
+this.toolbaritemtext = trn(68)
+this.toolbaritemspace = 2
+end on
+
+on m_view_search.destroy
+call super::destroy
+end on
+
+type m_view_filter from menu within m_view
+event clicked ( )
+end type
+
+event clicked;parentwindow.TriggerEvent("me_filter")
+end event
+
+on m_view_filter.create
+call super::create
+this.text = trn(611) + "..."
+this.microhelp = trn(217)
+this.toolbaritemname = "Query5!"
+this.toolbaritemtext = trn(672)
+end on
+
+on m_view_filter.destroy
+call super::destroy
+end on
+
+type m_view_all from menu within m_view
+event clicked ( )
+end type
+
+event clicked;parentwindow.TriggerEvent("me_viewall")
+
+	
+end event
+
+on m_view_all.create
+call super::create
+this.text = trn(555)
+this.microhelp = trn(561)
+this.toolbaritemname = "Watcom!"
+this.toolbaritemtext = trn(478)
+end on
+
+on m_view_all.destroy
+call super::destroy
+end on
+
+type m_view_line2 from menu within m_view
+end type
+
+on m_view_line2.create
+call super::create
+this.text = "-"
+end on
+
+on m_view_line2.destroy
+call super::destroy
+end on
+
+type m_view_prevwhere from menu within m_view
+end type
+
+on m_view_prevwhere.create
+call super::create
+this.text = trn(42)
+this.toolbaritemname = "Custom036!"
+this.toolbaritemtext = trn(564)
+this.toolbaritemspace = 2
+end on
+
+on m_view_prevwhere.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_prevwhere")
+end event
+
+type m_view_nextwhere from menu within m_view
+end type
+
+on m_view_nextwhere.create
+call super::create
+this.text = trn(24)
+this.toolbaritemname = "Custom035!"
+this.toolbaritemtext = trn(333)
+end on
+
+on m_view_nextwhere.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_nextwhere")
+end event
+
+type m_view_line3 from menu within m_view
+end type
+
+on m_view_line3.create
+call super::create
+this.text = "-"
+end on
+
+on m_view_line3.destroy
+call super::destroy
+end on
+
+type m_view_clearhistory from menu within m_view
+end type
+
+on m_view_clearhistory.create
+call super::create
+this.text = trn(26)
+this.toolbaritemname = "DataManip!"
+this.toolbaritemtext = trn(387)
+end on
+
+on m_view_clearhistory.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_clearhistory")
+end event
+
+type m_popup from menu within m_main_list
+m_popup_add m_popup_add
+m_popup_edit m_popup_edit
+m_popup_del m_popup_del
+end type
+
+on m_popup.create
+call super::create
+this.visible = false
+this.text = "popup"
+this.m_popup_add=create m_popup_add
+this.m_popup_edit=create m_popup_edit
+this.m_popup_del=create m_popup_del
+this.Item[UpperBound(this.Item)+1]=this.m_popup_add
+this.Item[UpperBound(this.Item)+1]=this.m_popup_edit
+this.Item[UpperBound(this.Item)+1]=this.m_popup_del
+end on
+
+on m_popup.destroy
+call super::destroy
+destroy(this.m_popup_add)
+destroy(this.m_popup_edit)
+destroy(this.m_popup_del)
+end on
+
+type m_popup_add from menu within m_popup
+end type
+
+on m_popup_add.create
+call super::create
+this.text = trn(43) + "..."
+end on
+
+on m_popup_add.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.TriggerEvent("me_add")
+end event
+
+type m_popup_edit from menu within m_popup
+end type
+
+on m_popup_edit.create
+call super::create
+this.text = trn(22) + "..."
+end on
+
+on m_popup_edit.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.TriggerEvent("me_edit")
+end event
+
+type m_popup_del from menu within m_popup
+end type
+
+on m_popup_del.create
+call super::create
+this.text = trn(13)
+end on
+
+on m_popup_del.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.TriggerEvent("me_delete")
+end event
+

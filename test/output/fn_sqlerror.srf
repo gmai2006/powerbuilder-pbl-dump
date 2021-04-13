@@ -1,0 +1,19 @@
+HA$PBExportHeader$fn_sqlerror.srf
+$PBExportComments$
+global type fn_sqlerror from function_object
+end type
+
+forward prototypes
+global function boolean fn_sqlerror ()
+end prototypes
+
+global function boolean fn_sqlerror ();// ÅëÝã÷åé ôï SQLCA ãéá ëÜèïò
+
+IF SQLCA.SQLCode = -1  THEN 
+	MessageBox("SQL error", SQLCA.SQLErrText)
+  	return false
+else
+	return true
+end if
+end function
+

@@ -1,0 +1,15 @@
+HA$PBExportHeader$fn_createdw.srf
+$PBExportComments$
+global type fn_createdw from function_object
+end type
+
+forward prototypes
+global function datawindow fn_createdw (string as_sql)
+end prototypes
+
+global function datawindow fn_createdw (string as_sql);datawindow		ldw
+
+
+return ldw
+end function
+

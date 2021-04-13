@@ -1,0 +1,27 @@
+HA$PBExportHeader$fn_strinarray.srf
+$PBExportComments$
+global type fn_strinarray from function_object
+end type
+
+forward prototypes
+global function boolean fn_strinarray (readonly string aarray[], string astr)
+end prototypes
+
+global function boolean fn_strinarray (readonly string aarray[], string astr);// ÅðéóôñÝöåé true áí ôï astr ðåñéÝ÷åôå óôïí aarray
+
+// Âñßóêïõìå ôï ðëÞèïò ôùí óôïé÷åßùí ôïõ aarray
+	long		ll_records
+	
+	ll_records = UpperBound(aarray[])
+	
+// ¸ëåã÷ïò ãéá ôï astr
+	long	i
+	for i = 1 to ll_records
+		if aarray[i] = astr then	return true
+	next
+	
+// Áí öôÜóïõìå åäþ, ôï astr äåí õðÜñ÷åé
+	return false
+		
+end function
+

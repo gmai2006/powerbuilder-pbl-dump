@@ -1,0 +1,15 @@
+HA$PBExportHeader$gsc_misth_fylo_reset.srf
+$PBExportComments$
+global type gsc_misth_fylo_reset from function_object
+end type
+
+forward prototypes
+global subroutine gsc_misth_fylo_reset ()
+end prototypes
+
+global subroutine gsc_misth_fylo_reset ();setnull(gsc_misth_fylo.kodfylo)
+setnull(gsc_misth_fylo.kodxrisi)
+setnull(gsc_misth_fylo.descfylo)
+
+end subroutine
+

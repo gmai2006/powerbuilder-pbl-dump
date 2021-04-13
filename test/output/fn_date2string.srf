@@ -1,0 +1,27 @@
+HA$PBExportHeader$fn_date2string.srf
+$PBExportComments$
+global type fn_date2string from function_object
+end type
+
+forward prototypes
+global function string fn_date2string (date adt_date)
+end prototypes
+
+global function string fn_date2string (date adt_date);// ÌåôáôñïðÞ çì/íßáò óå ìïñöÞ yyyy-mm-dd (êáôÜëëçëç ãéá where clause)
+// Ôçí ðåñéêëåßïõìå óå ''
+
+	string	ls_year, ls_month, ls_day
+	
+// ÐÝñíïõìå ôï Ýôïò, ìÞíá, çìÝñá
+	ls_year = string(year(adt_date))
+	ls_month = string(month(adt_date))
+	ls_day = string(day(adt_date))
+	
+// ÐñïóèÞêç ôïõ 0 óôá ìïíïøÞöéá
+	if len(ls_month) = 1 then ls_month = "0" + ls_month
+	if len(ls_day)   = 1 then ls_day   = "0" + ls_day
+	
+// ÅðéóôñÝöïõìå 
+	return ls_year + "-" + ls_month + "-" + ls_day
+end function
+

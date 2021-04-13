@@ -1,0 +1,18 @@
+HA$PBExportHeader$fn_deleteodbc_access.srf
+$PBExportComments$
+global type fn_deleteodbc_access from function_object
+end type
+
+forward prototypes
+global subroutine fn_deleteodbc_access (string as_odbcname)
+end prototypes
+
+global subroutine fn_deleteodbc_access (string as_odbcname);// ÄéáãñáöÞ ôçò êáôá÷þñçóçò ODBC as_odbcname ôýðïõ ACCESS
+
+	RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\" + as_odbcname + "\Engines\Jet", "")
+	RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\" + as_odbcname + "\Engines", "")
+	RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\" + as_odbcname, "")
+	RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\ODBC Data Sources", as_odbcname)
+
+end subroutine
+

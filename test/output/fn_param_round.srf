@@ -1,0 +1,21 @@
+HA$PBExportHeader$fn_param_round.srf
+$PBExportComments$
+global type fn_param_round from function_object
+end type
+
+forward prototypes
+global function integer fn_param_round ()
+end prototypes
+
+global function integer fn_param_round ();integer	li_round
+
+select round into :li_round
+from   misth_zpxrisi where kodxrisi = :gs_kodxrisi;
+fn_sqlerror()
+
+if isnull(li_round) then li_round = 2
+
+return li_round
+
+end function
+

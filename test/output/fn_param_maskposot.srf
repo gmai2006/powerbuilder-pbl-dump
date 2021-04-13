@@ -1,0 +1,20 @@
+HA$PBExportHeader$fn_param_maskposot.srf
+$PBExportComments$
+global type fn_param_maskposot from function_object
+end type
+
+forward prototypes
+global function string fn_param_maskposot ()
+end prototypes
+
+global function string fn_param_maskposot ();string	ls_mask
+
+select maskposot into :ls_mask
+from   misth_zpxrisi where kodxrisi = :gs_kodxrisi;
+fn_sqlerror()
+
+if isnull(ls_mask) then ls_mask = ""
+
+return ls_mask
+end function
+

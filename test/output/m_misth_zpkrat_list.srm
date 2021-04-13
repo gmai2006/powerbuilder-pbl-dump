@@ -1,0 +1,502 @@
+HA$PBExportHeader$m_misth_zpkrat_list.srm
+$PBExportComments$
+forward
+global type m_misth_zpkrat_list from m_main_list
+end type
+type m_create from menu within m_misth_zpkrat_list
+end type
+type m_create_yvar from menu within m_create
+end type
+type m_create_epidom from menu within m_create
+end type
+type m_create from menu within m_misth_zpkrat_list
+m_create_yvar m_create_yvar
+m_create_epidom m_create_epidom
+end type
+global type m_misth_zpkrat_list from m_main_list
+m_create m_create
+end type
+end forward
+
+global type m_misth_zpkrat_list from m_main_list
+m_create m_create
+end type
+global m_misth_zpkrat_list m_misth_zpkrat_list
+
+on m_misth_zpkrat_list.create
+m_misth_zpkrat_list=this
+call super::create
+this.text = "m_misth_zpkrat_list"
+this.m_create=create m_create
+this.Item[UpperBound(this.Item)+1]=this.m_create
+end on
+
+on m_misth_zpkrat_list.destroy
+call super::destroy
+destroy(this.m_create)
+end on
+
+event ie_checkmenu;// Ïé åðéëïãÝò ðñïçãïýìåíï êáé åðüìåíï ößëôñï
+// åîáñôþíôáé áðü ôçí ilst_histoyr
+	w_list		iw_parent
+	iw_parent = dw.Getparent()
+
+	if isvalid(iw_parent.ilst_history) then
+		
+		// head
+			if iw_parent.ilst_history.ishead() then
+				m_view.m_view_prevwhere.enabled = false
+			else
+				m_view.m_view_prevwhere.enabled = true
+			end if
+			
+		// tail
+			if iw_parent.ilst_history.istail() then
+				m_view.m_view_nextwhere.enabled = false
+			else	
+				m_view.m_view_nextwhere.enabled = true
+			end if
+			
+		// clear history
+			if iw_parent.ilst_history.count() < 2 then
+				m_view.m_view_clearhistory.enabled = false
+			else
+				m_view.m_view_clearhistory.enabled = true
+			end if
+			
+	end if
+
+// Ðáßñíïõìå ôçí ôñÝ÷ïõóá åããñáöÞ
+	long	ll_row
+	ll_row = dw.getrow()
+	
+	if ll_row = 0 then
+		
+		// Åðåîåñãáóßá
+		m_edit.m_edit_view.enabled = false
+		m_edit.m_edit_delete.enabled = false
+		
+		// pop-up
+		m_popup.m_popup_edit.enabled = false
+		m_popup.m_popup_del.enabled = false
+		
+		// create
+		m_create.m_create_yvar.enabled = false
+		m_create.m_create_epidom.enabled = false
+	
+	else
+	
+		// Åðåîåñãáóßá
+		m_edit.m_edit_view.enabled = true
+		m_edit.m_edit_delete.enabled = true
+		
+		// pop-up
+		m_popup.m_popup_edit.enabled = true
+		m_popup.m_popup_del.enabled = true
+		
+		// create
+		m_create.m_create_yvar.enabled = true
+		m_create.m_create_epidom.enabled = true
+		
+	end if
+
+end event
+
+type m_window from m_main_list`m_window within m_misth_zpkrat_list
+end type
+
+on m_window.create
+call super::create
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_window_hor from m_main_list`m_window_hor within m_window
+end type
+
+on m_window_hor.create
+call super::create
+end on
+
+on m_window_hor.destroy
+call super::destroy
+end on
+
+type m_window_ver from m_main_list`m_window_ver within m_window
+end type
+
+on m_window_ver.create
+call super::create
+end on
+
+on m_window_ver.destroy
+call super::destroy
+end on
+
+type m_window_cascade from m_main_list`m_window_cascade within m_window
+end type
+
+on m_window_cascade.create
+call super::create
+end on
+
+on m_window_cascade.destroy
+call super::destroy
+end on
+
+type m_window_icons from m_main_list`m_window_icons within m_window
+end type
+
+on m_window_icons.create
+call super::create
+end on
+
+on m_window_icons.destroy
+call super::destroy
+end on
+
+type m_help from m_main_list`m_help within m_misth_zpkrat_list
+end type
+
+on m_help.create
+call super::create
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+
+type m_help_about from m_main_list`m_help_about within m_help
+end type
+
+on m_help_about.create
+call super::create
+end on
+
+on m_help_about.destroy
+call super::destroy
+end on
+
+type m_áíáíÝùóçÜäåéáò÷ñÞóçò from m_main_list`m_áíáíÝùóçÜäåéáò÷ñÞóçò within m_help
+end type
+
+on m_áíáíÝùóçÜäåéáò÷ñÞóçò.create
+call super::create
+end on
+
+on m_áíáíÝùóçÜäåéáò÷ñÞóçò.destroy
+call super::destroy
+end on
+
+type m_help_line1 from m_main_list`m_help_line1 within m_help
+end type
+
+on m_help_line1.create
+call super::create
+end on
+
+on m_help_line1.destroy
+call super::destroy
+end on
+
+type m_help_exit from m_main_list`m_help_exit within m_help
+end type
+
+on m_help_exit.create
+call super::create
+end on
+
+on m_help_exit.destroy
+call super::destroy
+end on
+
+type m_edit from m_main_list`m_edit within m_misth_zpkrat_list
+end type
+
+on m_edit.create
+call super::create
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_edit_add from m_main_list`m_edit_add within m_edit
+end type
+
+on m_edit_add.create
+call super::create
+end on
+
+on m_edit_add.destroy
+call super::destroy
+end on
+
+type m_edit_view from m_main_list`m_edit_view within m_edit
+end type
+
+on m_edit_view.create
+call super::create
+end on
+
+on m_edit_view.destroy
+call super::destroy
+end on
+
+type m_edit_delete from m_main_list`m_edit_delete within m_edit
+end type
+
+on m_edit_delete.create
+call super::create
+end on
+
+on m_edit_delete.destroy
+call super::destroy
+end on
+
+type m_edit_line1 from m_main_list`m_edit_line1 within m_edit
+end type
+
+on m_edit_line1.create
+call super::create
+end on
+
+on m_edit_line1.destroy
+call super::destroy
+end on
+
+type m_edit_refresh from m_main_list`m_edit_refresh within m_edit
+end type
+
+on m_edit_refresh.create
+call super::create
+end on
+
+on m_edit_refresh.destroy
+call super::destroy
+end on
+
+type m_edit_line2 from m_main_list`m_edit_line2 within m_edit
+end type
+
+on m_edit_line2.create
+call super::create
+end on
+
+on m_edit_line2.destroy
+call super::destroy
+end on
+
+type m_edit_close from m_main_list`m_edit_close within m_edit
+end type
+
+on m_edit_close.create
+call super::create
+end on
+
+on m_edit_close.destroy
+call super::destroy
+end on
+
+type m_view from m_main_list`m_view within m_misth_zpkrat_list
+end type
+
+on m_view.create
+call super::create
+end on
+
+on m_view.destroy
+call super::destroy
+end on
+
+type m_view_search from m_main_list`m_view_search within m_view
+end type
+
+on m_view_search.create
+call super::create
+end on
+
+on m_view_search.destroy
+call super::destroy
+end on
+
+type m_view_filter from m_main_list`m_view_filter within m_view
+end type
+
+on m_view_filter.create
+call super::create
+end on
+
+on m_view_filter.destroy
+call super::destroy
+end on
+
+type m_view_all from m_main_list`m_view_all within m_view
+end type
+
+on m_view_all.create
+call super::create
+end on
+
+on m_view_all.destroy
+call super::destroy
+end on
+
+type m_view_line2 from m_main_list`m_view_line2 within m_view
+end type
+
+on m_view_line2.create
+call super::create
+end on
+
+on m_view_line2.destroy
+call super::destroy
+end on
+
+type m_view_prevwhere from m_main_list`m_view_prevwhere within m_view
+end type
+
+on m_view_prevwhere.create
+call super::create
+end on
+
+on m_view_prevwhere.destroy
+call super::destroy
+end on
+
+type m_view_nextwhere from m_main_list`m_view_nextwhere within m_view
+end type
+
+on m_view_nextwhere.create
+call super::create
+end on
+
+on m_view_nextwhere.destroy
+call super::destroy
+end on
+
+type m_view_line3 from m_main_list`m_view_line3 within m_view
+end type
+
+on m_view_line3.create
+call super::create
+end on
+
+on m_view_line3.destroy
+call super::destroy
+end on
+
+type m_view_clearhistory from m_main_list`m_view_clearhistory within m_view
+end type
+
+on m_view_clearhistory.create
+call super::create
+end on
+
+on m_view_clearhistory.destroy
+call super::destroy
+end on
+
+type m_popup from m_main_list`m_popup within m_misth_zpkrat_list
+end type
+
+on m_popup.create
+call super::create
+end on
+
+on m_popup.destroy
+call super::destroy
+end on
+
+type m_popup_add from m_main_list`m_popup_add within m_popup
+end type
+
+on m_popup_add.create
+call super::create
+end on
+
+on m_popup_add.destroy
+call super::destroy
+end on
+
+type m_popup_edit from m_main_list`m_popup_edit within m_popup
+end type
+
+on m_popup_edit.create
+call super::create
+end on
+
+on m_popup_edit.destroy
+call super::destroy
+end on
+
+type m_popup_del from m_main_list`m_popup_del within m_popup
+end type
+
+on m_popup_del.create
+call super::create
+end on
+
+on m_popup_del.destroy
+call super::destroy
+end on
+
+type m_create from menu within m_misth_zpkrat_list
+m_create_yvar m_create_yvar
+m_create_epidom m_create_epidom
+end type
+
+on m_create.create
+call super::create
+this.text = trn(208)
+this.m_create_yvar=create m_create_yvar
+this.m_create_epidom=create m_create_epidom
+this.Item[UpperBound(this.Item)+1]=this.m_create_yvar
+this.Item[UpperBound(this.Item)+1]=this.m_create_epidom
+end on
+
+on m_create.destroy
+call super::destroy
+destroy(this.m_create_yvar)
+destroy(this.m_create_epidom)
+end on
+
+type m_create_yvar from menu within m_create
+end type
+
+on m_create_yvar.create
+call super::create
+this.text = trn(211)
+this.toolbaritemname = "DefaultFonts!"
+this.toolbaritemtext = trn(215)
+this.toolbaritemorder = 9
+this.toolbaritemspace = 1
+end on
+
+on m_create_yvar.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_create_yvar")
+end event
+
+type m_create_epidom from menu within m_create
+end type
+
+on m_create_epidom.create
+call super::create
+this.text = trn(209)
+this.toolbaritemname = "CheckOut5!"
+this.toolbaritemtext = trn(213)
+this.toolbaritemorder = 10
+end on
+
+on m_create_epidom.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_create_epidom")
+end event
+

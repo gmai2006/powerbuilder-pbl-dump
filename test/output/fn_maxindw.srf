@@ -1,0 +1,29 @@
+HA$PBExportHeader$fn_maxindw.srf
+$PBExportComments$
+global type fn_maxindw from function_object
+end type
+
+forward prototypes
+global function long fn_maxindw (ref datawindow adw, string col)
+end prototypes
+
+global function long fn_maxindw (ref datawindow adw, string col);// Âñßóêåé ôç ìÝãéóôç ôéìÞ ôïõ ðåäßïõ col óôï adw
+// Äïõëåýåé ìå ôýðïõò äåäïìÝíùí number
+
+	long	ll_rows, i, ll_max, ll_value
+	ll_rows = adw.rowcount()
+	
+	if ll_rows = 0 then return 0
+	
+	ll_max = adw.GetItemNumber(1, col)
+	if isnull(ll_max) then ll_max = 0
+	
+	for i = 2 to ll_rows
+		ll_value = adw.GetItemNumber(i, col)
+		if isnull(ll_value) then ll_value = 0
+		if ll_value > ll_max then ll_max = ll_value
+	next
+	
+	return ll_max
+end function
+

@@ -1,0 +1,35 @@
+HA$PBExportHeader$fn_num2str.srf
+$PBExportComments$
+global type fn_num2str from function_object
+end type
+
+forward prototypes
+global function string fn_num2str (long al_num, integer ai_digits)
+end prototypes
+
+global function string fn_num2str (long al_num, integer ai_digits);// ÌåôáôñïðÞ ôïõ al_num óå string
+// áðïôåëïýìåíïõ áðü ai_digits øçößá
+
+string		ls_num
+integer		li_zeros 	// 0's to be prefixed
+integer		i
+
+ls_num = string(al_num)
+li_zeros = ai_digits - len(ls_num)
+
+// ÐñïóèÞêç 0's áí ðåñéóåýïõí øçößá
+	if li_zeros > 0 then
+		for i = 1 to li_zeros
+			ls_num = "0" + ls_num
+		next
+		return ls_num
+	end if
+
+// ÁðïêïðÞ áñéèìïý áí ôá øçößá åßíáé ëéãüôåñá áðü ôï ìÞêïò ôïõ
+	if li_zeros < 0 then	return right(ls_num, ai_digits)
+
+// ÅðéóôñïöÞ ôïõ áñéèìïý üðùò åßíáé áí ôá øçößá åßíáé ßóá ìå ôï ìÞêïò
+	if li_zeros = 0 then return ls_num
+
+end function
+

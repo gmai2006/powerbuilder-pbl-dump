@@ -1,0 +1,20 @@
+HA$PBExportHeader$fn_fullname.srf
+$PBExportComments$
+global type fn_fullname from function_object
+end type
+
+forward prototypes
+global function string fn_fullname (string as_eponymo, string as_onoma, string as_fathername)
+end prototypes
+
+global function string fn_fullname (string as_eponymo, string as_onoma, string as_fathername);// ÅðéóôñïöÞ ïíïìáôåðþíõìï óå ìïñöÞ "Ôóáêéñßäçò Ä. ÓùôÞñéïò"
+	string	ls_fullname
+	
+	if isnull(as_fathername) or isnull(as_onoma) then return surname_name(as_eponymo, as_onoma)
+	
+	ls_fullname = as_eponymo + " " + left(as_fathername, 1) + ". " + as_onoma
+	
+	return ls_fullname
+	
+end function
+

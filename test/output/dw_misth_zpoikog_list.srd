@@ -1,0 +1,22 @@
+HA$PBExportHeader$dw_misth_zpoikog_list.srd
+$PBExportComments$
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 grid.columnmove=no selected.mouse=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(2) update=yes updatewhereclause=yes key=yes name=kodoikog dbname="misth_zpoikog.kodoikog" )
+ column=(type=char(4) update=yes updatewhereclause=yes key=yes name=kodxrisi dbname="misth_zpoikog.kodxrisi" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=descoikog dbname="misth_zpoikog.descoikog" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"misth_zpoikog~" ) COLUMN(NAME=~"misth_zpoikog.kodoikog~") COLUMN(NAME=~"misth_zpoikog.kodxrisi~") COLUMN(NAME=~"misth_zpoikog.descoikog~")WHERE(    EXP1 =~"misth_zpoikog.kodxrisi~"   OP =~"=~"    EXP2 =~":arg_kodxrisi~" ) ) ORDER(NAME=~"misth_zpoikog.kodoikog~" ASC=yes ) ARG(NAME = ~"arg_kodxrisi~" TYPE = string) " update="misth_zpoikog" updatewhere=0 updatekeyinplace=yes arguments=(("arg_kodxrisi", string)) )
+text(band=header alignment="2" text="Êùäéêüò~ttrn(419)" border="6" color="8388608" x="9" y="8" height="56" width="247" html.valueishtml="0"  name=kodoikog_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="ÐåñéãñáöÞ ïéêïãåíåéáêÞò êáôÜóôáóçò~ttrn(522)" border="6" color="8388608" x="265" y="8" height="56" width="1458" html.valueishtml="0"  name=descoikog_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="12639424" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="8" height="56" width="247" format="[general]" html.valueishtml="0"  name=kodoikog visible="1" edit.limit=2 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="0" color="33554432" x="265" y="8" height="56" width="1458" format="[general]" html.valueishtml="0"  name=descoikog visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+ 

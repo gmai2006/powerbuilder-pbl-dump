@@ -1,0 +1,52 @@
+HA$PBExportHeader$fn_parse_krat.srf
+$PBExportComments$
+global type fn_parse_krat from function_object
+end type
+
+forward prototypes
+global function string fn_parse_krat (string as_expr, ref datastore ads_krat)
+end prototypes
+
+global function string fn_parse_krat (string as_expr, ref datastore ads_krat);// parser ãéá êñáôÞóåéò öýëëùí õðïëïãéóìïý
+// Äéá÷ùñéóôéêü: {....}
+// Ðñïçãïýìåíåò õðïëïãéóèÞóåò êñáôÞóåéò ðñÝðåé Þäç íá âñßóêïíôáé óôçí ads_krat
+// Áí äåí âñßóêïíôáé ôá êÜíïõìå 0
+
+integer	li_pos1, li_pos2
+string		ls_char_start, ls_char_end
+string		ls_expr
+string		ls_kodkrat
+double	ld_poso		
+long 		ll_found
+
+ls_char_start = "{"
+ls_char_end = "}"
+
+ls_expr = as_expr
+
+do
+
+// Âñßóêïõìå ôï åðüìåíï åðßäïìá
+	li_pos1 = pos(ls_expr, ls_char_start)
+		if li_pos1 = 0 then return ls_expr						// exit point (ok)
+	li_pos2 = pos(ls_expr, ls_char_end, li_pos1+1)
+		if li_pos2 = 0 then return ls_expr						// exit point (error)
+	
+	ls_kodkrat = mid(ls_expr, li_pos1 + 1, li_pos2 - (li_pos1 + 1))
+	
+// Áíáæçôïýìå ôçí ôéìÞ óôï ads_krat
+// Áí äåí ôçí âñïýìå ôçí êÜíïõìå 0 áëëéþò äßíïõìå ôï ðïóü
+	ll_found = ads_krat.Find("kodvar = '" + ls_kodkrat + "'",  1, ads_krat.RowCount())
+	if ll_found = 0 then
+		ls_expr = Replace(ls_expr, li_pos1, li_pos2 - li_pos1 +1, "0")
+	else
+		ld_poso = ads_krat.object.poso[ll_found]
+		ls_expr = Replace(ls_expr, li_pos1, li_pos2 - li_pos1 +1, string(ld_poso))
+	end if
+	
+loop until (ls_expr = "")		// never happens
+
+
+
+end function
+

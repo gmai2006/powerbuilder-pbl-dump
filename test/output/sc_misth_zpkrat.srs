@@ -1,0 +1,11 @@
+HA$PBExportHeader$sc_misth_zpkrat.srs
+$PBExportComments$
+global type sc_misth_zpkrat from structure
+	string		kodkrat
+	string		kodxrisi
+	string		desckrat
+	integer		isforos
+	integer		isasf
+	integer		isautoforos
+end type
+

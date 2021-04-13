@@ -1,0 +1,36 @@
+HA$PBExportHeader$fn_createds_zpepidom_all.srf
+$PBExportComments$
+global type fn_createds_zpepidom_all from function_object
+end type
+
+forward prototypes
+global function datastore fn_createds_zpepidom_all ()
+end prototypes
+
+global function datastore fn_createds_zpepidom_all ();// Äçìéïõñãßá datastore ìå üëá ôá åðéäüìáôá
+
+// Äçìéïõñãßá datastore áðü misth_zpepidom
+	datastore	lds_zpepidom
+	long			ll_rows
+	
+	lds_zpepidom = fn_createds("pick_misth_zpepidom_xrisi")
+	ll_rows = lds_zpepidom.retrieve(gs_kodxrisi)
+
+// Äçìéïõñãßá datastore edw_var ãéá ìåôáöïñÜ
+	datastore		lds_epidom
+	
+	lds_epidom = fn_createds("edw_var")
+	
+// ÌåôáöïñÜ lds_zpepidom -> lds_epidom
+	long	i, ll_newrow
+	
+	for i = 1 to ll_rows
+		ll_newrow = lds_epidom.insertrow(0)
+		lds_epidom.object.kodvar[ll_newrow] = lds_zpepidom.object.kodepidom[i]
+		lds_epidom.object.descvar[ll_newrow] = lds_zpepidom.object.descepidom[i]
+	next
+	
+// ÅðéóôñïöÞ
+	return lds_epidom
+end function
+

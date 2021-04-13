@@ -1,0 +1,25 @@
+HA$PBExportHeader$dw_misth_zpstath_list.srd
+$PBExportComments$
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 grid.columnmove=no selected.mouse=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(20) update=yes updatewhereclause=yes key=yes name=kodstath dbname="misth_zpstath.kodstath" )
+ column=(type=char(4) update=yes updatewhereclause=yes key=yes name=kodxrisi dbname="misth_zpstath.kodxrisi" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=descstath dbname="misth_zpstath.descstath" )
+ column=(type=number update=yes updatewhereclause=yes name=poso dbname="misth_zpstath.poso" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"misth_zpstath~" ) COLUMN(NAME=~"misth_zpstath.kodstath~") COLUMN(NAME=~"misth_zpstath.kodxrisi~") COLUMN(NAME=~"misth_zpstath.descstath~") COLUMN(NAME=~"misth_zpstath.poso~")WHERE(    EXP1 =~"misth_zpstath.kodxrisi~"   OP =~"=~"    EXP2 =~":arg_kodxrisi~" ) ) ORDER(NAME=~"misth_zpstath.kodstath~" ASC=yes ) ARG(NAME = ~"arg_kodxrisi~" TYPE = string) " update="misth_zpstath" updatewhere=0 updatekeyinplace=yes arguments=(("arg_kodxrisi", string)) )
+text(band=header alignment="2" text="Êùäéêüò~ttrn(419)" border="6" color="8388608" x="9" y="8" height="60" width="594" html.valueishtml="0"  name=kodstath_t visible="1"  font.face="Arial Unicode MS" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="ÐåñéãñáöÞ óôáèåñÜò~ttrn(524)" border="6" color="8388608" x="613" y="8" height="60" width="1399" html.valueishtml="0"  name=descstath_t visible="1"  font.face="Arial Unicode MS" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Ðïóü~ttrn(549)" border="6" color="8388608" x="2021" y="8" height="60" width="361" html.valueishtml="0"  name=poso_t visible="1"  font.face="Arial Unicode MS" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="12639424" )
+column(band=detail id=4 alignment="1" tabsequence=30 border="0" color="33554432" x="2021" y="8" height="56" width="361" format="[general]~tfn_param_maskposo()" html.valueishtml="0"  name=poso visible="1" editmask.useformat=yes editmask.mask="###,###.00" editmask.imemode=0  font.face="Arial Unicode MS" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="8" height="56" width="594" format="[general]" html.valueishtml="0"  name=kodstath visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Unicode MS" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="0" color="33554432" x="613" y="8" height="56" width="1399" format="[general]" html.valueishtml="0"  name=descstath visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Unicode MS" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+ 

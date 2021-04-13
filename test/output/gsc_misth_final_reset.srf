@@ -1,0 +1,20 @@
+HA$PBExportHeader$gsc_misth_final_reset.srf
+$PBExportComments$
+global type gsc_misth_final_reset from function_object
+end type
+
+forward prototypes
+global subroutine gsc_misth_final_reset ()
+end prototypes
+
+global subroutine gsc_misth_final_reset ();setnull(gsc_misth_final.kodfinal)
+setnull(gsc_misth_final.kodxrisi)
+setnull(gsc_misth_final.descfinal)
+setnull(gsc_misth_final.datefinal)
+setnull(gsc_misth_final.title)
+setnull(gsc_misth_final.kodkat)
+setnull(gsc_misth_final.kodperiod)
+setnull(gsc_misth_final.aa)
+
+end subroutine
+

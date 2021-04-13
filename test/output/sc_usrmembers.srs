@@ -1,0 +1,7 @@
+HA$PBExportHeader$sc_usrmembers.srs
+$PBExportComments$
+global type sc_usrmembers from structure
+	long		koduser
+	long		kodgroup
+end type
+

@@ -1,0 +1,21 @@
+HA$PBExportHeader$fn_misth_final_datefinal.srf
+$PBExportComments$
+global type fn_misth_final_datefinal from function_object
+end type
+
+forward prototypes
+global function date fn_misth_final_datefinal (long al_kodfinal)
+end prototypes
+
+global function date fn_misth_final_datefinal (long al_kodfinal);// ÅðéóôñïöÞ ôçò çì/íßáò ìéóèïäïóßáò
+
+	date		ldt_datefinal
+	
+	select datefinal into :ldt_datefinal
+	from	 misth_final
+	where  kodfinal = :al_kodfinal and kodxrisi = :gs_kodxrisi;
+	fn_sqlerror()
+	
+	return ldt_datefinal
+end function
+

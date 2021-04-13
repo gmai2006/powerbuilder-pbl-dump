@@ -1,0 +1,20 @@
+HA$PBExportHeader$fn_createds.srf
+$PBExportComments$
+global type fn_createds from function_object
+end type
+
+forward prototypes
+global function datastore fn_createds (string as_dataobject)
+end prototypes
+
+global function datastore fn_createds (string as_dataobject);// Äçìéïõñãßá datastore áðü ôï as_dataobject
+// (ðñïóï÷Þ ãéá áðåëåõèÝñùóç ìíÞìçò)
+
+	datastore	lds
+	lds = create datastore
+	lds.DataObject = as_dataobject
+	lds.SetTransObject(sqlca)
+	
+	return lds
+end function
+

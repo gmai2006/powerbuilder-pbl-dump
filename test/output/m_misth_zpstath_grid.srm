@@ -1,0 +1,520 @@
+HA$PBExportHeader$m_misth_zpstath_grid.srm
+$PBExportComments$
+forward
+global type m_misth_zpstath_grid from m_main_pbgrid
+end type
+type m_create from menu within m_misth_zpstath_grid
+end type
+type m_create_yvar from menu within m_create
+end type
+type m_create_epidom from menu within m_create
+end type
+type m_create_krat from menu within m_create
+end type
+type m_create from menu within m_misth_zpstath_grid
+m_create_yvar m_create_yvar
+m_create_epidom m_create_epidom
+m_create_krat m_create_krat
+end type
+global type m_misth_zpstath_grid from m_main_pbgrid
+m_create m_create
+end type
+end forward
+
+global type m_misth_zpstath_grid from m_main_pbgrid
+m_create m_create
+end type
+global m_misth_zpstath_grid m_misth_zpstath_grid
+
+on m_misth_zpstath_grid.create
+m_misth_zpstath_grid=this
+call super::create
+this.text = "m_misth_zpstath_grid"
+this.m_create=create m_create
+this.Item[UpperBound(this.Item)+1]=this.m_create
+end on
+
+on m_misth_zpstath_grid.destroy
+call super::destroy
+destroy(this.m_create)
+end on
+
+event ie_checkmenu;long	ll_nrows, ll_row
+
+// Óýíïëï åããñáöþí êáé ôñÝ÷ïõóá åããñáöÞ
+	ll_nrows = dw.rowcount()
+	ll_row = dw.getrow()
+	
+// ÅðáíáöÝñïõìå üëá óå åíåñãü êáôÜóôáóç êáé áðåíåñãïðïéïýìå áíÜëïãá
+	m_edit.m_edit_delrec.enabled = true
+	m_edit.m_edit_selectrec.enabled = true
+	m_edit.m_edit_selectall.enabled = true
+	m_edit.m_edit_find.enabled = true
+	m_edit.m_edit_replace.enabled = true
+	
+	m_edit.m_edit_goto.m_edit_gotofirst.enabled = true
+	m_edit.m_edit_goto.m_edit_gotoprev.enabled = true
+	m_edit.m_edit_goto.m_edit_gotonext.enabled = true
+	m_edit.m_edit_goto.m_edit_gotolast.enabled = true
+	m_edit.m_edit_goto.m_edit_gotonew.enabled = true
+	
+	m_create.m_create_yvar.enabled = true
+	m_create.m_create_epidom.enabled = true
+	m_create.m_create_krat.enabled = true
+	
+
+// Áí äåí õðÜñ÷ïõí åããñáöÝò ðáñÜ ìüíï ç íÝá
+	if ll_nrows = 1 then
+		m_edit.m_edit_delrec.enabled = false
+		m_edit.m_edit_selectrec.enabled = false
+		m_edit.m_edit_selectall.enabled = false
+		m_edit.m_edit_find.enabled = false
+		m_edit.m_edit_replace.enabled = false
+		m_edit.m_edit_goto.m_edit_gotofirst.enabled = false
+		m_edit.m_edit_goto.m_edit_gotoprev.enabled = false
+		m_edit.m_edit_goto.m_edit_gotonext.enabled = false
+		m_edit.m_edit_goto.m_edit_gotolast.enabled = false
+		m_edit.m_edit_goto.m_edit_gotonew.enabled = false
+		
+		m_create.m_create_yvar.enabled = false
+		m_create.m_create_epidom.enabled = false
+		m_create.m_create_krat.enabled = false
+		
+		return
+		
+	end if
+		
+// Åßìáóôå óôçí ôåëåõôáßá åããñáöÞ (íÝá) áëëÜ õðÜñ÷ïõí êáé Üëëåò
+	if ll_row = ll_nrows and ll_nrows > 1 then
+		m_edit.m_edit_selectrec.enabled = false
+		m_edit.m_edit_goto.m_edit_gotonew.enabled = false
+		m_edit.m_edit_goto.m_edit_gotonext.enabled = false
+		m_edit.m_edit_delrec.enabled = false
+		
+		m_create.m_create_yvar.enabled = false
+		m_create.m_create_epidom.enabled = false
+		m_create.m_create_krat.enabled = false
+
+		return
+		
+	end if	
+	
+// Åßìáóôå óôçí ðñþôç åããñáöÞ êáé õðÜñ÷ïõí êáé Üëëåò
+	if ll_row = 1 and ll_nrows > 1 then
+		m_edit.m_edit_goto.m_edit_gotofirst.enabled = false
+		m_edit.m_edit_goto.m_edit_gotoprev.enabled = false
+		
+		// Áí åßíáé êáé ç ìïíáäéêÞ åããñáöÞ (ðñïôåëåõôáßá)
+		if ll_row = ll_nrows - 1 then
+			m_edit.m_edit_goto.m_edit_gotolast.enabled = false
+		end if
+		
+		return
+	end if
+	
+// Áí åßìáóôå óôçí ðñïôåëåõôáßá (ðñéí ôçí íÝá)
+	if ll_row = ll_nrows - 1 then
+		m_edit.m_edit_goto.m_edit_gotolast.enabled = false
+		return
+	end if
+	
+end event
+
+type m_window from m_main_pbgrid`m_window within m_misth_zpstath_grid
+end type
+
+on m_window.create
+call super::create
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_window_hor from m_main_pbgrid`m_window_hor within m_window
+end type
+
+on m_window_hor.create
+call super::create
+end on
+
+on m_window_hor.destroy
+call super::destroy
+end on
+
+type m_window_ver from m_main_pbgrid`m_window_ver within m_window
+end type
+
+on m_window_ver.create
+call super::create
+end on
+
+on m_window_ver.destroy
+call super::destroy
+end on
+
+type m_window_cascade from m_main_pbgrid`m_window_cascade within m_window
+end type
+
+on m_window_cascade.create
+call super::create
+end on
+
+on m_window_cascade.destroy
+call super::destroy
+end on
+
+type m_window_icons from m_main_pbgrid`m_window_icons within m_window
+end type
+
+on m_window_icons.create
+call super::create
+end on
+
+on m_window_icons.destroy
+call super::destroy
+end on
+
+type m_help from m_main_pbgrid`m_help within m_misth_zpstath_grid
+end type
+
+on m_help.create
+call super::create
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+
+type m_help_about from m_main_pbgrid`m_help_about within m_help
+end type
+
+on m_help_about.create
+call super::create
+end on
+
+on m_help_about.destroy
+call super::destroy
+end on
+
+type m_áíáíÝùóçÜäåéáò÷ñÞóçò from m_main_pbgrid`m_áíáíÝùóçÜäåéáò÷ñÞóçò within m_help
+end type
+
+on m_áíáíÝùóçÜäåéáò÷ñÞóçò.create
+call super::create
+end on
+
+on m_áíáíÝùóçÜäåéáò÷ñÞóçò.destroy
+call super::destroy
+end on
+
+type m_help_line1 from m_main_pbgrid`m_help_line1 within m_help
+end type
+
+on m_help_line1.create
+call super::create
+end on
+
+on m_help_line1.destroy
+call super::destroy
+end on
+
+type m_help_exit from m_main_pbgrid`m_help_exit within m_help
+end type
+
+on m_help_exit.create
+call super::create
+end on
+
+on m_help_exit.destroy
+call super::destroy
+end on
+
+type m_edit from m_main_pbgrid`m_edit within m_misth_zpstath_grid
+end type
+
+on m_edit.create
+call super::create
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_edit_delrec from m_main_pbgrid`m_edit_delrec within m_edit
+end type
+
+on m_edit_delrec.create
+call super::create
+end on
+
+on m_edit_delrec.destroy
+call super::destroy
+end on
+
+type m_edit_line3 from m_main_pbgrid`m_edit_line3 within m_edit
+end type
+
+on m_edit_line3.create
+call super::create
+end on
+
+on m_edit_line3.destroy
+call super::destroy
+end on
+
+type m_edit_selectrec from m_main_pbgrid`m_edit_selectrec within m_edit
+end type
+
+on m_edit_selectrec.create
+call super::create
+end on
+
+on m_edit_selectrec.destroy
+call super::destroy
+end on
+
+type m_edit_selectall from m_main_pbgrid`m_edit_selectall within m_edit
+end type
+
+on m_edit_selectall.create
+call super::create
+end on
+
+on m_edit_selectall.destroy
+call super::destroy
+end on
+
+type m_edit_line4 from m_main_pbgrid`m_edit_line4 within m_edit
+end type
+
+on m_edit_line4.create
+call super::create
+end on
+
+on m_edit_line4.destroy
+call super::destroy
+end on
+
+type m_edit_find from m_main_pbgrid`m_edit_find within m_edit
+end type
+
+on m_edit_find.create
+call super::create
+end on
+
+on m_edit_find.destroy
+call super::destroy
+end on
+
+type m_edit_replace from m_main_pbgrid`m_edit_replace within m_edit
+end type
+
+on m_edit_replace.create
+call super::create
+end on
+
+on m_edit_replace.destroy
+call super::destroy
+end on
+
+type m_edit_goto from m_main_pbgrid`m_edit_goto within m_edit
+end type
+
+on m_edit_goto.create
+call super::create
+end on
+
+on m_edit_goto.destroy
+call super::destroy
+end on
+
+type m_edit_gotofirst from m_main_pbgrid`m_edit_gotofirst within m_edit_goto
+end type
+
+on m_edit_gotofirst.create
+call super::create
+end on
+
+on m_edit_gotofirst.destroy
+call super::destroy
+end on
+
+type m_edit_gotoprev from m_main_pbgrid`m_edit_gotoprev within m_edit_goto
+end type
+
+on m_edit_gotoprev.create
+call super::create
+end on
+
+on m_edit_gotoprev.destroy
+call super::destroy
+end on
+
+type m_edit_gotonext from m_main_pbgrid`m_edit_gotonext within m_edit_goto
+end type
+
+on m_edit_gotonext.create
+call super::create
+end on
+
+on m_edit_gotonext.destroy
+call super::destroy
+end on
+
+type m_edit_gotolast from m_main_pbgrid`m_edit_gotolast within m_edit_goto
+end type
+
+on m_edit_gotolast.create
+call super::create
+end on
+
+on m_edit_gotolast.destroy
+call super::destroy
+end on
+
+type m_edit_gotonew from m_main_pbgrid`m_edit_gotonew within m_edit_goto
+end type
+
+on m_edit_gotonew.create
+call super::create
+end on
+
+on m_edit_gotonew.destroy
+call super::destroy
+end on
+
+type m_edit_line5 from m_main_pbgrid`m_edit_line5 within m_edit
+end type
+
+on m_edit_line5.create
+call super::create
+end on
+
+on m_edit_line5.destroy
+call super::destroy
+end on
+
+type m_edit_close from m_main_pbgrid`m_edit_close within m_edit
+end type
+
+on m_edit_close.create
+call super::create
+end on
+
+on m_edit_close.destroy
+call super::destroy
+end on
+
+type m_records from m_main_pbgrid`m_records within m_misth_zpstath_grid
+end type
+
+on m_records.create
+call super::create
+end on
+
+on m_records.destroy
+call super::destroy
+end on
+
+type m_records_refresh from m_main_pbgrid`m_records_refresh within m_records
+end type
+
+on m_records_refresh.create
+call super::create
+end on
+
+on m_records_refresh.destroy
+call super::destroy
+end on
+
+type m_records_save from m_main_pbgrid`m_records_save within m_records
+end type
+
+on m_records_save.create
+call super::create
+end on
+
+on m_records_save.destroy
+call super::destroy
+end on
+
+type m_create from menu within m_misth_zpstath_grid
+m_create_yvar m_create_yvar
+m_create_epidom m_create_epidom
+m_create_krat m_create_krat
+end type
+
+on m_create.create
+call super::create
+this.text = trn(12)
+this.m_create_yvar=create m_create_yvar
+this.m_create_epidom=create m_create_epidom
+this.m_create_krat=create m_create_krat
+this.Item[UpperBound(this.Item)+1]=this.m_create_yvar
+this.Item[UpperBound(this.Item)+1]=this.m_create_epidom
+this.Item[UpperBound(this.Item)+1]=this.m_create_krat
+end on
+
+on m_create.destroy
+call super::destroy
+destroy(this.m_create_yvar)
+destroy(this.m_create_epidom)
+destroy(this.m_create_krat)
+end on
+
+type m_create_yvar from menu within m_create
+end type
+
+event clicked;parentwindow.triggerevent("me_create_yvar")
+end event
+
+on m_create_yvar.create
+call super::create
+this.text = trn(31)
+this.toolbaritemname = "DefaultFonts!"
+this.toolbaritemtext = trn(215)
+this.toolbaritemorder = 13
+this.toolbaritemspace = 1
+end on
+
+on m_create_yvar.destroy
+call super::destroy
+end on
+
+type m_create_epidom from menu within m_create
+end type
+
+on m_create_epidom.create
+call super::create
+this.text = trn(8)
+this.toolbaritemname = "CheckIn!"
+this.toolbaritemtext = trn(212)
+this.toolbaritemorder = 14
+end on
+
+on m_create_epidom.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_create_epidom")
+end event
+
+type m_create_krat from menu within m_create
+end type
+
+on m_create_krat.create
+call super::create
+this.text = trn(29)
+this.toolbaritemname = "CheckOut5!"
+this.toolbaritemtext = trn(214)
+this.toolbaritemorder = 15
+end on
+
+on m_create_krat.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_create_krat")
+end event
+

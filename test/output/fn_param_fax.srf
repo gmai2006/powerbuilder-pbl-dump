@@ -1,0 +1,22 @@
+HA$PBExportHeader$fn_param_fax.srf
+$PBExportComments$
+global type fn_param_fax from function_object
+end type
+
+forward prototypes
+global function string fn_param_fax ()
+end prototypes
+
+global function string fn_param_fax ();string	ls_fax
+
+select fax into :ls_fax
+from   misth_zpxrisi where kodxrisi = :gs_kodxrisi;
+fn_sqlerror()
+
+if isnull(ls_fax) then ls_fax = ""
+
+return ls_fax
+
+
+end function
+

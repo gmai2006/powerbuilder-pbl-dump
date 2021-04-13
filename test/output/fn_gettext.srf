@@ -1,0 +1,18 @@
+HA$PBExportHeader$fn_gettext.srf
+$PBExportComments$
+global type fn_gettext from function_object
+end type
+
+forward prototypes
+global function string fn_gettext (string as_title)
+end prototypes
+
+global function string fn_gettext (string as_title);// ¢íïéãìá ôïõ ðáñáèýñïõ w_gettext êáé åðéóôñïöÞ ôïõ êåéìÝíïõ
+	string	ls_text
+	
+	Openwithparm(w_gettext, as_title)
+	ls_text = Message.StringParm
+	
+	return ls_text
+end function
+

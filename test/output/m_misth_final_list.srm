@@ -1,0 +1,741 @@
+HA$PBExportHeader$m_misth_final_list.srm
+$PBExportComments$
+forward
+global type m_misth_final_list from m_main_list
+end type
+type m_edit_plirdate from menu within m_edit
+end type
+type m_- from menu within m_edit
+end type
+type m_edit from m_main_list`m_edit within m_misth_final_list
+m_edit_plirdate m_edit_plirdate
+m_- m_-
+end type
+type m_popup_l1 from menu within m_popup
+end type
+type m_popup_plirdate from menu within m_popup
+end type
+type m_popup_l2 from menu within m_popup
+end type
+type m_popup_print from menu within m_popup
+end type
+type m_popup_print_atomikes from menu within m_popup_print
+end type
+type m_popup_print_ypal from menu within m_popup_print
+end type
+type m_popup_print_total from menu within m_popup_print
+end type
+type m_popup_print_custom from menu within m_popup_print
+end type
+type m_popup_print from menu within m_popup
+m_popup_print_atomikes m_popup_print_atomikes
+m_popup_print_ypal m_popup_print_ypal
+m_popup_print_total m_popup_print_total
+m_popup_print_custom m_popup_print_custom
+end type
+type m_popup from m_main_list`m_popup within m_misth_final_list
+m_popup_l1 m_popup_l1
+m_popup_plirdate m_popup_plirdate
+m_popup_l2 m_popup_l2
+m_popup_print m_popup_print
+end type
+type m_print from menu within m_misth_final_list
+end type
+type m_print_atomikes from menu within m_print
+end type
+type m_print_ypal from menu within m_print
+end type
+type m_print_total from menu within m_print
+end type
+type m_print_custom from menu within m_print
+end type
+type m_print from menu within m_misth_final_list
+m_print_atomikes m_print_atomikes
+m_print_ypal m_print_ypal
+m_print_total m_print_total
+m_print_custom m_print_custom
+end type
+global type m_misth_final_list from m_main_list
+m_print m_print
+end type
+end forward
+
+global type m_misth_final_list from m_main_list
+m_print m_print
+end type
+global m_misth_final_list m_misth_final_list
+
+on m_misth_final_list.create
+m_misth_final_list=this
+call super::create
+this.text = "m_misth_final_list"
+this.m_print=create m_print
+this.Item[UpperBound(this.Item)+1]=this.m_print
+end on
+
+on m_misth_final_list.destroy
+call super::destroy
+destroy(this.m_print)
+end on
+
+event ie_checkmenu;call super::ie_checkmenu;// Ðáßñíïõìå ôçí ôñÝ÷ïõóá åããñáöÞ
+	long	ll_row
+	ll_row = dw.getrow()
+	
+	if ll_row = 0 then
+		
+		// ÅããñáöÝò
+		m_edit.m_edit_plirdate.enabled = false
+		
+		// Åêôõðþóåéò
+		m_print.m_print_atomikes.enabled = false
+		m_print.m_print_total.enabled = false
+		m_print.m_print_custom.enabled = false
+		m_print.m_print_ypal.enabled = false
+		
+		// pop-up
+		m_popup.m_popup_print.enabled = false
+		m_popup.m_popup_plirdate.enabled = false
+	
+	else
+	
+		// ÅããñáöÝò
+		m_edit.m_edit_plirdate.enabled = true
+	
+		// Åêôõðþóåéò
+		m_print.m_print_atomikes.enabled = true
+		m_print.m_print_total.enabled = true
+		m_print.m_print_custom.enabled = true
+		m_print.m_print_ypal.enabled = true
+		
+		// pop-up
+		m_popup.m_popup_print.enabled = true
+		m_popup.m_popup_plirdate.enabled = true
+		
+		
+	end if
+
+end event
+
+type m_window from m_main_list`m_window within m_misth_final_list
+end type
+
+on m_window.create
+call super::create
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_window_hor from m_main_list`m_window_hor within m_window
+end type
+
+on m_window_hor.create
+call super::create
+end on
+
+on m_window_hor.destroy
+call super::destroy
+end on
+
+type m_window_ver from m_main_list`m_window_ver within m_window
+end type
+
+on m_window_ver.create
+call super::create
+end on
+
+on m_window_ver.destroy
+call super::destroy
+end on
+
+type m_window_cascade from m_main_list`m_window_cascade within m_window
+end type
+
+on m_window_cascade.create
+call super::create
+end on
+
+on m_window_cascade.destroy
+call super::destroy
+end on
+
+type m_window_icons from m_main_list`m_window_icons within m_window
+end type
+
+on m_window_icons.create
+call super::create
+end on
+
+on m_window_icons.destroy
+call super::destroy
+end on
+
+type m_help from m_main_list`m_help within m_misth_final_list
+end type
+
+on m_help.create
+call super::create
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+
+type m_help_about from m_main_list`m_help_about within m_help
+end type
+
+on m_help_about.create
+call super::create
+end on
+
+on m_help_about.destroy
+call super::destroy
+end on
+
+type m_áíáíÝùóçÜäåéáò÷ñÞóçò from m_main_list`m_áíáíÝùóçÜäåéáò÷ñÞóçò within m_help
+end type
+
+on m_áíáíÝùóçÜäåéáò÷ñÞóçò.create
+call super::create
+end on
+
+on m_áíáíÝùóçÜäåéáò÷ñÞóçò.destroy
+call super::destroy
+end on
+
+type m_help_line1 from m_main_list`m_help_line1 within m_help
+end type
+
+on m_help_line1.create
+call super::create
+end on
+
+on m_help_line1.destroy
+call super::destroy
+end on
+
+type m_help_exit from m_main_list`m_help_exit within m_help
+end type
+
+on m_help_exit.create
+call super::create
+end on
+
+on m_help_exit.destroy
+call super::destroy
+end on
+
+type m_edit from m_main_list`m_edit within m_misth_final_list
+m_edit_plirdate m_edit_plirdate
+m_- m_-
+end type
+
+on m_edit.create
+call super::create
+this.m_edit_plirdate=create m_edit_plirdate
+this.m_-=create m_-
+this.Item[UpperBound(this.Item)+1]=this.m_edit_plirdate
+this.Item[UpperBound(this.Item)+1]=this.m_-
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_edit_plirdate)
+destroy(this.m_-)
+end on
+
+type m_edit_add from m_main_list`m_edit_add within m_edit
+end type
+
+on m_edit_add.create
+call super::create
+this.text = trn(32)
+this.microhelp = trn(216)
+this.toolbaritemtext = trn(461)
+end on
+
+on m_edit_add.destroy
+call super::destroy
+end on
+
+type m_edit_view from m_main_list`m_edit_view within m_edit
+end type
+
+on m_edit_view.create
+call super::create
+end on
+
+on m_edit_view.destroy
+call super::destroy
+end on
+
+type m_edit_delete from m_main_list`m_edit_delete within m_edit
+end type
+
+on m_edit_delete.create
+call super::create
+end on
+
+on m_edit_delete.destroy
+call super::destroy
+end on
+
+type m_edit_line1 from m_main_list`m_edit_line1 within m_edit
+end type
+
+on m_edit_line1.create
+call super::create
+end on
+
+on m_edit_line1.destroy
+call super::destroy
+end on
+
+type m_edit_refresh from m_main_list`m_edit_refresh within m_edit
+end type
+
+on m_edit_refresh.create
+call super::create
+end on
+
+on m_edit_refresh.destroy
+call super::destroy
+end on
+
+type m_edit_line2 from m_main_list`m_edit_line2 within m_edit
+end type
+
+on m_edit_line2.create
+call super::create
+end on
+
+on m_edit_line2.destroy
+call super::destroy
+end on
+
+type m_edit_close from m_main_list`m_edit_close within m_edit
+end type
+
+on m_edit_close.create
+call super::create
+this.shifttoright = true
+end on
+
+on m_edit_close.destroy
+call super::destroy
+end on
+
+type m_view from m_main_list`m_view within m_misth_final_list
+end type
+
+on m_view.create
+call super::create
+end on
+
+on m_view.destroy
+call super::destroy
+end on
+
+type m_view_search from m_main_list`m_view_search within m_view
+end type
+
+on m_view_search.create
+call super::create
+end on
+
+on m_view_search.destroy
+call super::destroy
+end on
+
+type m_view_filter from m_main_list`m_view_filter within m_view
+end type
+
+on m_view_filter.create
+call super::create
+end on
+
+on m_view_filter.destroy
+call super::destroy
+end on
+
+type m_view_all from m_main_list`m_view_all within m_view
+end type
+
+on m_view_all.create
+call super::create
+end on
+
+on m_view_all.destroy
+call super::destroy
+end on
+
+type m_view_line2 from m_main_list`m_view_line2 within m_view
+end type
+
+on m_view_line2.create
+call super::create
+end on
+
+on m_view_line2.destroy
+call super::destroy
+end on
+
+type m_view_prevwhere from m_main_list`m_view_prevwhere within m_view
+end type
+
+on m_view_prevwhere.create
+call super::create
+end on
+
+on m_view_prevwhere.destroy
+call super::destroy
+end on
+
+type m_view_nextwhere from m_main_list`m_view_nextwhere within m_view
+end type
+
+on m_view_nextwhere.create
+call super::create
+end on
+
+on m_view_nextwhere.destroy
+call super::destroy
+end on
+
+type m_view_line3 from m_main_list`m_view_line3 within m_view
+end type
+
+on m_view_line3.create
+call super::create
+end on
+
+on m_view_line3.destroy
+call super::destroy
+end on
+
+type m_view_clearhistory from m_main_list`m_view_clearhistory within m_view
+end type
+
+on m_view_clearhistory.create
+call super::create
+end on
+
+on m_view_clearhistory.destroy
+call super::destroy
+end on
+
+type m_popup from m_main_list`m_popup within m_misth_final_list
+m_popup_l1 m_popup_l1
+m_popup_plirdate m_popup_plirdate
+m_popup_l2 m_popup_l2
+m_popup_print m_popup_print
+end type
+
+on m_popup.create
+call super::create
+this.m_popup_l1=create m_popup_l1
+this.m_popup_plirdate=create m_popup_plirdate
+this.m_popup_l2=create m_popup_l2
+this.m_popup_print=create m_popup_print
+this.Item[UpperBound(this.Item)+1]=this.m_popup_l1
+this.Item[UpperBound(this.Item)+1]=this.m_popup_plirdate
+this.Item[UpperBound(this.Item)+1]=this.m_popup_l2
+this.Item[UpperBound(this.Item)+1]=this.m_popup_print
+end on
+
+on m_popup.destroy
+call super::destroy
+destroy(this.m_popup_l1)
+destroy(this.m_popup_plirdate)
+destroy(this.m_popup_l2)
+destroy(this.m_popup_print)
+end on
+
+type m_popup_add from m_main_list`m_popup_add within m_popup
+end type
+
+on m_popup_add.create
+call super::create
+end on
+
+on m_popup_add.destroy
+call super::destroy
+end on
+
+type m_popup_edit from m_main_list`m_popup_edit within m_popup
+end type
+
+on m_popup_edit.create
+call super::create
+this.toolbaritemvisible = false
+end on
+
+on m_popup_edit.destroy
+call super::destroy
+end on
+
+type m_popup_del from m_main_list`m_popup_del within m_popup
+end type
+
+on m_popup_del.create
+call super::create
+end on
+
+on m_popup_del.destroy
+call super::destroy
+end on
+
+type m_edit_plirdate from menu within m_edit
+end type
+
+on m_edit_plirdate.create
+call super::create
+this.text = trn(40) + "..."
+this.microhelp = trn(546)
+this.toolbaritemname = "Custom048!"
+this.toolbaritemtext = trn(546)
+this.toolbaritemspace = 1
+end on
+
+on m_edit_plirdate.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_edit_plirdate")
+end event
+
+type m_- from menu within m_edit
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_popup_l1 from menu within m_popup
+end type
+
+on m_popup_l1.create
+call super::create
+this.text = "-"
+end on
+
+on m_popup_l1.destroy
+call super::destroy
+end on
+
+type m_popup_plirdate from menu within m_popup
+end type
+
+on m_popup_plirdate.create
+call super::create
+this.text = trn(546)
+this.microhelp = trn(546)
+end on
+
+on m_popup_plirdate.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_edit_plirdate")
+end event
+
+type m_popup_l2 from menu within m_popup
+end type
+
+on m_popup_l2.create
+call super::create
+this.text = "-"
+end on
+
+on m_popup_l2.destroy
+call super::destroy
+end on
+
+type m_popup_print from menu within m_popup
+m_popup_print_atomikes m_popup_print_atomikes
+m_popup_print_ypal m_popup_print_ypal
+m_popup_print_total m_popup_print_total
+m_popup_print_custom m_popup_print_custom
+end type
+
+on m_popup_print.create
+call super::create
+this.text = trn(17)
+this.m_popup_print_atomikes=create m_popup_print_atomikes
+this.m_popup_print_ypal=create m_popup_print_ypal
+this.m_popup_print_total=create m_popup_print_total
+this.m_popup_print_custom=create m_popup_print_custom
+this.Item[UpperBound(this.Item)+1]=this.m_popup_print_atomikes
+this.Item[UpperBound(this.Item)+1]=this.m_popup_print_ypal
+this.Item[UpperBound(this.Item)+1]=this.m_popup_print_total
+this.Item[UpperBound(this.Item)+1]=this.m_popup_print_custom
+end on
+
+on m_popup_print.destroy
+call super::destroy
+destroy(this.m_popup_print_atomikes)
+destroy(this.m_popup_print_ypal)
+destroy(this.m_popup_print_total)
+destroy(this.m_popup_print_custom)
+end on
+
+type m_popup_print_atomikes from menu within m_popup_print
+end type
+
+on m_popup_print_atomikes.create
+call super::create
+this.text = trn(121)
+this.microhelp = trn(272)
+end on
+
+on m_popup_print_atomikes.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_print_atomikes")
+end event
+
+type m_popup_print_ypal from menu within m_popup_print
+end type
+
+on m_popup_print_ypal.create
+call super::create
+this.text = trn(620)
+this.microhelp = trn(620)
+end on
+
+on m_popup_print_ypal.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_print_ypal")
+end event
+
+type m_popup_print_total from menu within m_popup_print
+end type
+
+on m_popup_print_total.create
+call super::create
+this.text = trn(602)
+this.microhelp = trn(276)
+end on
+
+on m_popup_print_total.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_print_total")
+end event
+
+type m_popup_print_custom from menu within m_popup_print
+end type
+
+on m_popup_print_custom.create
+call super::create
+this.text = trn(393)
+this.microhelp = trn(274)
+end on
+
+on m_popup_print_custom.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_print_custom")
+end event
+
+type m_print from menu within m_misth_final_list
+m_print_atomikes m_print_atomikes
+m_print_ypal m_print_ypal
+m_print_total m_print_total
+m_print_custom m_print_custom
+end type
+
+on m_print.create
+call super::create
+this.text = trn(247)
+this.m_print_atomikes=create m_print_atomikes
+this.m_print_ypal=create m_print_ypal
+this.m_print_total=create m_print_total
+this.m_print_custom=create m_print_custom
+this.Item[UpperBound(this.Item)+1]=this.m_print_atomikes
+this.Item[UpperBound(this.Item)+1]=this.m_print_ypal
+this.Item[UpperBound(this.Item)+1]=this.m_print_total
+this.Item[UpperBound(this.Item)+1]=this.m_print_custom
+end on
+
+on m_print.destroy
+call super::destroy
+destroy(this.m_print_atomikes)
+destroy(this.m_print_ypal)
+destroy(this.m_print_total)
+destroy(this.m_print_custom)
+end on
+
+type m_print_atomikes from menu within m_print
+end type
+
+on m_print_atomikes.create
+call super::create
+this.text = trn(121)
+end on
+
+on m_print_atomikes.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_print_atomikes")
+end event
+
+type m_print_ypal from menu within m_print
+end type
+
+on m_print_ypal.create
+call super::create
+this.text = trn(620)
+this.microhelp = trn(620)
+end on
+
+on m_print_ypal.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent("me_print_ypal")
+end event
+
+type m_print_total from menu within m_print
+end type
+
+event clicked;parentwindow.triggerevent("me_print_total")
+end event
+
+on m_print_total.create
+call super::create
+this.text = trn(602)
+end on
+
+on m_print_total.destroy
+call super::destroy
+end on
+
+type m_print_custom from menu within m_print
+end type
+
+event clicked;parentwindow.triggerevent("me_print_custom")
+end event
+
+on m_print_custom.create
+call super::create
+this.text = trn(393)
+end on
+
+on m_print_custom.destroy
+call super::destroy
+end on
+

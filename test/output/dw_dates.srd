@@ -1,0 +1,19 @@
+HA$PBExportHeader$dw_dates.srd
+$PBExportComments$
+release 9;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=date updatewhereclause=yes name=datefrom dbname="datefrom" )
+ column=(type=date updatewhereclause=yes name=dateto dbname="dateto" )
+ )
+text(band=detail alignment="0" text="Áðü:~ttrn(92) + ~":~"" border="0" color="8388608" x="37" y="8" height="60" width="155" html.valueishtml="0"  name=datefromtr visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="¸ùò:~ttrn(350) + ~":~"" border="0" color="8388608" x="667" y="8" height="60" width="165" html.valueishtml="0"  name=datetotr visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="2" color="128" x="261" y="8" height="60" width="347" format="[general]~tfn_param_maskdate()" html.valueishtml="0"  name=datefrom visible="1" edit.name="mydates" editmask.autoskip=yes editmask.useformat=yes editmask.mask="dd/mm/yyyy" editmask.imemode=0  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="2" color="128" x="891" y="8" height="60" width="347" format="[general]~tfn_param_maskdate()" html.valueishtml="0"  name=dateto visible="1" edit.name="mydates" editmask.autoskip=yes editmask.useformat=yes editmask.mask="dd/mm/yyyy" editmask.imemode=0  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

@@ -1,0 +1,77 @@
+HA$PBExportHeader$fn_getfromfinal.srf
+$PBExportComments$
+global type fn_getfromfinal from function_object
+end type
+
+forward prototypes
+global function double fn_getfromfinal (long al_kodfinal, long al_kodypal, string as_expr)
+end prototypes
+
+global function double fn_getfromfinal (long al_kodfinal, long al_kodypal, string as_expr);// ÅðéóôñïöÞ ðïóïý áðü ôïí misth_final ãéá ôïí õðÜëëçëï al_kodypal
+// Ãßíåôáé õðïëïãéóìüò ôçò Ýêöñáóçò as_expr ìå óôïé÷åßá áðü misth_final
+
+	double		ld_poso
+	string			ls_sql
+	long			ll_rows, i, row
+	datastore	lds_final
+	
+// Äçìéïõñãïýìå Ýíá datastore êáé ôï öïñôþíïõìå ìå ôá êáôá÷ùñçìÝíá
+// åðéäüìáôá ôïõ õðáëëÞëïõ al_kodypal óôïí al_kodfinal
+	datastore	lds_epidom
+	
+	lds_epidom = fn_createds("dw_var")
+	
+	ls_sql = 	"select kodepidom, poso from misth_final_ypal_epidom" + &
+				" where kodfinal = " + string(al_kodfinal) + &
+				" and kodypal = " + string(al_kodypal) + &
+				" and kodxrisi = '" + gs_kodxrisi + "'"
+	
+	lds_final = fn_createds_fromsql(ls_sql)
+	
+	ll_rows = lds_final.retrieve()
+	
+	for i = 1 to ll_rows
+		row = lds_epidom.insertrow(0)
+		lds_epidom.object.kodvar[row] = lds_final.object.kodepidom[i]
+		lds_epidom.object.poso[row] = lds_final.object.poso[i]
+	next
+	
+	destroy		lds_final			// to be used again
+	
+// Äçìéïõñãïýìå Ýíá datastore êáé ôï öïñôþíïõìå ìå ôéò êáôá÷ùñçìÝíåò
+// êñáôÞóåéò ôïõ õðáëëÞëïõ al_kodypal óôïí al_kodfinal
+	datastore	lds_krat
+	
+	lds_krat = fn_createds("dw_var")
+	
+	ls_sql = 	"select kodkrat, poso from misth_final_ypal_krat" + &
+				" where kodfinal = " + string(al_kodfinal) + &
+				" and kodypal = " + string(al_kodypal) + &
+				" and kodxrisi = '" + gs_kodxrisi + "'"
+	
+	lds_final = fn_createds_fromsql(ls_sql)
+	
+	ll_rows = lds_final.retrieve()
+	
+	for i = 1 to ll_rows
+		row = lds_krat.insertrow(0)
+		lds_krat.object.kodvar[row] = lds_final.object.kodkrat[i]
+		lds_krat.object.poso[row] = lds_final.object.poso[i]
+	next
+	
+	destroy		lds_final			
+	
+// parse as_expr
+	string		ls_expr
+	ls_expr = fn_parse_stath(as_expr)
+	ls_expr = fn_parse_epidom(ls_expr, lds_epidom)
+	ls_expr = fn_parse_krat(ls_expr, lds_krat)
+	ld_poso = fn_mathparser(ls_expr)
+	
+// clean-up and return
+	destroy		lds_epidom
+	destroy		lds_krat
+	
+	return ld_poso
+end function
+

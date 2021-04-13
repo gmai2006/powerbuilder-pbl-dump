@@ -1,0 +1,16 @@
+HA$PBExportHeader$fn_seteditmask.srf
+$PBExportComments$
+global type fn_seteditmask from function_object
+end type
+
+forward prototypes
+global subroutine fn_seteditmask (ref datawindow adw, string acol, string amask)
+end prototypes
+
+global subroutine fn_seteditmask (ref datawindow adw, string acol, string amask);
+adw.Modify(acol + ".EditMask.Mask='" + amask + "'")
+
+
+
+end subroutine
+

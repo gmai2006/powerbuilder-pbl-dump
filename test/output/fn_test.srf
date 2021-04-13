@@ -1,0 +1,19 @@
+HA$PBExportHeader$fn_test.srf
+$PBExportComments$
+global type fn_test from function_object
+end type
+
+forward prototypes
+global subroutine fn_test ()
+end prototypes
+
+global subroutine fn_test ();// test
+
+double	ld_poso
+
+ld_poso = fn_getfromfinal(1, 13, "[ÂÁÓÉÊÏÓ] + {ÔÁÄÊÕ}")
+
+ld_poso = ld_poso
+
+end subroutine
+

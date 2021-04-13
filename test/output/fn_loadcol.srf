@@ -1,0 +1,36 @@
+HA$PBExportHeader$fn_loadcol.srf
+$PBExportComments$
+global type fn_loadcol from function_object
+end type
+
+forward prototypes
+global subroutine fn_loadcol (string as_kodreport, integer ai_kodcol, ref sc_col asc_col)
+end prototypes
+
+global subroutine fn_loadcol (string as_kodreport, integer ai_kodcol, ref sc_col asc_col);// Öüñôùìá ôçò asc_col ìå ôá äåäïìÝíá áðü ôïí ðßíáêá misth_report_cols
+
+	
+select	
+		
+		kodcol,
+		kodreport,
+		kodxrisi,
+		expr,
+		header_text,
+		width
+		
+into	
+
+		:asc_col.kodcol,
+		:asc_col.kodreport,
+		:asc_col.kodxrisi,
+		:asc_col.expr,
+		:asc_col.header_text,
+		:asc_col.width
+
+from 		misth_report_cols
+where	kodreport = :as_kodreport and kodcol = :ai_kodcol and kodxrisi = :gs_kodxrisi;
+
+fn_sqlerror()
+end subroutine
+

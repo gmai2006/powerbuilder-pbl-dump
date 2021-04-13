@@ -1,0 +1,88 @@
+HA$PBExportHeader$fn_transfer_final.srf
+$PBExportComments$
+global type fn_transfer_final from function_object
+end type
+
+forward prototypes
+global subroutine fn_transfer_final (long al_kodfinal, string as_fromxrisi, string as_toxrisi, string as_kodperiod)
+end prototypes
+
+global subroutine fn_transfer_final (long al_kodfinal, string as_fromxrisi, string as_toxrisi, string as_kodperiod);// ÌåôáöïñÜ ôïõ êáôáëüãïõ al_kodfinal (misth_final)
+// áðü ÷ñÞóç óå ÷ñÞóç.
+// Áí ï êáôÜëïãïò õðÜñ÷åé óôçí ÷ñÞóç ðñïïñéóìïý, åðéóôñÝöïõìå
+
+// ¸ëåã÷ïò áí ï êáôÜëïãïò al_kodfinal õðÜñ÷åé óôç ÷ñÞóç as_toxrisi
+	long		ll_count
+	
+	select 	count(kodfinal) into :ll_count
+	from		misth_final
+	where		kodfinal = :al_kodfinal
+	and		kodxrisi = :as_toxrisi;
+	fn_sqlerror()
+	
+	if ll_count > 0 then return
+	
+// Äçìéïõñãßá datastore ãéá as_fromxrisi
+	datastore	lds_from
+	long			ll_rows
+	string		ls_sql
+	long			i
+	
+	ls_sql = "select * from misth_final " + &
+				"where kodfinal = " + string(al_kodfinal) + " " + &
+				"and kodxrisi = '" + as_fromxrisi + "'"
+				
+	lds_from = fn_createds_fromsql(ls_sql)
+	ll_rows = lds_from.retrieve()
+	
+// ÅéóáãùãÞ óôç ÷ñÞóç as_toxrisi
+	string		ls_descfinal
+	string		ls_title
+	date			ld_datefinal
+	string		ls_kodkat
+	string		ls_kodperiod
+	long			ll_aa
+	
+	select max(aa) into :ll_aa from misth_final
+	where  kodxrisi = :as_toxrisi;
+	fn_sqlerror()
+	if isnull(ll_aa) then ll_aa = 0
+	ll_aa = ll_aa + 1
+	
+	
+	for i = 1 to ll_rows
+		
+		ls_descfinal = lds_from.object.descfinal[i]
+		ls_title = lds_from.object.title[i]
+		ld_datefinal = lds_from.object.datefinal[i]
+		ls_kodkat = lds_from.object.kodkat[i]
+		
+		insert into misth_final(
+					kodfinal,
+					kodxrisi,
+					descfinal,
+					title,
+					datefinal,
+					kodkat,
+					kodperiod,
+					aa)
+		values(
+					:al_kodfinal,
+					:as_toxrisi,
+					:ls_descfinal,
+					:ls_title,
+					:ld_datefinal,
+					:ls_kodkat,
+					:as_kodperiod,
+					:ll_aa);
+					
+		fn_sqlerror()
+					
+	next			
+	
+	
+// clean-up
+	commit;
+	destroy	lds_from
+end subroutine
+

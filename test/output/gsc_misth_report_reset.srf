@@ -1,0 +1,24 @@
+HA$PBExportHeader$gsc_misth_report_reset.srf
+$PBExportComments$
+global type gsc_misth_report_reset from function_object
+end type
+
+forward prototypes
+global subroutine gsc_misth_report_reset ()
+end prototypes
+
+global subroutine gsc_misth_report_reset ();setnull(gsc_misth_report.kodreport)
+setnull(gsc_misth_report.kodxrisi)
+setnull(gsc_misth_report.descreport)
+setnull(gsc_misth_report.print_margin_top)
+setnull(gsc_misth_report.print_margin_bottom)
+setnull(gsc_misth_report.print_margin_left)
+setnull(gsc_misth_report.print_margin_right)
+setnull(gsc_misth_report.print_orientation)
+setnull(gsc_misth_report.print_paper_size)
+setnull(gsc_misth_report.print_scale)
+setnull(gsc_misth_report.subtitle)
+setnull(gsc_misth_report.prn_notes1)
+setnull(gsc_misth_report.prn_notes2)
+end subroutine
+

@@ -1,0 +1,61 @@
+HA$PBExportHeader$fn_transfer_nopaid.srf
+$PBExportComments$
+global type fn_transfer_nopaid from function_object
+end type
+
+forward prototypes
+global subroutine fn_transfer_nopaid (string as_fromxrisi, string as_toxrisi, string as_kodperiod)
+end prototypes
+
+global subroutine fn_transfer_nopaid (string as_fromxrisi, string as_toxrisi, string as_kodperiod);// ÌåôáöïñÜ ìç ðëçñùìÝíùí êáôáóôÜóåùí áðü ÷ñÞóç óå ÷ñÞóç
+
+// Äçìéïõñãßá datastore ãéá ôéò ìç ðëçñùìÝíåò êáôáóôÜóåéò
+	datastore	lds_nopaid
+	string		ls_sql
+	long			ll_rows
+	
+	ls_sql = "select * from misth_final_ypal " + &
+				"where plirdate is null " + &
+				"and kodxrisi = '" + as_fromxrisi + "' " 
+	
+	lds_nopaid = fn_createds_fromsql(ls_sql)
+	if not isvalid(lds_nopaid) then return
+	
+	ll_rows = lds_nopaid.retrieve()
+	
+// ÌåôáöïñÜ
+	long	i
+	long	ll_kodfinal
+	long	ll_kodypal
+	
+	open(w_progress)
+	
+	w_progress.setstep(1)
+	w_progress.setrange(1, ll_rows)
+	w_progress.setcaption("ÌåôáöïñÜ áðëÞñùôùí êáôáóôÜóåùí")
+	
+	for i = 1 to ll_rows
+		
+		w_progress.stepit()
+		
+		ll_kodfinal = lds_nopaid.object.kodfinal[i]
+		ll_kodypal = lds_nopaid.object.kodypal[i]
+		
+		// Äçìéïõñãßá ôïõ êáôáëüãïõ áí äåí õðÜñ÷åé
+			fn_transfer_final(ll_kodfinal, as_fromxrisi, as_toxrisi, as_kodperiod)
+			
+		// ÌåôáöïñÜ ôïõ õðáëëÞëïõ áí äåí õðÜñ÷åé
+			fn_transfer_final_ypal(ll_kodfinal, ll_kodypal, as_toxrisi)
+			
+		// ÌåôáöïñÜ åðéäïìÜôùí êáé êñáôÞóåùí (ÄéáãñáöÞ ðñïçãïýìåíùí)
+			fn_transfer_final_ypal_epidom(ll_kodfinal, ll_kodypal, as_fromxrisi, as_toxrisi)
+			fn_transfer_final_ypal_krat(ll_kodfinal, ll_kodypal, as_fromxrisi, as_toxrisi)
+		
+	next
+	
+// clean-up
+	commit;
+	destroy lds_nopaid
+	close(w_progress)
+end subroutine
+

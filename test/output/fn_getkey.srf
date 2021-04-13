@@ -1,0 +1,35 @@
+HA$PBExportHeader$fn_getkey.srf
+$PBExportComments$
+global type fn_getkey from function_object
+end type
+
+forward prototypes
+global function long fn_getkey (string as_tblname)
+end prototypes
+
+global function long fn_getkey (string as_tblname);// ÅðéóôñïöÞ ôïõ åðüìåíïõ êëåéäéïý ãéá ôïí ðßíáêá as_tblname
+	
+	long	   ll_id
+	string	ls_sql
+	
+	setnull(ll_id)
+	
+	SELECT lastid INTO :ll_id FROM afxkeygen
+	WHERE tblname = :as_tblname;
+	fn_sqlerror()
+	
+	// Áí äåí õðÜñ÷åé ï ðßíáêáò ôïí êáôá÷ùñïýìå
+		if isnull(ll_id) then
+			INSERT INTO afxkeygen(tblname, lastid) VALUES (:as_tblname, 1);
+			fn_sqlerror()
+			ll_id = 1
+		else
+			ll_id = ll_id + 1
+			update afxkeygen set lastid = :ll_id where tblname = :as_tblname;
+			fn_sqlerror()
+		end if
+		commit using sqlca;
+		
+	return ll_id
+end function
+

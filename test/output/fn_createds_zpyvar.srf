@@ -1,0 +1,44 @@
+HA$PBExportHeader$fn_createds_zpyvar.srf
+$PBExportComments$
+global type fn_createds_zpyvar from function_object
+end type
+
+forward prototypes
+global function datastore fn_createds_zpyvar (ref datawindow adw)
+end prototypes
+
+global function datastore fn_createds_zpyvar (ref datawindow adw);// Äçìéïõñãßá datastore ìå ôéò ìåôáâëçôÝò õðáëëÞëïõ
+// ðïõ Þäç Ý÷ïõìå êáôá÷ùñÞóåé óôï adw ðñéí ôçí ôñÝ÷ïõóá ãñáììÞ
+
+// Ðáßñíïõìå ôçí ôñÝ÷ïõóá åããñáöÞ
+	long	ll_row
+	ll_row = adw.getrow()
+
+// Äçìéïõñãßá datastore ôïõ ôýðïõ edw_var
+	datastore		lds_yvar
+	lds_yvar = fn_createds("edw_var")
+	
+// ÌåôáöïñÜ áðü dw ãéá üëåò ôéò ãñáììÝò ðïõ ðñïçãïýíôáé
+	string	ls_kodyvar, ls_descyvar
+	long		i, ll_newrow
+	
+	for i = 1 to ll_row - 1
+		
+		ll_newrow = lds_yvar.insertrow(0)
+		
+		ls_kodyvar = adw.object.kodyvar[i]
+				
+		select descyvar into :ls_descyvar
+		from   misth_zpyvar
+		where  kodyvar = :ls_kodyvar and kodxrisi = :gs_kodxrisi;
+		fn_sqlerror()
+		
+		lds_yvar.object.kodvar[ll_newrow] = ls_kodyvar
+		lds_yvar.object.descvar[ll_newrow] = ls_descyvar
+		
+	next
+	
+// ÅðéóôñïöÞ
+	return lds_yvar
+end function
+

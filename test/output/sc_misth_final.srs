@@ -1,0 +1,13 @@
+HA$PBExportHeader$sc_misth_final.srs
+$PBExportComments$
+global type sc_misth_final from structure
+	long		kodfinal
+	string		kodxrisi
+	string		descfinal
+	date		datefinal
+	string		title
+	string		kodkat
+	string		kodperiod
+	long		aa
+end type
+

@@ -1,0 +1,22 @@
+HA$PBExportHeader$fn_usersingroup.srf
+$PBExportComments$
+global type fn_usersingroup from function_object
+end type
+
+forward prototypes
+global function long fn_usersingroup (long al_kodgroup)
+end prototypes
+
+global function long fn_usersingroup (long al_kodgroup);// ÌåôñÜåé ôïí áñéèìü ÷ñçóôþí ðïõ áíÞêïõí óôï group al_kodgroup
+// (Áðü ôïí ðßíáêá usrMembers)
+
+	long	ll_count
+	
+	select count(koduser) into :ll_count from usrmembers where kodgroup = :al_kodgroup;
+	fn_sqlerror()
+	
+	if isnull(ll_count) then ll_count = 0
+	
+	return ll_count
+end function
+

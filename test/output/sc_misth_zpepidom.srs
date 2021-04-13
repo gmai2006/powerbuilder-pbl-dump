@@ -1,0 +1,13 @@
+HA$PBExportHeader$sc_misth_zpepidom.srs
+$PBExportComments$
+global type sc_misth_zpepidom from structure
+	string		kodepidom
+	string		kodxrisi
+	string		descepidom
+	integer		hasforo
+	string		expr
+	integer		isasf
+	integer		autoforos
+	integer		hasasf
+end type
+

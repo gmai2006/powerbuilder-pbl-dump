@@ -1,0 +1,43 @@
+HA$PBExportHeader$fn_createds_zpepidom_fylo.srf
+$PBExportComments$
+global type fn_createds_zpepidom_fylo from function_object
+end type
+
+forward prototypes
+global function datastore fn_createds_zpepidom_fylo (ref datawindow adw)
+end prototypes
+
+global function datastore fn_createds_zpepidom_fylo (ref datawindow adw);// Äçìéïõñãßá datastore ìå üëá ôá åðéäüìáôá
+// ðïõ Ý÷ïõìå êáôá÷ùñÞóåé óå öýëï õðïëïãéóìïý
+
+// Äçìéïõñãßá datastore ôïõ ôýðïõ edw_var
+	datastore		lds_epidom
+	lds_epidom = fn_createds("edw_var")
+	
+// ÌåôáöïñÜ áðü adw ãéá üëåò ôéò ãñáììÝò 
+// (åêôþò áðü ôçí ôåëåõôáßá ðïõ åßíáé ç íÝá åããñáöÞ)
+	string	ls_kodepidom, ls_descepidom
+	long		i, ll_newrow, ll_rows
+	
+	ll_rows = adw.rowcount() - 1
+	
+	for i = 1 to ll_rows 
+		
+		ll_newrow = lds_epidom.insertrow(0)
+		
+		ls_kodepidom = adw.object.kodepidom[i]
+				
+		select descepidom into :ls_descepidom
+		from   misth_zpepidom
+		where  kodepidom = :ls_kodepidom and kodxrisi = :gs_kodxrisi;
+		fn_sqlerror()
+		
+		lds_epidom.object.kodvar[ll_newrow] = ls_kodepidom
+		lds_epidom.object.descvar[ll_newrow] = ls_descepidom
+		
+	next
+	
+// ÅðéóôñïöÞ
+	return lds_epidom
+end function
+

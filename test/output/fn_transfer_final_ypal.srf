@@ -1,0 +1,41 @@
+HA$PBExportHeader$fn_transfer_final_ypal.srf
+$PBExportComments$
+global type fn_transfer_final_ypal from function_object
+end type
+
+forward prototypes
+global subroutine fn_transfer_final_ypal (long al_kodfinal, long al_kodypal, string as_toxrisi)
+end prototypes
+
+global subroutine fn_transfer_final_ypal (long al_kodfinal, long al_kodypal, string as_toxrisi);// ÅéóáãùãÞ ôïõ õðáëëÞëïõ al_kodypal óôïí êáôÜëïãï al_kodfinal
+// óôç ÷ñÞóç as_toxrisi
+// Áí ï õðÜëëçëïò õðÜñ÷åé, åðéóôñïöÞ
+	
+// ¸ëåã÷ïò áí ï õðÜëëçëïò õðÜñ÷åé óôïí êáôÜëïãï ðñïïñéóìïý
+	long	ll_count
+	
+	select 	count(kodypal) into :ll_count
+	from		misth_final_ypal
+	where		kodfinal = :al_kodfinal
+	and		kodypal = :al_kodypal
+	and		kodxrisi = :as_toxrisi;
+	fn_sqlerror()
+	
+	if ll_count > 0 then return
+	
+// ÅéóáãùãÞ ôïõ õðáëëÞëïõ
+	insert into misth_final_ypal(
+				kodfinal,
+				kodypal,
+				kodxrisi)
+	values(
+				:al_kodfinal,
+				:al_kodypal,
+				:as_toxrisi);
+	
+	fn_sqlerror()
+	
+	commit;
+	
+end subroutine
+

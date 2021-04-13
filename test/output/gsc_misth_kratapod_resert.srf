@@ -1,0 +1,15 @@
+HA$PBExportHeader$gsc_misth_kratapod_resert.srf
+$PBExportComments$
+global type gsc_misth_kratapod_resert from function_object
+end type
+
+forward prototypes
+global subroutine gsc_misth_kratapod_resert ()
+end prototypes
+
+global subroutine gsc_misth_kratapod_resert ();setnull(gsc_misth_kratapod.kodkratapod)
+setnull(gsc_misth_kratapod.kodxrisi)
+setnull(gsc_misth_kratapod.desckratapod)
+setnull(gsc_misth_kratapod.apoddate)
+end subroutine
+

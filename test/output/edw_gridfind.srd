@@ -1,0 +1,22 @@
+HA$PBExportHeader$edw_gridfind.srd
+$PBExportComments$
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=292 color="536870912" )
+table(column=(type=char(100) updatewhereclause=yes name=findwhat dbname="findwhat" )
+ column=(type=long updatewhereclause=yes name=lookat dbname="lookat" values="ÔñÝ÷ïí ðåäßï	1/¼ëá ôá ðåäßá	0/" )
+ column=(type=long updatewhereclause=yes name=match dbname="match" values="Ïëüêëçñï ôï ðåäßï	1/ÏðïéïäÞðïôå ôìÞìá ôïõ ðåäßïõ	2/Áñ÷Þ ôïõ ðåäßïõ	3/" )
+ )
+column(band=detail id=1 alignment="0" tabsequence=10 border="2" color="128" x="425" y="4" height="60" width="1047" format="[general]" html.valueishtml="0"  name=findwhat visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="2" color="128" x="425" y="104" height="60" width="645" format="[general]" html.valueishtml="0"  name=lookat visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.nilisnull=yes ddlb.vscrollbar=yes ddlb.useasborder=yes ddlb.imemode=0  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="2" color="128" x="425" y="204" height="60" width="878" format="[general]" html.valueishtml="0"  name=match visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.nilisnull=yes ddlb.vscrollbar=yes ddlb.useasborder=yes ddlb.imemode=0  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Åýñåóç ôïõ:~ttrn(348) + ~":~"" border="0" color="8388608" x="14" y="4" height="60" width="357" html.valueishtml="0"  name=findwhattr visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Äéåñåýíçóç óå:~ttrn(235) + ~":~"" border="0" color="8388608" x="14" y="104" height="60" width="357" html.valueishtml="0"  name=lookattr visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ôáßñéáóìá:~ttrn(626) + ~":~"" border="0" color="8388608" x="14" y="204" height="60" width="357" html.valueishtml="0"  name=matchtr visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

@@ -1,0 +1,21 @@
+HA$PBExportHeader$fn_agree.srf
+$PBExportComments$
+global type fn_agree from function_object
+end type
+
+forward prototypes
+global function boolean fn_agree (string as_caption, string as_message)
+end prototypes
+
+global function boolean fn_agree (string as_caption, string as_message);// ÅðéóôñÝöåé true áí ðáôÞóáìå ÏÊ óå ðáñÜèõñï åðáëÞèåõóçò
+
+	int nRet
+	nRet = MessageBox(as_caption, as_message, Exclamation!, OKCancel!, 2)
+	if nRet = 2 then
+		return false
+	else
+		return true
+	end if
+	
+end function
+

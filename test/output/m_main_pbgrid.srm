@@ -1,0 +1,680 @@
+HA$PBExportHeader$m_main_pbgrid.srm
+$PBExportComments$
+forward
+global type m_main_pbgrid from m_main
+end type
+type m_edit from menu within m_main_pbgrid
+end type
+type m_edit_delrec from menu within m_edit
+end type
+type m_edit_line3 from menu within m_edit
+end type
+type m_edit_selectrec from menu within m_edit
+end type
+type m_edit_selectall from menu within m_edit
+end type
+type m_edit_line4 from menu within m_edit
+end type
+type m_edit_find from menu within m_edit
+end type
+type m_edit_replace from menu within m_edit
+end type
+type m_edit_goto from menu within m_edit
+end type
+type m_edit_gotofirst from menu within m_edit_goto
+end type
+type m_edit_gotoprev from menu within m_edit_goto
+end type
+type m_edit_gotonext from menu within m_edit_goto
+end type
+type m_edit_gotolast from menu within m_edit_goto
+end type
+type m_edit_gotonew from menu within m_edit_goto
+end type
+type m_edit_goto from menu within m_edit
+m_edit_gotofirst m_edit_gotofirst
+m_edit_gotoprev m_edit_gotoprev
+m_edit_gotonext m_edit_gotonext
+m_edit_gotolast m_edit_gotolast
+m_edit_gotonew m_edit_gotonew
+end type
+type m_edit_line5 from menu within m_edit
+end type
+type m_edit_close from menu within m_edit
+end type
+type m_edit from menu within m_main_pbgrid
+m_edit_delrec m_edit_delrec
+m_edit_line3 m_edit_line3
+m_edit_selectrec m_edit_selectrec
+m_edit_selectall m_edit_selectall
+m_edit_line4 m_edit_line4
+m_edit_find m_edit_find
+m_edit_replace m_edit_replace
+m_edit_goto m_edit_goto
+m_edit_line5 m_edit_line5
+m_edit_close m_edit_close
+end type
+type m_records from menu within m_main_pbgrid
+end type
+type m_records_refresh from menu within m_records
+end type
+type m_records_save from menu within m_records
+end type
+type m_records from menu within m_main_pbgrid
+m_records_refresh m_records_refresh
+m_records_save m_records_save
+end type
+global type m_main_pbgrid from m_main
+m_edit m_edit
+m_records m_records
+end type
+end forward
+
+global type m_main_pbgrid from m_main
+m_edit m_edit
+m_records m_records
+end type
+global m_main_pbgrid m_main_pbgrid
+
+on m_main_pbgrid.create
+m_main_pbgrid=this
+call super::create
+this.text = "m_main_pbgrid"
+this.m_edit=create m_edit
+this.m_records=create m_records
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_records
+end on
+
+on m_main_pbgrid.destroy
+call super::destroy
+destroy(this.m_edit)
+destroy(this.m_records)
+end on
+
+event ie_checkmenu;call super::ie_checkmenu;long	ll_nrows, ll_row
+
+// Óýíïëï åããñáöþí êáé ôñÝ÷ïõóá åããñáöÞ
+	ll_nrows = dw.rowcount()
+	ll_row = dw.getrow()
+	
+// ÅðáíáöÝñïõìå üëá óå åíåñãü êáôÜóôáóç êáé áðåíåñãïðïéïýìå áíÜëïãá
+	m_edit.m_edit_delrec.enabled = true
+	m_edit.m_edit_selectrec.enabled = true
+	m_edit.m_edit_selectall.enabled = true
+	m_edit.m_edit_find.enabled = true
+	m_edit.m_edit_replace.enabled = true
+	
+	m_edit.m_edit_goto.m_edit_gotofirst.enabled = true
+	m_edit.m_edit_goto.m_edit_gotoprev.enabled = true
+	m_edit.m_edit_goto.m_edit_gotonext.enabled = true
+	m_edit.m_edit_goto.m_edit_gotolast.enabled = true
+	m_edit.m_edit_goto.m_edit_gotonew.enabled = true
+	
+
+// Áí äåí õðÜñ÷ïõí åããñáöÝò ðáñÜ ìüíï ç íÝá
+	if ll_nrows = 1 then
+		m_edit.m_edit_delrec.enabled = false
+		m_edit.m_edit_selectrec.enabled = false
+		m_edit.m_edit_selectall.enabled = false
+		m_edit.m_edit_find.enabled = false
+		m_edit.m_edit_replace.enabled = false
+		m_edit.m_edit_goto.m_edit_gotofirst.enabled = false
+		m_edit.m_edit_goto.m_edit_gotoprev.enabled = false
+		m_edit.m_edit_goto.m_edit_gotonext.enabled = false
+		m_edit.m_edit_goto.m_edit_gotolast.enabled = false
+		m_edit.m_edit_goto.m_edit_gotonew.enabled = false
+		return
+	end if
+		
+// Åßìáóôå óôçí ôåëåõôáßá åããñáöÞ (íÝá) áëëÜ õðÜñ÷ïõí êáé Üëëåò
+	if ll_row = ll_nrows and ll_nrows > 1 then
+		m_edit.m_edit_selectrec.enabled = false
+		m_edit.m_edit_goto.m_edit_gotonew.enabled = false
+		m_edit.m_edit_goto.m_edit_gotonext.enabled = false
+		m_edit.m_edit_delrec.enabled = false
+		return
+	end if	
+	
+// Åßìáóôå óôçí ðñþôç åããñáöÞ êáé õðÜñ÷ïõí êáé Üëëåò
+	if ll_row = 1 and ll_nrows > 1 then
+		m_edit.m_edit_goto.m_edit_gotofirst.enabled = false
+		m_edit.m_edit_goto.m_edit_gotoprev.enabled = false
+		
+		// Áí åßíáé êáé ç ìïíáäéêÞ åããñáöÞ (ðñïôåëåõôáßá)
+		if ll_row = ll_nrows - 1 then
+			m_edit.m_edit_goto.m_edit_gotolast.enabled = false
+		end if
+		
+		return
+	end if
+	
+// Áí åßìáóôå óôçí ðñïôåëåõôáßá (ðñéí ôçí íÝá)
+	if ll_row = ll_nrows - 1 then
+		m_edit.m_edit_goto.m_edit_gotolast.enabled = false
+		return
+	end if
+	
+
+	
+end event
+
+type m_window from m_main`m_window within m_main_pbgrid
+end type
+
+on m_window.create
+call super::create
+this.shifttoright = true
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_window_hor from m_main`m_window_hor within m_window
+end type
+
+on m_window_hor.create
+call super::create
+end on
+
+on m_window_hor.destroy
+call super::destroy
+end on
+
+type m_window_ver from m_main`m_window_ver within m_window
+end type
+
+on m_window_ver.create
+call super::create
+end on
+
+on m_window_ver.destroy
+call super::destroy
+end on
+
+type m_window_cascade from m_main`m_window_cascade within m_window
+end type
+
+on m_window_cascade.create
+call super::create
+end on
+
+on m_window_cascade.destroy
+call super::destroy
+end on
+
+type m_window_icons from m_main`m_window_icons within m_window
+end type
+
+on m_window_icons.create
+call super::create
+end on
+
+on m_window_icons.destroy
+call super::destroy
+end on
+
+type m_l1 from m_main`m_l1 within m_window
+end type
+
+on m_l1.create
+call super::create
+end on
+
+on m_l1.destroy
+call super::destroy
+end on
+
+type m_view_tv from m_main`m_view_tv within m_window
+end type
+
+on m_view_tv.create
+call super::create
+this.toolbaritemorder = 12
+this.toolbaritemspace = 2
+end on
+
+on m_view_tv.destroy
+call super::destroy
+end on
+
+type m_help from m_main`m_help within m_main_pbgrid
+end type
+
+on m_help.create
+call super::create
+this.shifttoright = true
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+
+type m_help_about from m_main`m_help_about within m_help
+end type
+
+on m_help_about.create
+call super::create
+this.toolbaritemorder = 13
+end on
+
+on m_help_about.destroy
+call super::destroy
+end on
+
+type m_áíáíÝùóçÜäåéáò÷ñÞóçò from m_main`m_áíáíÝùóçÜäåéáò÷ñÞóçò within m_help
+end type
+
+on m_áíáíÝùóçÜäåéáò÷ñÞóçò.create
+call super::create
+end on
+
+on m_áíáíÝùóçÜäåéáò÷ñÞóçò.destroy
+call super::destroy
+end on
+
+type m_help_line1 from m_main`m_help_line1 within m_help
+end type
+
+on m_help_line1.create
+call super::create
+end on
+
+on m_help_line1.destroy
+call super::destroy
+end on
+
+type m_help_exit from m_main`m_help_exit within m_help
+end type
+
+on m_help_exit.create
+call super::create
+end on
+
+on m_help_exit.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_main_pbgrid
+m_edit_delrec m_edit_delrec
+m_edit_line3 m_edit_line3
+m_edit_selectrec m_edit_selectrec
+m_edit_selectall m_edit_selectall
+m_edit_line4 m_edit_line4
+m_edit_find m_edit_find
+m_edit_replace m_edit_replace
+m_edit_goto m_edit_goto
+m_edit_line5 m_edit_line5
+m_edit_close m_edit_close
+end type
+
+on m_edit.create
+call super::create
+this.text = trn(22)
+this.m_edit_delrec=create m_edit_delrec
+this.m_edit_line3=create m_edit_line3
+this.m_edit_selectrec=create m_edit_selectrec
+this.m_edit_selectall=create m_edit_selectall
+this.m_edit_line4=create m_edit_line4
+this.m_edit_find=create m_edit_find
+this.m_edit_replace=create m_edit_replace
+this.m_edit_goto=create m_edit_goto
+this.m_edit_line5=create m_edit_line5
+this.m_edit_close=create m_edit_close
+this.Item[UpperBound(this.Item)+1]=this.m_edit_delrec
+this.Item[UpperBound(this.Item)+1]=this.m_edit_line3
+this.Item[UpperBound(this.Item)+1]=this.m_edit_selectrec
+this.Item[UpperBound(this.Item)+1]=this.m_edit_selectall
+this.Item[UpperBound(this.Item)+1]=this.m_edit_line4
+this.Item[UpperBound(this.Item)+1]=this.m_edit_find
+this.Item[UpperBound(this.Item)+1]=this.m_edit_replace
+this.Item[UpperBound(this.Item)+1]=this.m_edit_goto
+this.Item[UpperBound(this.Item)+1]=this.m_edit_line5
+this.Item[UpperBound(this.Item)+1]=this.m_edit_close
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_edit_delrec)
+destroy(this.m_edit_line3)
+destroy(this.m_edit_selectrec)
+destroy(this.m_edit_selectall)
+destroy(this.m_edit_line4)
+destroy(this.m_edit_find)
+destroy(this.m_edit_replace)
+destroy(this.m_edit_goto)
+destroy(this.m_edit_line5)
+destroy(this.m_edit_close)
+end on
+
+type m_edit_delrec from menu within m_edit
+event clicked ( )
+end type
+
+event clicked;parentwindow.Triggerevent("me_delrec")
+end event
+
+on m_edit_delrec.create
+call super::create
+this.text = trn(220)
+this.toolbaritemname = "DeleteRow!"
+this.toolbaritemtext = trn(223)
+this.toolbaritemorder = 11
+this.toolbaritemspace = 1
+end on
+
+on m_edit_delrec.destroy
+call super::destroy
+end on
+
+type m_edit_line3 from menu within m_edit
+end type
+
+on m_edit_line3.create
+call super::create
+this.text = "-"
+end on
+
+on m_edit_line3.destroy
+call super::destroy
+end on
+
+type m_edit_selectrec from menu within m_edit
+event clicked ( )
+end type
+
+event clicked;parentwindow.TriggerEvent("me_selrec")
+end event
+
+on m_edit_selectrec.create
+call super::create
+this.text = trn(317) + "~tCtrl+R"
+this.shortcut = 338
+this.toolbaritemspace = 2
+end on
+
+on m_edit_selectrec.destroy
+call super::destroy
+end on
+
+type m_edit_selectall from menu within m_edit
+event clicked ( )
+end type
+
+event clicked;parentwindow.TriggerEvent("me_selectall")
+end event
+
+on m_edit_selectall.create
+call super::create
+this.text = trn(323) + "~tCtrl+A"
+this.shortcut = 321
+end on
+
+on m_edit_selectall.destroy
+call super::destroy
+end on
+
+type m_edit_line4 from menu within m_edit
+end type
+
+on m_edit_line4.create
+call super::create
+this.text = "-"
+end on
+
+on m_edit_line4.destroy
+call super::destroy
+end on
+
+type m_edit_find from menu within m_edit
+end type
+
+on m_edit_find.create
+call super::create
+this.visible = false
+this.text = trn(345) + "...~tCtrl+F"
+this.shortcut = 326
+this.toolbaritemvisible = false
+this.toolbaritemname = "Find!"
+this.toolbaritemtext = trn(346)
+this.toolbaritemorder = 6
+this.toolbaritemspace = 1
+end on
+
+on m_edit_find.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.TriggerEvent("me_find")
+end event
+
+type m_edit_replace from menu within m_edit
+end type
+
+on m_edit_replace.create
+call super::create
+this.visible = false
+this.text = trn(54) + "...~tCtrl+H"
+this.shortcut = 328
+end on
+
+on m_edit_replace.destroy
+call super::destroy
+end on
+
+type m_edit_goto from menu within m_edit
+m_edit_gotofirst m_edit_gotofirst
+m_edit_gotoprev m_edit_gotoprev
+m_edit_gotonext m_edit_gotonext
+m_edit_gotolast m_edit_gotolast
+m_edit_gotonew m_edit_gotonew
+end type
+
+on m_edit_goto.create
+call super::create
+this.text = trn(30)
+this.m_edit_gotofirst=create m_edit_gotofirst
+this.m_edit_gotoprev=create m_edit_gotoprev
+this.m_edit_gotonext=create m_edit_gotonext
+this.m_edit_gotolast=create m_edit_gotolast
+this.m_edit_gotonew=create m_edit_gotonew
+this.Item[UpperBound(this.Item)+1]=this.m_edit_gotofirst
+this.Item[UpperBound(this.Item)+1]=this.m_edit_gotoprev
+this.Item[UpperBound(this.Item)+1]=this.m_edit_gotonext
+this.Item[UpperBound(this.Item)+1]=this.m_edit_gotolast
+this.Item[UpperBound(this.Item)+1]=this.m_edit_gotonew
+end on
+
+on m_edit_goto.destroy
+call super::destroy
+destroy(this.m_edit_gotofirst)
+destroy(this.m_edit_gotoprev)
+destroy(this.m_edit_gotonext)
+destroy(this.m_edit_gotolast)
+destroy(this.m_edit_gotonew)
+end on
+
+type m_edit_gotofirst from menu within m_edit_goto
+event clicked ( )
+end type
+
+event clicked;parentwindow.TriggerEvent("me_movetofirst")
+end event
+
+on m_edit_gotofirst.create
+call super::create
+this.text = trn(576)
+this.toolbaritemname = "VCRFirst!"
+this.toolbaritemtext = trn(577)
+this.toolbaritemorder = 1
+end on
+
+on m_edit_gotofirst.destroy
+call super::destroy
+end on
+
+type m_edit_gotoprev from menu within m_edit_goto
+event clicked ( )
+end type
+
+event clicked;parentwindow.TriggerEvent("me_movetoprev")
+end event
+
+on m_edit_gotoprev.create
+call super::create
+this.text = trn(495)
+this.toolbaritemname = "VCRPrior!"
+this.toolbaritemtext = trn(563)
+this.toolbaritemorder = 2
+end on
+
+on m_edit_gotoprev.destroy
+call super::destroy
+end on
+
+type m_edit_gotonext from menu within m_edit_goto
+event clicked ( )
+end type
+
+event clicked;parentwindow.TriggerEvent("me_movetonext")
+end event
+
+on m_edit_gotonext.create
+call super::create
+this.text = trn(330)
+this.toolbaritemname = "VCRNext!"
+this.toolbaritemtext = trn(332)
+this.toolbaritemorder = 3
+end on
+
+on m_edit_gotonext.destroy
+call super::destroy
+end on
+
+type m_edit_gotolast from menu within m_edit_goto
+event clicked ( )
+end type
+
+event clicked;parentwindow.TriggerEvent("me_movetolast")
+end event
+
+on m_edit_gotolast.create
+call super::create
+this.text = trn(47)
+this.toolbaritemname = "VCRLast!"
+this.toolbaritemtext = trn(633)
+this.toolbaritemorder = 4
+end on
+
+on m_edit_gotolast.destroy
+call super::destroy
+end on
+
+type m_edit_gotonew from menu within m_edit_goto
+event clicked ( )
+end type
+
+event clicked;parentwindow.TriggerEvent("me_movetonew")
+end event
+
+on m_edit_gotonew.create
+call super::create
+this.text = trn(458)
+this.toolbaritemname = "New!"
+this.toolbaritemtext = trn(459)
+this.toolbaritemorder = 5
+end on
+
+on m_edit_gotonew.destroy
+call super::destroy
+end on
+
+type m_edit_line5 from menu within m_edit
+end type
+
+on m_edit_line5.create
+call super::create
+this.text = "-"
+end on
+
+on m_edit_line5.destroy
+call super::destroy
+end on
+
+type m_edit_close from menu within m_edit
+event clicked ( )
+end type
+
+event clicked;parentwindow.TriggerEvent("me_close")
+end event
+
+on m_edit_close.create
+call super::create
+this.text = trn(28)
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = trn(404)
+this.toolbaritemorder = 14
+end on
+
+on m_edit_close.destroy
+call super::destroy
+end on
+
+type m_records from menu within m_main_pbgrid
+m_records_refresh m_records_refresh
+m_records_save m_records_save
+end type
+
+on m_records.create
+call super::create
+this.text = trn(246)
+this.m_records_refresh=create m_records_refresh
+this.m_records_save=create m_records_save
+this.Item[UpperBound(this.Item)+1]=this.m_records_refresh
+this.Item[UpperBound(this.Item)+1]=this.m_records_save
+end on
+
+on m_records.destroy
+call super::destroy
+destroy(this.m_records_refresh)
+destroy(this.m_records_save)
+end on
+
+type m_records_refresh from menu within m_records
+event clicked ( )
+end type
+
+event clicked;parentwindow.triggerevent("me_refresh")
+end event
+
+on m_records_refresh.create
+call super::create
+this.text = trn(53)
+this.toolbaritemname = "Continue!"
+this.toolbaritemtext = trn(78)
+this.toolbaritemorder = 5
+this.toolbaritemspace = 2
+end on
+
+on m_records_refresh.destroy
+call super::destroy
+end on
+
+type m_records_save from menu within m_records
+event clicked ( )
+end type
+
+event clicked;parentwindow.Triggerevent("me_save")
+end event
+
+on m_records_save.create
+call super::create
+this.text = trn(100) + "~tCtrl+S"
+this.shortcut = 339
+end on
+
+on m_records_save.destroy
+call super::destroy
+end on
+

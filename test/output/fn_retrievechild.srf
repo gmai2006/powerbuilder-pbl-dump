@@ -1,0 +1,16 @@
+HA$PBExportHeader$fn_retrievechild.srf
+$PBExportComments$
+global type fn_retrievechild from function_object
+end type
+
+forward prototypes
+global subroutine fn_retrievechild (ref datawindow adw, string col, any arg)
+end prototypes
+
+global subroutine fn_retrievechild (ref datawindow adw, string col, any arg);datawindowchild	ldwch
+
+adw.getchild(col, ldwch)
+ldwch.SetTransObject(sqlca)
+ldwch.retrieve(arg)
+end subroutine
+

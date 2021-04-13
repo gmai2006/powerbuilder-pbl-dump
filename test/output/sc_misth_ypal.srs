@@ -1,0 +1,46 @@
+HA$PBExportHeader$sc_misth_ypal.srs
+$PBExportComments$
+global type sc_misth_ypal from structure
+	long		kodypal
+	string		kodxrisi
+	string		surname
+	string		name
+	string		fathername
+	string		mothername
+	string		adt
+	string		mitroo
+	string		afm
+	string		doy
+	date		birthdate
+	string		homephone
+	string		mobilphone
+	string		sex
+	string		kodoikog
+	string		spouse
+	integer		childs
+	integer		prostmeli
+	string		city
+	string		area
+	string		address
+	string		tk
+	string		email
+	string		kodtmima
+	string		kodidikot
+	string		kodthesi
+	string		jobtitle
+	date		hireddate
+	date		rehireddate
+	date		exeldate
+	date		termdate
+	string		termreason
+	string		jobphone
+	string		intphone
+	integer		klimakio
+	string		bathmos
+	string		klados
+	string		bank
+	string		bankno
+	string		kodtamio
+	date		newexeldate
+end type
+

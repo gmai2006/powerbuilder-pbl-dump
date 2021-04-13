@@ -1,0 +1,20 @@
+HA$PBExportHeader$fn_param_eteria.srf
+$PBExportComments$
+global type fn_param_eteria from function_object
+end type
+
+forward prototypes
+global function string fn_param_eteria ()
+end prototypes
+
+global function string fn_param_eteria ();string	ls_eteria
+
+select eteria into :ls_eteria
+from   misth_zpxrisi where kodxrisi = :gs_kodxrisi;
+fn_sqlerror()
+
+if isnull(ls_eteria) then ls_eteria = ""
+
+return ls_eteria
+end function
+

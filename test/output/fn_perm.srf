@@ -1,0 +1,94 @@
+HA$PBExportHeader$fn_perm.srf
+$PBExportComments$
+global type fn_perm from function_object
+end type
+
+forward prototypes
+global function boolean fn_perm (string as_action, string as_perm)
+end prototypes
+
+global function boolean fn_perm (string as_action, string as_perm);// ÅëÝã÷åé áí ï ôñÝ÷ïí ÷ñÞóôçò Ý÷åé äéêáéþìáôá ðñüóâáóçò 
+// óôçí åñãáóßá as_tag êáé óôçí åíÝñãåéá as_action
+// as_action can be: addrec, editrec, delrec, openlist, openform
+ 
+
+integer 	li_perm
+string	ls_message 
+
+
+// Ï Ýëåã÷ïò äéêáéùìÜôùí ãßíåôáé ìüíï áí gb_useperm = true
+// Ï Äéá÷åéñéóôÞò (koduser = -1) Ý÷åé üëá ôá äéêáéþìáôá
+	if not gb_useperm or gl_koduser = -1 then return true
+	
+// Áí ôï as_action åßíáé êåíü åðéóôñÝöïõìå true
+	if as_action = "" or isnull(as_action) then return true
+	
+choose case as_perm 
+		
+	case "addrec"
+		
+		select sum(addrec) into :li_perm
+		from   usrgroupperm, usrmembers
+		where  usrgroupperm.kodgroup = usrmembers.kodgroup
+		and	 usrmembers.koduser = :gl_koduser
+		and	 usrgroupperm.kodaction = :as_action;
+		fn_sqlerror()
+		
+		ls_message = trn(197)
+		
+	case "editrec"
+		
+		select sum(editrec) into :li_perm
+		from   usrgroupperm, usrmembers
+		where  usrgroupperm.kodgroup = usrmembers.kodgroup
+		and	 usrmembers.koduser = :gl_koduser
+		and	 usrgroupperm.kodaction = :as_action;
+		fn_sqlerror()
+		
+		ls_message = ""
+		
+	case "delrec"
+		
+		select sum(delrec) into :li_perm
+		from   usrgroupperm, usrmembers
+		where  usrgroupperm.kodgroup = usrmembers.kodgroup
+		and	 usrmembers.koduser = :gl_koduser
+		and	 usrgroupperm.kodaction = :as_action;
+		fn_sqlerror()
+		
+		ls_message = trn(196)
+		
+	case "openlist"
+		
+		select sum(openlist) into :li_perm
+		from   usrgroupperm, usrmembers
+		where  usrgroupperm.kodgroup = usrmembers.kodgroup
+		and	 usrmembers.koduser = :gl_koduser
+		and	 usrgroupperm.kodaction = :as_action;
+		fn_sqlerror()
+
+		ls_message = trn(355)
+		
+	case "openform"
+		
+		select sum(openform) into :li_perm
+		from   usrgroupperm, usrmembers
+		where  usrgroupperm.kodgroup = usrmembers.kodgroup
+		and	 usrmembers.koduser = :gl_koduser
+		and	 usrgroupperm.kodaction = :as_action;
+		fn_sqlerror()
+
+		ls_message = trn(355)
+		
+end choose
+
+
+// ÅðéóôñïöÞ
+	if li_perm >= 1 then 
+		return true
+	else
+		if ls_message <> "" then 	MessageBox(gs_app_name, ls_message)
+		return false
+	end if
+end function
+

@@ -1,0 +1,10 @@
+HA$PBExportHeader$s_expr.srs
+$PBExportComments$
+global type s_expr from structure
+	datastore		stath
+	datastore		yvar
+	datastore		epidom
+	datastore		krat
+	string		expr
+end type
+

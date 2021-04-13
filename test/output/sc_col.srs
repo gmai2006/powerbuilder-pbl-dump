@@ -1,0 +1,31 @@
+HA$PBExportHeader$sc_col.srs
+$PBExportComments$
+global type sc_col from structure
+	integer		kodcol
+	string		kodreport
+	string		kodxrisi
+	string		expr
+	long		header_color
+	integer		header_alignment
+	integer		header_border
+	string		header_text
+	string		header_font_face
+	integer		header_font_height
+	integer		header_font_weight
+	integer		header_font_italic
+	integer		header_font_underline
+	integer		header_background_mode
+	long		header_background_color
+	long		data_color
+	integer		data_alignment
+	integer		data_border
+	string		data_font_face
+	integer		data_font_height
+	integer		data_font_weight
+	integer		data_font_italic
+	integer		data_font_underline
+	integer		data_background_mode
+	long		data_background_color
+	integer		width
+end type
+

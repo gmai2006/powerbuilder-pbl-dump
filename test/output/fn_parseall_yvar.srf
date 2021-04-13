@@ -1,0 +1,51 @@
+HA$PBExportHeader$fn_parseall_yvar.srf
+$PBExportComments$
+global type fn_parseall_yvar from function_object
+end type
+
+forward prototypes
+global function datastore fn_parseall_yvar (long al_kodypal)
+end prototypes
+
+global function datastore fn_parseall_yvar (long al_kodypal);// Ðáßñíïõìå ìßá ðñïò ìßá ôéò ìåôáâëçôÝò õðáëëÞëïõ êáé ôéò õðïëïãßæïõìå.
+// ÅðéóôñÝöïõìå Ýíá datastore ìå ôá æåýãç kodyvar, poso ãéá ôïí õðÜëëçëï al_kodypal
+
+// Äçìéïõñãßá datastore ôï ïðïßï èá åðéóôñáöåß ìå ôá õðïëïãéóèÝíôá 
+	datastore	lds_yvar
+	lds_yvar = create datastore
+	lds_yvar.dataobject = "dw_var"
+	
+// Äçìéïõñãßá datastore ôïõ dw_misth_ypal_yvar_list
+// ãéá íá ðÜñïõìå ôéò ìåôáâëçôÝò ôïõ õðáëëÞëïõ al_kodypal
+	datastore	lds_ypal_yvar
+	long			ll_rows
+	lds_ypal_yvar = create datastore
+	lds_ypal_yvar.dataobject = "dw_misth_ypal_yvar_list"
+	lds_ypal_yvar.settransobject(sqlca)
+	ll_rows = lds_ypal_yvar.retrieve(string(al_kodypal), gs_kodxrisi)
+	
+// Õðïëïãéóìüò êÜèå ìåôáâëçôÞò êáé ðñïóèÞêç óôï lds_yvar
+	long		i, row
+	string		ls_kodyvar
+	string		ls_expr
+	double	ld_poso
+	
+	for i = 1 to ll_rows
+		ls_kodyvar = lds_ypal_yvar.object.kodyvar[i]
+		ls_expr = lds_ypal_yvar.object.expr[i]
+		ls_expr = fn_parse_stath(ls_expr)
+		ls_expr = fn_parse_yvar(ls_expr, lds_yvar)
+		ld_poso = round(fn_mathparser(ls_expr), fn_param_round())
+		row = lds_ypal_yvar.insertrow(0)
+		lds_yvar.object.kodvar[row] = ls_kodyvar
+		lds_yvar.object.poso[row] = ld_poso
+	next
+	
+// destroy datastores and return
+	destroy	lds_ypal_yvar
+	
+	return lds_yvar
+	
+		
+end function
+

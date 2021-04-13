@@ -1,0 +1,14 @@
+HA$PBExportHeader$pick_misth_ypal_xrisi.srd
+$PBExportComments$
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 grid.columnmove=no selected.mouse=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes key=yes name=kodypal dbname="misth_ypal.kodypal" )
+ column=(type=char(4) update=yes updatewhereclause=yes key=yes name=kodxrisi dbname="misth_ypal.kodxrisi" )
+ column=(type=char(70) update=yes updatewhereclause=yes name=surname dbname="misth_ypal.surname" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=name dbname="misth_ypal.name" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=fathername dbname="misth_ypal.fathername" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"misth_ypal~" ) COLUMN(NAME=~"misth_ypal.kodypal~") COLUMN(NAME=~"misth_ypal.kodxrisi~") COLUMN(NAME=~"misth_ypal.surname~") COLUMN(NAME=~"misth_ypal.name~") COLUMN(NAME=~"misth_ypal.fathername~")WHERE(    EXP1 =~"misth_ypal.kodxrisi~"   OP =~"=~"    EXP2 =~":arg_kodxrisi~" ) ) ORDER(NAME=~"misth_ypal.surname~" ASC=yes )  ORDER(NAME=~"misth_ypal.name~" ASC=yes )  ORDER(NAME=~"misth_ypal.fathername~" ASC=yes ) ARG(NAME = ~"arg_kodxrisi~" TYPE = string) " update="misth_ypal" updatewhere=1 updatekeyinplace=no arguments=(("arg_kodxrisi", string)) )
+compute(band=detail alignment="0" expression="fn_fullname( surname , name , fathername )"border="0" color="33554432" x="9" y="8" height="56" width="1975" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="553648127" )

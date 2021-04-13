@@ -1,0 +1,24 @@
+HA$PBExportHeader$dw_afxptoseis_form.srd
+$PBExportComments$
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=340 color="536870912" )
+table(column=(type=char(50) update=yes updatewhereclause=yes key=yes name=onom dbname="afxptoseis.onom" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=gen dbname="afxptoseis.gen" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=ait dbname="afxptoseis.ait" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"afxptoseis~" ) COLUMN(NAME=~"afxptoseis.onom~") COLUMN(NAME=~"afxptoseis.gen~") COLUMN(NAME=~"afxptoseis.ait~")WHERE(    EXP1 =~"afxptoseis.onom~"   OP =~"=~"    EXP2 =~":as_onom~" ) ) ARG(NAME = ~"as_onom~" TYPE = string) " update="afxptoseis" updatewhere=1 updatekeyinplace=yes arguments=(("as_onom", string)) )
+groupbox(band=detail text=""border="5" color="8388608" x="23" y="8" height="308" width="1563"  name=gb_1 visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="ÏíïìáóôéêÞ:~ttrn(488) + ~":~"" border="0" color="8388608" x="55" y="40" height="60" width="274" html.valueishtml="0"  name=onom_t visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="ÃåíéêÞ:~ttrn(143) + ~":~"" border="0" color="8388608" x="55" y="128" height="60" width="274" html.valueishtml="0"  name=gen_t visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="ÁéôéáôéêÞ:~ttrn(59) + ~":~"" border="0" color="8388608" x="55" y="216" height="60" width="274" html.valueishtml="0"  name=ait_t visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="128" x="370" y="40" height="60" width="1166" format="[general]" html.valueishtml="0"  name=onom visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Greek" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="2" color="128" x="370" y="128" height="60" width="1166" format="[general]" html.valueishtml="0"  name=gen visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="2" color="128" x="370" y="216" height="60" width="1166" format="[general]" html.valueishtml="0"  name=ait visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+ 

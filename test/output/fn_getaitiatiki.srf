@@ -1,0 +1,24 @@
+HA$PBExportHeader$fn_getaitiatiki.srf
+$PBExportComments$
+global type fn_getaitiatiki from function_object
+end type
+
+forward prototypes
+global function string fn_getaitiatiki (string as_onom)
+end prototypes
+
+global function string fn_getaitiatiki (string as_onom);// ÅðéóôñïöÞ ôçò áéôéáôéêÞò ãéá ôï as_onom
+// Áí äåí õðÜñ÷åé åðéóôñÝöïõìå ôçí as_onom
+
+	string	ls_ait
+	
+	select ait into :ls_ait from afxptoseis where onom = :as_onom;
+	fn_sqlerror()
+	
+	if isnull(ls_ait) or ls_ait = "" then 
+		return as_onom
+	else
+		return ls_ait
+	end if
+end function
+

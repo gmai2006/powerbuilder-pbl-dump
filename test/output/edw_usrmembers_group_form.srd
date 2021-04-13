@@ -1,0 +1,23 @@
+HA$PBExportHeader$edw_usrmembers_group_form.srd
+$PBExportComments$
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=272 color="536870912" )
+table(column=(type=long updatewhereclause=no name=koduser dbname="koduser" )
+ column=(type=char(100) updatewhereclause=no name=fullname dbname="fullname" )
+ column=(type=long updatewhereclause=no name=isactive dbname="isactive" values="	1/	0" )
+ )
+text(band=detail alignment="0" text="×ñÞóôçò:~ttrn(685) + ~":~"" border="0" color="255" x="37" y="4" height="60" width="352" html.valueishtml="0"  name=koduser_t visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="ÐëÞñåò üíïìá:~ttrn(537) + ~":~"" border="0" color="8388608" x="37" y="100" height="60" width="352" html.valueishtml="0"  name=fullname_t visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Åíåñãüò:~ttrn(288) + ~":~"" border="0" color="8388608" x="37" y="196" height="60" width="352" html.valueishtml="0"  name=isactive_t visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="2" color="128" x="439" y="4" height="60" width="763" format="[general]" html.valueishtml="0"  name=koduser visible="1" dddw.name=pick_usrusers dddw.displaycolumn=username dddw.datacolumn=koduser dddw.percentwidth=0 dddw.lines=10 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.imemode=0 dddw.vscrollbar=yes  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="128" x="439" y="100" height="60" width="1353" format="[general]" html.valueishtml="0"  name=fullname visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="2" color="128" x="439" y="196" height="56" width="64" format="[general]" html.valueishtml="0"  name=isactive visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=yes checkbox.threed=no  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+ 

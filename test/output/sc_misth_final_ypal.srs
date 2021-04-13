@@ -1,0 +1,10 @@
+HA$PBExportHeader$sc_misth_final_ypal.srs
+$PBExportComments$
+global type sc_misth_final_ypal from structure
+long		kodfinal
+long		kodypal
+string	kodxrisi
+date		plirdate
+
+end type
+

@@ -1,0 +1,23 @@
+HA$PBExportHeader$fn_lockfield.srf
+$PBExportComments$
+global type fn_lockfield from function_object
+end type
+
+forward prototypes
+global subroutine fn_lockfield (ref datawindow adw, string col)
+end prototypes
+
+global subroutine fn_lockfield (ref datawindow adw, string col);// Áðåíåñãïðïéåß ôï col ôïõ adw:
+// 1) Tabsequence = 0 
+// 2) Background color = adw's detail color
+	
+	string	ls_bkcolor
+	
+	// Ðáßñíïõìå ôï bkcolor ôïõ detail ôïõ ls_dw
+		ls_bkcolor = adw.Describe("DataWindow.Detail.Color")
+		
+	// ÁëëáãÞ tabsequence êáé background of col
+		adw.Modify(col + ".Background.Color='" + ls_bkcolor + "'")
+		adw.Modify(col + ".TabSequence='0'")
+end subroutine
+

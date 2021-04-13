@@ -1,0 +1,43 @@
+HA$PBExportHeader$fn_paid_status.srf
+$PBExportComments$
+global type fn_paid_status from function_object
+end type
+
+forward prototypes
+global function integer fn_paid_status (long al_kodfinal)
+end prototypes
+
+global function integer fn_paid_status (long al_kodfinal);// ÊáôÜóôáóç ðëçñùìÞò ìéóèïäïóßáò
+// ÅðéóôñïöÞ:
+// 1 -> ¼ëïé ïé õðÜëëçëïé Ý÷ïõí ðëçñùèåß
+// 0 -> Êáíåßò õðÜëëçëïò äåí Ý÷åé ðëçñùèåß
+// 2 -> Ìåñéêïß õðÜëëçëïé Ý÷ïõí ðëçñùèåß (ü÷é üëïé)
+
+	integer	li_status
+	
+// Ðáßñíïõìå ôïí óõíïëéêü áñéèìü õðáëëÞëùí ôçò ìéóèïäïóßáò al_kodfinal
+	long		ll_count_total
+	
+	select 	count(kodypal) into :ll_count_total
+	from	 	misth_final_ypal
+	where		kodfinal = :al_kodfinal
+	and		kodxrisi = :gs_kodxrisi;
+	fn_sqlerror()
+	
+// Ðáßñíïõìå ôïí áñéèìü õðáëëÞëùí ðïõ ðëçñþèçêáí
+	long		ll_count_paid
+	
+	select 	count(kodypal) into :ll_count_paid
+	from	 	misth_final_ypal
+	where		kodfinal = :al_kodfinal
+	and		kodxrisi = :gs_kodxrisi
+	and		plirdate is not null;
+	fn_sqlerror()
+	
+// Set li_status
+	if ll_count_paid = 0 then return 0
+	if ll_count_paid = ll_count_total then return 1
+	if ll_count_paid < ll_count_total then return 2
+	
+end function
+

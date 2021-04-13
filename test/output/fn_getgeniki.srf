@@ -1,0 +1,24 @@
+HA$PBExportHeader$fn_getgeniki.srf
+$PBExportComments$
+global type fn_getgeniki from function_object
+end type
+
+forward prototypes
+global function string fn_getgeniki (string as_onom)
+end prototypes
+
+global function string fn_getgeniki (string as_onom);// ÅðéóôñïöÞ ôçò ãåíéêÞò ãéá ôï as_onom
+// Áí äåí õðÜñ÷åé åðéóôñÝöïõìå ôçí as_onom
+
+	string	ls_gen
+	
+	select gen into :ls_gen from afxptoseis where onom = :as_onom;
+	fn_sqlerror()
+	
+	if isnull(ls_gen) or ls_gen = "" then 
+		return as_onom
+	else
+		return ls_gen
+	end if
+end function
+

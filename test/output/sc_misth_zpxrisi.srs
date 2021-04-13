@@ -1,0 +1,9 @@
+HA$PBExportHeader$sc_misth_zpxrisi.srs
+$PBExportComments$
+global type sc_misth_zpxrisi from structure
+	string		kodxrisi
+	string		descxrisi
+	date		startdate
+	date		enddate
+end type
+

@@ -1,0 +1,25 @@
+HA$PBExportHeader$fn_misth_kratapod_total.srf
+$PBExportComments$
+global type fn_misth_kratapod_total from function_object
+end type
+
+forward prototypes
+global function double fn_misth_kratapod_total (long al_kodkratapod)
+end prototypes
+
+global function double fn_misth_kratapod_total (long al_kodkratapod);// Óõíïëéêü ðïóü êñáôÞóåùí ãéá ôçí êñÜôçóç al_kodkratapod
+
+	double	ld_total
+	
+	select 	sum(poso) into :ld_total
+	from		misth_final_ypal_krat
+	where		kodkratapod = :al_kodkratapod
+	and		kodxrisi = :gs_kodxrisi;
+	fn_sqlerror()
+	
+	if isnull(ld_total) then ld_total = 0
+	
+	return ld_total
+	
+end function
+

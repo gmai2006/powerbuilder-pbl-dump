@@ -1,0 +1,23 @@
+HA$PBExportHeader$misth_kratapod_apoddate.srf
+$PBExportComments$
+global type misth_kratapod_apoddate from function_object
+end type
+
+forward prototypes
+global function date misth_kratapod_apoddate (long al_kodkratapod)
+end prototypes
+
+global function date misth_kratapod_apoddate (long al_kodkratapod);// ÅðéóôñïöÞ ôçò çì/íßáò áðüäïóçò
+
+	date		ld_apoddate
+	setnull(ld_apoddate)
+	
+	select	apoddate into :ld_apoddate
+	from		misth_kratapod
+	where		kodkratapod = :al_kodkratapod
+	and		kodxrisi = :gs_kodxrisi;
+	fn_sqlerror()
+	
+	return ld_apoddate
+end function
+

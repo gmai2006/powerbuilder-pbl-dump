@@ -1,0 +1,35 @@
+HA$PBExportHeader$fn_createds_zpstath.srf
+$PBExportComments$
+global type fn_createds_zpstath from function_object
+end type
+
+forward prototypes
+global function datastore fn_createds_zpstath ()
+end prototypes
+
+global function datastore fn_createds_zpstath ();// Äçìéïõñãßá datastore ãéá misth_zpstath
+	datastore 		lds_zpstath
+	long				ll_rows
+	
+	lds_zpstath = fn_createds("pick_misth_zpstath_xrisi")
+	
+	ll_rows = lds_zpstath.retrieve(gs_kodxrisi)
+
+// Äçìéïõñãßá datastore edw_var ãéá ìåôáöïñÜ
+	datastore		lds_stath
+	
+	lds_stath = fn_createds("edw_var")
+	
+// ÌåôáöïñÜ lds_zpstath -> lds_stath
+	long	i, ll_newrow
+	
+	for i = 1 to ll_rows
+		ll_newrow = lds_stath.insertrow(0)
+		lds_stath.object.kodvar[ll_newrow] = lds_zpstath.object.kodstath[i]
+		lds_stath.object.descvar[ll_newrow] = lds_zpstath.object.descstath[i]
+	next
+	
+	return lds_stath
+	
+end function
+

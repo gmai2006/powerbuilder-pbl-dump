@@ -1,0 +1,34 @@
+HA$PBExportHeader$fn_createds_fromsql.srf
+$PBExportComments$
+global type fn_createds_fromsql from function_object
+end type
+
+forward prototypes
+global function datastore fn_createds_fromsql (string as_sql)
+end prototypes
+
+global function datastore fn_createds_fromsql (string as_sql);// create a datastore object from syntax
+// return the datastore - without retrieve
+// calling function must take care to destroy the datastore
+
+datastore		ds
+string				ls_dwsyntax
+string				ls_err
+
+
+ls_dwsyntax = sqlca.syntaxfromsql(as_sql, "Style(Type=grid)", ls_err)
+
+ds = create datastore
+
+ds.create(ls_dwsyntax, ls_err)
+
+if ls_err <> '' then
+	MessageBox("", ls_err)
+	return ds
+else
+	ds.settransobject(sqlca)
+	return ds
+end if
+
+end function
+

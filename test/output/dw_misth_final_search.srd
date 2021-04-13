@@ -1,0 +1,26 @@
+HA$PBExportHeader$dw_misth_final_search.srd
+$PBExportComments$
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=392 color="536870912" )
+table(column=(type=long updatewhereclause=no name=aa dbname="aa" )
+ column=(type=char(2) updatewhereclause=no name=kodkat dbname="kodkat" )
+ column=(type=char(100) updatewhereclause=no name=descfinal dbname="descfinal" )
+ column=(type=char(2) updatewhereclause=no name=kodperiod dbname="kodperiod" )
+ )
+text(band=detail alignment="0" text="Ðåñßïäïò ìéóèïäïóßáò:~ttrn(531) + ~":~"" border="0" color="8388608" x="32" y="108" height="60" width="530" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="Êáôçãïñßá:~ttrn(397) + ~":~"" border="0" color="8388608" x="32" y="208" height="60" width="530" html.valueishtml="0"  name=kodkat_t visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=30 border="2" color="128" x="599" y="208" height="60" width="1353" format="[general]" html.valueishtml="0"  name=kodkat visible="1" dddw.name=pick_misth_zpkat_xrisi dddw.displaycolumn=desckat dddw.datacolumn=kodkat dddw.percentwidth=0 dddw.lines=10 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.imemode=0 dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="ÐåñéãñáöÞ ìéóèïäïóßáò:~ttrn(521) + ~":~"" border="0" color="8388608" x="32" y="308" height="60" width="530" html.valueishtml="0"  name=descfinal_t visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="67108864" )
+column(band=detail id=3 alignment="0" tabsequence=40 border="2" color="128" x="599" y="308" height="60" width="1353" format="[general]" html.valueishtml="0"  name=descfinal visible="1" edit.limit=100 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=20 border="2" color="128" x="599" y="108" height="60" width="1353" format="[general]" html.valueishtml="0"  name=kodperiod visible="1" dddw.name=pick_misth_zpperiod_xrisi dddw.displaycolumn=descperiod dddw.datacolumn=kodperiod dddw.percentwidth=0 dddw.lines=15 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.imemode=0 dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Áñéèìüò ìéóèïäïóßáò:~ttrn(111) + ~":~"" border="0" color="8388608" x="32" y="8" height="60" width="530" html.valueishtml="0"  name=kodfinal_t visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="2" color="128" x="599" y="12" height="56" width="306" format="[general]" html.valueishtml="0"  name=aa visible="1" editmask.mask="#########" editmask.imemode=0  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+ 

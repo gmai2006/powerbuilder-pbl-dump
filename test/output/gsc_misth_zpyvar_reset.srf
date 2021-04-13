@@ -1,0 +1,16 @@
+HA$PBExportHeader$gsc_misth_zpyvar_reset.srf
+$PBExportComments$
+global type gsc_misth_zpyvar_reset from function_object
+end type
+
+forward prototypes
+global subroutine gsc_misth_zpyvar_reset ()
+end prototypes
+
+global subroutine gsc_misth_zpyvar_reset ();setnull(gsc_misth_zpyvar.kodyvar)
+setnull(gsc_misth_zpyvar.kodxrisi)
+setnull(gsc_misth_zpyvar.descyvar)
+setnull(gsc_misth_zpyvar.expr)
+
+end subroutine
+

@@ -1,0 +1,14 @@
+HA$PBExportHeader$fn_countrows.srf
+$PBExportComments$
+global type fn_countrows from function_object
+end type
+
+forward prototypes
+global function long fn_countrows (ref datawindow adw)
+end prototypes
+
+global function long fn_countrows (ref datawindow adw);// return the number of rows of adw
+
+	return adw.rowcount()
+end function
+

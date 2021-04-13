@@ -1,0 +1,61 @@
+HA$PBExportHeader$fn_transfer_param.srf
+$PBExportComments$
+global type fn_transfer_param from function_object
+end type
+
+forward prototypes
+global subroutine fn_transfer_param (string as_fromxrisi, string as_toxrisi)
+end prototypes
+
+global subroutine fn_transfer_param (string as_fromxrisi, string as_toxrisi);// ÌåôáöïñÜ ôùí óôïé÷åßùí ôïõ ðßíáêá misth_zpxrisi
+// Äåí ìåôáöÝñïíôáé: kodxrisi, descxrisi, startdate, enddate
+
+	string	ls_sql
+
+// Äçìéïõñãßá datastore fromxrisi êáé retrieve
+// Also count columns
+	datastore	lds_fromxrisi
+	long			ll_cols
+	
+	ls_sql = "select * from misth_zpxrisi" + &
+				" where kodxrisi = '" + as_fromxrisi + "'"
+				
+	lds_fromxrisi = fn_createds_fromsql(ls_sql)
+	lds_fromxrisi.retrieve()
+	ll_cols = long(lds_fromxrisi.Describe("DataWindow.Column.Count"))
+	
+// Äçìéïõñãßá datastore toxrisi
+// Also retrieve - there is just one row
+	datastore	lds_toxrisi
+	
+	ls_sql = "select * from misth_zpxrisi" + &
+				" where kodxrisi = '" + as_toxrisi + "'"
+	
+	lds_toxrisi = fn_createds_fromsql(ls_sql)
+	lds_toxrisi.retrieve()
+	
+// update lds_toxrisi ìå ôá óôïé÷åßá ôïõ lds_fromxrisi
+	long	i
+		
+	for i = 1 to ll_cols
+		lds_toxrisi.SetItem(1, i, lds_fromxrisi.object.data[1, i])
+	next
+
+	
+// change kodxrisi, descxrisi, startdate, enddate
+// back to current - UPDATE
+
+	lds_toxrisi.object.kodxrisi[1] = gs_kodxrisi
+	lds_toxrisi.object.descxrisi[1] = gs_descxrisi
+	lds_toxrisi.object.startdate[1] = gd_startdate
+	lds_toxrisi.object.enddate[1] = gd_enddate
+	
+	lds_toxrisi.update()
+	commit;
+	
+// clean-up
+	destroy	lds_fromxrisi
+	destroy 	lds_toxrisi
+
+end subroutine
+

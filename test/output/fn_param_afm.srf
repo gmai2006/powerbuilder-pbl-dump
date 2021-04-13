@@ -1,0 +1,21 @@
+HA$PBExportHeader$fn_param_afm.srf
+$PBExportComments$
+global type fn_param_afm from function_object
+end type
+
+forward prototypes
+global function string fn_param_afm ()
+end prototypes
+
+global function string fn_param_afm ();string	ls_afm
+
+select afm into :ls_afm
+from   misth_zpxrisi where kodxrisi = :gs_kodxrisi;
+fn_sqlerror()
+
+if isnull(ls_afm) then ls_afm = ""
+
+return ls_afm
+
+end function
+

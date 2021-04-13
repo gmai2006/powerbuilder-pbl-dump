@@ -1,0 +1,18 @@
+HA$PBExportHeader$dw_usrgroups_form.srd
+$PBExportComments$
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes key=yes name=kodgroup dbname="usrgroups.kodgroup" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=descgroup dbname="usrgroups.descgroup" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"usrgroups~" ) COLUMN(NAME=~"usrgroups.kodgroup~") COLUMN(NAME=~"usrgroups.descgroup~")WHERE(    EXP1 =~"usrgroups.kodgroup~"   OP =~"=~"    EXP2 =~":arg_kodgroup~" ) ) ARG(NAME = ~"arg_kodgroup~" TYPE = string) " update="usrgroups" updatewhere=1 updatekeyinplace=yes arguments=(("arg_kodgroup", string)) )
+text(band=detail alignment="0" text="ÐåñéãñáöÞ:~ttrn(511) + ~":~"" border="0" color="255" x="27" y="12" height="60" width="288" html.valueishtml="0"  name=descgroup_t visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="2" color="128" x="334" y="12" height="60" width="1582" format="[general]" html.valueishtml="0"  name=descgroup visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+ 

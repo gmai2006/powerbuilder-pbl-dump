@@ -1,0 +1,8 @@
+HA$PBExportHeader$sc_misth_fylo.srs
+$PBExportComments$
+global type sc_misth_fylo from structure
+	string		kodfylo
+	string		kodxrisi
+	string		descfylo
+end type
+

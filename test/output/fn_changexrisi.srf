@@ -1,0 +1,27 @@
+HA$PBExportHeader$fn_changexrisi.srf
+$PBExportComments$
+global type fn_changexrisi from function_object
+end type
+
+forward prototypes
+global subroutine fn_changexrisi ()
+end prototypes
+
+global subroutine fn_changexrisi ();// ÁëëáãÞ ôñÝ÷ïõóáò ÷ñÞóçò
+
+// ¢íïéãìá ðáñáèýñïõ ÷ñÞóçò
+	Open(w_getxrisi)
+	if message.DoubleParm <> 1 then return		// cancel pressed
+
+// Êëåßóéìï üëùí ôùí áíïé÷ôþí sheet
+	window wSheet
+	wSheet = w_app.GetFirstSheet()
+	do while isvalid(wSheet)
+		close(wSheet)
+		wSheet = w_app.GetFirstSheet()
+	loop
+	
+// ÁëëáãÞ ôïõ title ôïõ w_app
+	w_app.title = gs_app_name + " - " + trn(683) + ": " + gs_descxrisi
+end subroutine
+

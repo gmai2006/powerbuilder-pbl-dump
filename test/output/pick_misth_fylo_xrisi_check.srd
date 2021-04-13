@@ -1,0 +1,21 @@
+HA$PBExportHeader$pick_misth_fylo_xrisi_check.srd
+$PBExportComments$
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(4) update=yes updatewhereclause=yes key=yes name=kodfylo dbname="misth_fylo.kodfylo" )
+ column=(type=char(4) update=yes updatewhereclause=yes key=yes name=kodxrisi dbname="misth_fylo.kodxrisi" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=descfylo dbname="misth_fylo.descfylo" )
+ column=(type=decimal(0) updatewhereclause=yes name=checked dbname="checked" values="	1/	0" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"misth_fylo~" ) COLUMN(NAME=~"misth_fylo.kodfylo~") COLUMN(NAME=~"misth_fylo.kodxrisi~") COLUMN(NAME=~"misth_fylo.descfylo~") COMPUTE(NAME=~"0 as checked~")WHERE(    EXP1 =~"misth_fylo.kodxrisi~"   OP =~"=~"    EXP2 =~":arg_kodxrisi~" ) ) ORDER(NAME=~"misth_fylo.descfylo~" ASC=yes ) ARG(NAME = ~"arg_kodxrisi~" TYPE = string) " update="misth_fylo" updatewhere=1 updatekeyinplace=no arguments=(("arg_kodxrisi", string)) )
+text(band=header alignment="0" text="" border="0" color="33554432" x="9" y="8" height="56" width="69" html.valueishtml="0"  name=checked_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="87" y="8" height="56" width="2862" format="[general]" html.valueishtml="0"  name=descfylo visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=10 border="0" color="33554432" x="9" y="8" height="56" width="69" format="[general]" html.valueishtml="0"  name=checked visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+ 

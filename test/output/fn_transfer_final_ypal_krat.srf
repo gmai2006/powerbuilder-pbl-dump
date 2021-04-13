@@ -1,0 +1,78 @@
+HA$PBExportHeader$fn_transfer_final_ypal_krat.srf
+$PBExportComments$
+global type fn_transfer_final_ypal_krat from function_object
+end type
+
+forward prototypes
+global subroutine fn_transfer_final_ypal_krat (long al_kodfinal, long al_kodypal, string as_fromxrisi, string as_toxrisi)
+end prototypes
+
+global subroutine fn_transfer_final_ypal_krat (long al_kodfinal, long al_kodypal, string as_fromxrisi, string as_toxrisi);// ÌåôáöïñÜ êñáôÞóåùí áðü ÷ñÞóç óå ÷ñÞóç
+// ÄéáãñáöÞ êñáôÞóåùí óôç ÷ñÞóç ðñïïñéóìïý
+
+// ÄéáãñáöÞ êñáôÞóåùí óôç ÷ñÞóç ðñïïñéóìïý
+	delete from 	misth_final_ypal_krat
+	where 			kodfinal = :al_kodfinal
+	and				kodypal = :al_kodypal
+	and				kodxrisi = :as_toxrisi;
+	
+	fn_sqlerror()
+	commit;
+
+
+// Äçìéïõñãßá datastore ãéá as_fromxrisi
+	datastore	lds_from
+	string		ls_sql
+	long			ll_rows
+	
+	ls_sql = "select * from misth_final_ypal_krat " + &
+				"where kodfinal = " + string(al_kodfinal) + " " + &
+				"and kodypal = " + string(al_kodypal) + " " + &
+				"and kodxrisi = '" + as_fromxrisi + "' "
+				
+	lds_from = fn_createds_fromsql(ls_sql)
+	if not isvalid(lds_from) then return
+	
+	ll_rows = lds_from.retrieve()
+	
+// ÌåôáöïñÜ
+	string	ls_kodkrat
+	double	ld_poso
+	integer	li_aa
+	string	ls_notes
+	long		i
+	
+	for i = 1 to ll_rows
+		
+		ls_kodkrat = lds_from.object.kodkrat[i]
+		ld_poso = lds_from.object.poso[i]
+		li_aa = lds_from.object.aa[i]
+		ls_notes = lds_from.object.notes[i]
+		
+		insert into misth_final_ypal_krat(
+							kodfinal,
+							kodypal,
+							kodkrat,
+							kodxrisi,
+							poso,
+							aa,
+							notes)
+		values(
+							:al_kodfinal,
+							:al_kodypal,
+							:ls_kodkrat,
+							:as_toxrisi,
+							:ld_poso,
+							:li_aa,
+							:ls_notes);
+							
+		fn_sqlerror()
+		
+	next
+		
+		
+// clean-up
+	commit;
+	destroy lds_from
+end subroutine
+

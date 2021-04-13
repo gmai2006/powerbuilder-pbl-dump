@@ -1,0 +1,19 @@
+HA$PBExportHeader$gsc_misth_zpkrat_reset.srf
+$PBExportComments$
+global type gsc_misth_zpkrat_reset from function_object
+end type
+
+forward prototypes
+global subroutine gsc_misth_zpkrat_reset ()
+end prototypes
+
+global subroutine gsc_misth_zpkrat_reset ();setnull(gsc_misth_zpkrat.kodkrat)
+setnull(gsc_misth_zpkrat.kodxrisi)
+setnull(gsc_misth_zpkrat.desckrat)
+setnull(gsc_misth_zpkrat.isforos)
+setnull(gsc_misth_zpkrat.isasf)
+setnull(gsc_misth_zpkrat.isautoforos)
+
+
+end subroutine
+

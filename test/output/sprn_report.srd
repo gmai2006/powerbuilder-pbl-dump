@@ -1,0 +1,28 @@
+HA$PBExportHeader$sprn_report.srd
+$PBExportComments$
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 1 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 grid.columnmove=no selected.mouse=no )
+header(height=68 color="536870912" )
+summary(height=72 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes name=kodreport dbname="misth_report_ypal.kodreport" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=kodypal dbname="misth_report_ypal.kodypal" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=kodxrisi dbname="misth_report_ypal.kodxrisi" )
+ column=(type=char(70) updatewhereclause=yes name=misth_ypal_surname dbname="misth_ypal.surname" )
+ column=(type=char(30) updatewhereclause=yes name=misth_ypal_name dbname="misth_ypal.name" )
+ column=(type=char(30) updatewhereclause=yes name=misth_ypal_fathername dbname="misth_ypal.fathername" )
+ column=(type=char(20) updatewhereclause=yes name=misth_ypal_mitroo dbname="misth_ypal.mitroo" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"misth_report_ypal~" )  TABLE(NAME=~"misth_ypal~" ) COLUMN(NAME=~"misth_report_ypal.kodreport~") COLUMN(NAME=~"misth_report_ypal.kodypal~") COLUMN(NAME=~"misth_report_ypal.kodxrisi~") COLUMN(NAME=~"misth_ypal.surname~") COLUMN(NAME=~"misth_ypal.name~") COLUMN(NAME=~"misth_ypal.fathername~") COLUMN(NAME=~"misth_ypal.mitroo~")    JOIN (LEFT=~"misth_report_ypal.kodypal~"    OP =~"=~"RIGHT=~"misth_ypal.kodypal~" )    JOIN (LEFT=~"misth_report_ypal.kodxrisi~"    OP =~"=~"RIGHT=~"misth_ypal.kodxrisi~" )WHERE(    EXP1 =~"misth_report_ypal.kodreport~"   OP =~"=~"    EXP2 =~":arg_kodreport~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"misth_report_ypal.kodxrisi~"   OP =~"=~"    EXP2 =~":arg_kodxrisi~" ) ) ORDER(NAME=~"misth_ypal.surname~" ASC=yes )  ORDER(NAME=~"misth_ypal.name~" ASC=yes )  ORDER(NAME=~"misth_ypal.fathername~" ASC=yes ) ARG(NAME = ~"arg_kodreport~" TYPE = string)  ARG(NAME = ~"arg_kodxrisi~" TYPE = string) " arguments=(("arg_kodreport", string),("arg_kodxrisi", string)) )
+text(band=header alignment="2" text="Ìçôñþï~ttrn(445)" border="0" color="33554432" x="114" y="8" height="52" width="306" html.valueishtml="0"  name=misth_ypal_mitroo_t visible="1"  font.face="Times New Roman" font.height="-8" font.weight="700"  font.family="1" font.pitch="2" font.charset="161" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Á/Á~ttrn(57)" border="0" color="33554432" x="9" y="8" height="52" width="96" html.valueishtml="0"  name=t_1 visible="1"  font.face="Times New Roman" font.height="-8" font.weight="700"  font.family="1" font.pitch="2" font.charset="161" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Ïíïìáôåðþíõìï~ttrn(489)" border="0" color="33554432" x="430" y="8" height="52" width="690" html.valueishtml="0"  name=t_2 visible="1"  font.face="Times New Roman" font.height="-8" font.weight="700"  font.family="1" font.pitch="2" font.charset="161" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="0" tabsequence=10 border="0" color="33554432" x="114" y="8" height="52" width="306" format="[general]" html.valueishtml="0"  name=misth_ypal_mitroo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Times New Roman" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="getrow()"border="0" color="33554432" x="9" y="8" height="52" width="96" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Times New Roman" font.height="-8" font.weight="400"  font.family="1" font.pitch="2" font.charset="161" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="fn_fullname( misth_ypal_surname , misth_ypal_name , misth_ypal_fathername )"border="0" color="33554432" x="430" y="8" height="52" width="690" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Times New Roman" font.height="-8" font.weight="400"  font.family="1" font.pitch="2" font.charset="161" background.mode="2" background.color="1073741824" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+ 

@@ -1,0 +1,12 @@
+HA$PBExportHeader$sc_usrusers.srs
+$PBExportComments$
+global type sc_usrusers from structure
+	long		koduser
+	string		username
+	string		fullname
+	string		password
+	integer		isactive
+	string		tomeas
+	string		idiotita
+end type
+

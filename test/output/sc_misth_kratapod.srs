@@ -1,0 +1,9 @@
+HA$PBExportHeader$sc_misth_kratapod.srs
+$PBExportComments$
+global type sc_misth_kratapod from structure
+	long		kodkratapod
+	string		kodxrisi
+	string		desckratapod
+	date		apoddate
+end type
+

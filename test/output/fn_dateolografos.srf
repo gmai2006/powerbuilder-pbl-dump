@@ -1,0 +1,331 @@
+HA$PBExportHeader$fn_dateolografos.srf
+$PBExportComments$
+global type fn_dateolografos from function_object
+end type
+
+forward prototypes
+global function string fn_dateolografos (datetime adate)
+end prototypes
+
+global function string fn_dateolografos (datetime adate);// ÌåôáôñïðÞ ôïõ adate óå ïëïãñÜöùò
+		
+// Áí ç çì/íßá åßíáé Null åðéóôñïöÞ ""
+	if isnull(adate) then return ""
+	
+// Äéá÷ùñéóìüò çìÝñáò, ìÞíá Ýôïõò
+	integer	li_day, li_month, li_year
+	string	ls_day, ls_month, ls_year
+	
+	li_day = day(date(adate))
+	li_month = month(date(adate))
+	li_year = year(date(adate))
+	
+// ÌåôáôñïðÞ çìÝñáò
+
+	choose case li_day
+			
+		case 1
+			ls_day = trn(446)
+			
+		case 2
+			ls_day = trn(240)
+			
+		case 3
+			ls_day = trn(649)
+			
+		case 4
+			ls_day = trn(636)
+			
+		case 5
+			ls_day = trn(510)
+			
+		case 6
+			ls_day = trn(294)
+			
+		case 7
+			ls_day = trn(334)
+			
+		case 8
+			ls_day = trn(686)
+			
+		case 9
+			ls_day = trn(289)
+			
+		case 10
+			ls_day = trn(687)
+			
+		case 11
+			ls_day = trn(285)
+		
+		case 12
+			ls_day = trn(688)
+			
+		case 13
+			ls_day = trn(154)
+			
+		case 14
+			ls_day = trn(153)
+			
+		case 15
+			ls_day = trn(152)
+			
+		case 16
+			ls_day = trn(149)
+			
+		case 17
+			ls_day = trn(150)
+			
+		case 18
+			ls_day = trn(151)
+			
+		case 19
+			ls_day = trn(148)
+			
+		case 20
+			ls_day = trn(252)
+			
+		case 21
+			ls_day = trn(257)
+			
+		case 22
+			ls_day = trn(253)
+			
+		case 23
+			ls_day = trn(261)
+			
+		case 24
+			ls_day = trn(260)
+			
+		case 25
+			ls_day = trn(259)
+			
+		case 26
+			ls_day = trn(255)
+			
+		case 27
+			ls_day = trn(256)
+			
+		case 28
+			ls_day = trn(258)
+			
+		case 29
+			ls_day = trn(254)
+			
+		case 30
+			ls_day = trn(653)
+			
+		case 31
+			ls_day = trn(654)
+			
+	end choose
+			
+// ÌåôáôñïðÞ ìÞíá
+	
+	choose case li_month
+			
+		case 1
+			ls_month = trn(381)
+			
+		case 2
+			ls_month = trn(671)
+			
+		case 3
+			ls_month = trn(426)
+			
+		case 4
+			ls_month = trn(103)
+			
+		case 5
+			ls_month = trn(425)
+			
+		case 6
+			ls_month = trn(384)
+			
+		case 7
+			ls_month = trn(383)
+						
+		case 8
+			ls_month = trn(125)
+			
+		case 9
+			ls_month = trn(584)
+			
+		case 10
+			ls_month = trn(477)
+			
+		case 11
+			ls_month = trn(465)
+			
+		case 12
+			ls_month = trn(155)
+			
+	end choose
+	
+// ÌåôáôñïðÞ Ýôïõò
+	
+	// Ðáßñíïõìå ÷éëéÜäåò, åêáôïíôÜäåò, äåêÜäåò ìïíÜäåò
+		
+		integer	li_xil, li_ekat, li_dek, li_mon
+		string	ls_xil, ls_ekat, ls_dek, ls_mon
+		
+		li_xil  = li_year / 1000
+		li_ekat = mod(li_year, 1000) /  100
+		li_dek  = mod(mod(li_year, 1000), 100) / 10
+		li_mon  = mod(mod(mod(li_year, 1000), 100), 10)
+			
+		
+		// ×éëéÜäåò
+		
+			choose case li_xil
+					
+				case 1
+					ls_xil = trn(681)
+					
+				case 2
+					ls_xil = trn(241)
+					
+				case 3
+					ls_xil = trn(650)
+					
+			end choose
+			
+		// ÅêáôïíôÜäåò
+		
+			choose case li_ekat
+					
+				case 0
+					ls_ekat = ""
+					
+				case 1
+					if li_dek = 0 and li_mon = 0 then
+						ls_ekat = trn(265)
+					else
+						ls_ekat = trn(266)
+					end if
+					
+				case 2
+					ls_ekat = trn(229)
+					
+				case 3
+					ls_ekat = trn(652)
+					
+				case 4
+					ls_ekat = trn(637)
+					
+				case 5
+					ls_ekat = trn(509)
+					
+				case 6
+					ls_ekat = trn(291)
+					
+				case 7
+					ls_ekat = trn(335)
+					
+				case 8
+					ls_ekat = trn(491)
+					
+				case 9
+					ls_ekat = trn(290)
+					
+			end choose
+			
+		// ÄåêÜäåò
+			
+			choose case li_dek
+					
+				case 0
+					ls_dek = ""
+					
+				case 1
+					
+					choose case li_mon
+						
+						case 1
+							ls_dek = trn(689)
+							
+						case 2
+							ls_dek = trn(242)
+							
+						case else
+							ls_dek = trn(147)
+							
+					end choose
+				
+					
+				case 2
+					ls_dek = trn(691)
+					
+				case 3
+					ls_dek = trn(690)
+					
+				case 4
+					ls_dek = trn(581)
+					
+				case 5
+					ls_dek = trn(508)
+					
+				case 6
+					ls_dek = trn(293)
+					
+				case 7
+					ls_dek = trn(248)
+					
+				case 8
+					ls_dek = trn(469)
+					
+				case 9
+					ls_dek = trn(286)
+					
+			end choose
+			
+		// ÌïíÜäåò
+		
+			choose case li_mon
+					
+				case 0
+					ls_mon = ""
+					
+				case 1
+					if li_dek = 1 then		// Ýíäåêá
+						ls_mon = ""
+					else
+						ls_mon = trn(282)
+					end if
+					
+				case 2
+					if li_dek = 1 then		// äþäåêá
+						ls_mon = ""
+					else
+						ls_mon = trn(692)
+					end if
+						
+					
+				case 3
+					ls_mon = trn(651)
+					
+				case 4
+					ls_mon = trn(635)
+					
+				case 5
+					ls_mon = trn(693)
+					
+				case 6
+					ls_mon = trn(694)
+					
+				case 7
+					ls_mon = trn(695)
+					
+				case 8
+					ls_mon = trn(492)
+					
+				case 9
+					ls_mon = trn(696)
+					
+			end choose
+			
+	ls_year = ls_xil + " " + ls_ekat + " " + ls_dek + " " + ls_mon
+	
+// return 
+	return ls_day + ' ' + ls_month + ' ' + ls_year
+end function
+

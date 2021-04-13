@@ -1,0 +1,38 @@
+HA$PBExportHeader$fn_toupper.srf
+$PBExportComments$
+global type fn_toupper from function_object
+end type
+
+forward prototypes
+global function string fn_toupper (string astr)
+end prototypes
+
+global function string fn_toupper (string astr);// ÌåôáôñïðÞ óå êåöáëáßá
+// Ç upper() óõíÜñôçóç ôïõ powerbuilder äéáôçñåß ôïõò ôüíïõò
+// ÌåôáôñïðÞ ðñþôá óå ðåæÜ ãéá íá ñõèìéóôïýí ôá äéáëõôéêÜ
+
+string	ls_tolower
+
+ls_tolower = lower(astr)
+
+// ÁëëáãÞ ôïíïýìåíùí êåöáëáßùí ìå Üôïíá
+ls_tolower = fn_replace_str(ls_tolower, "Ü", "á")
+ls_tolower = fn_replace_str(ls_tolower, "Ý", "å")
+ls_tolower = fn_replace_str(ls_tolower, "ü", "ï")
+ls_tolower = fn_replace_str(ls_tolower, "Þ", "ç")
+ls_tolower = fn_replace_str(ls_tolower, "ß", "é")
+ls_tolower = fn_replace_str(ls_tolower, "ú", "é")
+ls_tolower = fn_replace_str(ls_tolower, "À", "é")
+ls_tolower = fn_replace_str(ls_tolower, "ý", "õ")
+ls_tolower = fn_replace_str(ls_tolower, "û", "õ")
+ls_tolower = fn_replace_str(ls_tolower, "à", "õ")
+ls_tolower = fn_replace_str(ls_tolower, "þ", "ù")
+
+// ÅðéóôñïöÞ êåöáëáßùí
+	return upper(ls_tolower)
+
+
+
+
+end function
+

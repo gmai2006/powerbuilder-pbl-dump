@@ -1,0 +1,61 @@
+HA$PBExportHeader$fn_createodbc_access.srf
+$PBExportComments$
+global type fn_createodbc_access from function_object
+end type
+
+forward prototypes
+global subroutine fn_createodbc_access (string as_odbcname, string as_filename)
+end prototypes
+
+global subroutine fn_createodbc_access (string as_odbcname, string as_filename);// Äçìéïõñãßá ìéáò êáôá÷þñçóçò ODBC ôýðïõ MS ACCESS
+// ìå ôï üíïìá as_odbcname êáé áñ÷åßï äåäïìÝíùí as_filename
+
+// HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI
+	
+	RegistrySet("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\" + as_odbcname, &
+					"DBQ", RegString!, as_filename)
+					
+	RegistrySet("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\" + as_odbcname, &
+					"Driver", RegString!, "C:\WINDOWS\System32\odbcjt32.dll")
+					
+	RegistrySet("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\" + as_odbcname, &
+					"DriverId", ReguLong!, 25)
+					
+	RegistrySet("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\" + as_odbcname, &
+					"FIL", RegString!, "MS Access;")
+					
+	RegistrySet("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\" + as_odbcname, &
+					"SafeTransactions", ReguLong!, 0)
+					
+	RegistrySet("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\" + as_odbcname, &
+					"UID", RegString!, "")
+					
+	RegistrySet("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\" + as_odbcname + "\Engines\Jet", &
+					"ImplicitCommitSync", RegString!, "")
+					
+	RegistrySet("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\" + as_odbcname + "\Engines\Jet", &
+					"MaxBufferSize", ReguLong!, 2048)
+					
+	RegistrySet("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\" + as_odbcname + "\Engines\Jet", &
+					"PageTimeout", ReguLong!, 5)
+					
+	RegistrySet("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\" + as_odbcname + "\Engines\Jet", &
+					"Threads", ReguLong!, 3)
+					
+	RegistrySet("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\" + as_odbcname + "\Engines\Jet", &
+					"UserCommitSync", RegString!, "Yes")
+					
+// HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\ODBC Data Sources
+	
+	RegistrySet("HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\ODBC Data Sources", &
+					as_odbcname, RegString!, "Microsoft Access Driver (*.mdb)")
+					
+					
+					
+					
+					
+					
+					
+					
+end subroutine
+

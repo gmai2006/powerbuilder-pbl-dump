@@ -1,0 +1,16 @@
+HA$PBExportHeader$fn_mathparser.srf
+$PBExportComments$
+global type fn_mathparser from function_object
+end type
+
+forward prototypes
+global function double fn_mathparser (string as_expr)
+end prototypes
+
+global function double fn_mathparser (string as_expr);// call dll function cfn_mathparser(expr)
+
+
+	return cfn_mathparser(as_expr)
+	
+end function
+

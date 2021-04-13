@@ -1,0 +1,36 @@
+HA$PBExportHeader$fn_createds_zpkrat_all.srf
+$PBExportComments$
+global type fn_createds_zpkrat_all from function_object
+end type
+
+forward prototypes
+global function datastore fn_createds_zpkrat_all ()
+end prototypes
+
+global function datastore fn_createds_zpkrat_all ();// Äçìéïõñãßá datastore ìå üëåò ôéò êñáôÞóåéò
+
+// Äçìéïõñãßá datastore áðü misth_zpkrat
+	datastore	lds_zpkrat
+	long			ll_rows
+	
+	lds_zpkrat = fn_createds("pick_misth_zpkrat_xrisi")
+	ll_rows = lds_zpkrat.retrieve(gs_kodxrisi)
+
+// Äçìéïõñãßá datastore edw_var ãéá ìåôáöïñÜ
+	datastore		lds_krat
+	
+	lds_krat = fn_createds("edw_var")
+	
+// ÌåôáöïñÜ lds_zpkrat -> lds_krat
+	long	i, ll_newrow
+	
+	for i = 1 to ll_rows
+		ll_newrow = lds_krat.insertrow(0)
+		lds_krat.object.kodvar[ll_newrow] = lds_zpkrat.object.kodkrat[i]
+		lds_krat.object.descvar[ll_newrow] = lds_zpkrat.object.desckrat[i]
+	next
+	
+// ÅðéóôñïöÞ
+	return lds_krat
+end function
+

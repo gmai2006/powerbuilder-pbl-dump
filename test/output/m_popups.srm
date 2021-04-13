@@ -1,0 +1,680 @@
+HA$PBExportHeader$m_popups.srm
+$PBExportComments$
+forward
+global type m_popups from menu
+end type
+type m_pinakes from menu within m_popups
+end type
+type m_pinakes_zpstath from menu within m_pinakes
+end type
+type m_pinakes_zpyvar from menu within m_pinakes
+end type
+type m_pinakes_zpepidom from menu within m_pinakes
+end type
+type m_pinakes_zpkrat from menu within m_pinakes
+end type
+type m_- from menu within m_pinakes
+end type
+type m_pinakes_zpperiod from menu within m_pinakes
+end type
+type m_pinakes_zpkat from menu within m_pinakes
+end type
+type m_pinakes_tamia from menu within m_pinakes
+end type
+type m_pinakes_tmimata from menu within m_pinakes
+end type
+type m_pinakes_idiotites from menu within m_pinakes
+end type
+type m_èÝóåéòâáèìïßõðáëëÞëùí from menu within m_pinakes
+end type
+type m_pinakes_oikog from menu within m_pinakes
+end type
+type m_pinakes from menu within m_popups
+m_pinakes_zpstath m_pinakes_zpstath
+m_pinakes_zpyvar m_pinakes_zpyvar
+m_pinakes_zpepidom m_pinakes_zpepidom
+m_pinakes_zpkrat m_pinakes_zpkrat
+m_- m_-
+m_pinakes_zpperiod m_pinakes_zpperiod
+m_pinakes_zpkat m_pinakes_zpkat
+m_pinakes_tamia m_pinakes_tamia
+m_pinakes_tmimata m_pinakes_tmimata
+m_pinakes_idiotites m_pinakes_idiotites
+m_èÝóåéòâáèìïßõðáëëÞëùí m_èÝóåéòâáèìïßõðáëëÞëùí
+m_pinakes_oikog m_pinakes_oikog
+end type
+type m_prints from menu within m_popups
+end type
+type m_print_ypal_final from menu within m_prints
+end type
+type m_print_final_tobepaid from menu within m_prints
+end type
+type m_print_final_tobepaid_ana_ypal from menu within m_prints
+end type
+type m_print_ypal_period from menu within m_prints
+end type
+type m_print_analisi_ypal from menu within m_prints
+end type
+type m_print_krat_period from menu within m_prints
+end type
+type m_print_krat_noapod from menu within m_prints
+end type
+type m_ypal_changeklim from menu within m_prints
+end type
+type m_prints from menu within m_popups
+m_print_ypal_final m_print_ypal_final
+m_print_final_tobepaid m_print_final_tobepaid
+m_print_final_tobepaid_ana_ypal m_print_final_tobepaid_ana_ypal
+m_print_ypal_period m_print_ypal_period
+m_print_analisi_ypal m_print_analisi_ypal
+m_print_krat_period m_print_krat_period
+m_print_krat_noapod m_print_krat_noapod
+m_ypal_changeklim m_ypal_changeklim
+end type
+type m_misth_final from menu within m_popups
+end type
+type m_misth_final_total from menu within m_misth_final
+end type
+type m_misth_final_details from menu within m_misth_final
+end type
+type m_misth_final from menu within m_popups
+m_misth_final_total m_misth_final_total
+m_misth_final_details m_misth_final_details
+end type
+type m_transfer from menu within m_popups
+end type
+type m_transfer_xrisi from menu within m_transfer
+end type
+type m_transfer_nopaid from menu within m_transfer
+end type
+type m_transfer from menu within m_popups
+m_transfer_xrisi m_transfer_xrisi
+m_transfer_nopaid m_transfer_nopaid
+end type
+global type m_popups from menu
+m_pinakes m_pinakes
+m_prints m_prints
+m_misth_final m_misth_final
+m_transfer m_transfer
+end type
+end forward
+
+global type m_popups from menu
+m_pinakes m_pinakes
+m_prints m_prints
+m_misth_final m_misth_final
+m_transfer m_transfer
+end type
+global m_popups m_popups
+
+on m_popups.create
+m_popups=this
+call super::create
+this.m_pinakes=create m_pinakes
+this.m_prints=create m_prints
+this.m_misth_final=create m_misth_final
+this.m_transfer=create m_transfer
+this.Item[UpperBound(this.Item)+1]=this.m_pinakes
+this.Item[UpperBound(this.Item)+1]=this.m_prints
+this.Item[UpperBound(this.Item)+1]=this.m_misth_final
+this.Item[UpperBound(this.Item)+1]=this.m_transfer
+end on
+
+on m_popups.destroy
+call super::destroy
+destroy(this.m_pinakes)
+destroy(this.m_prints)
+destroy(this.m_misth_final)
+destroy(this.m_transfer)
+end on
+
+type m_pinakes from menu within m_popups
+m_pinakes_zpstath m_pinakes_zpstath
+m_pinakes_zpyvar m_pinakes_zpyvar
+m_pinakes_zpepidom m_pinakes_zpepidom
+m_pinakes_zpkrat m_pinakes_zpkrat
+m_- m_-
+m_pinakes_zpperiod m_pinakes_zpperiod
+m_pinakes_zpkat m_pinakes_zpkat
+m_pinakes_tamia m_pinakes_tamia
+m_pinakes_tmimata m_pinakes_tmimata
+m_pinakes_idiotites m_pinakes_idiotites
+m_èÝóåéòâáèìïßõðáëëÞëùí m_èÝóåéòâáèìïßõðáëëÞëùí
+m_pinakes_oikog m_pinakes_oikog
+end type
+
+on m_pinakes.create
+call super::create
+this.text = trn(35)
+this.m_pinakes_zpstath=create m_pinakes_zpstath
+this.m_pinakes_zpyvar=create m_pinakes_zpyvar
+this.m_pinakes_zpepidom=create m_pinakes_zpepidom
+this.m_pinakes_zpkrat=create m_pinakes_zpkrat
+this.m_-=create m_-
+this.m_pinakes_zpperiod=create m_pinakes_zpperiod
+this.m_pinakes_zpkat=create m_pinakes_zpkat
+this.m_pinakes_tamia=create m_pinakes_tamia
+this.m_pinakes_tmimata=create m_pinakes_tmimata
+this.m_pinakes_idiotites=create m_pinakes_idiotites
+this.m_èÝóåéòâáèìïßõðáëëÞëùí=create m_èÝóåéòâáèìïßõðáëëÞëùí
+this.m_pinakes_oikog=create m_pinakes_oikog
+this.Item[UpperBound(this.Item)+1]=this.m_pinakes_zpstath
+this.Item[UpperBound(this.Item)+1]=this.m_pinakes_zpyvar
+this.Item[UpperBound(this.Item)+1]=this.m_pinakes_zpepidom
+this.Item[UpperBound(this.Item)+1]=this.m_pinakes_zpkrat
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_pinakes_zpperiod
+this.Item[UpperBound(this.Item)+1]=this.m_pinakes_zpkat
+this.Item[UpperBound(this.Item)+1]=this.m_pinakes_tamia
+this.Item[UpperBound(this.Item)+1]=this.m_pinakes_tmimata
+this.Item[UpperBound(this.Item)+1]=this.m_pinakes_idiotites
+this.Item[UpperBound(this.Item)+1]=this.m_èÝóåéòâáèìïßõðáëëÞëùí
+this.Item[UpperBound(this.Item)+1]=this.m_pinakes_oikog
+end on
+
+on m_pinakes.destroy
+call super::destroy
+destroy(this.m_pinakes_zpstath)
+destroy(this.m_pinakes_zpyvar)
+destroy(this.m_pinakes_zpepidom)
+destroy(this.m_pinakes_zpkrat)
+destroy(this.m_-)
+destroy(this.m_pinakes_zpperiod)
+destroy(this.m_pinakes_zpkat)
+destroy(this.m_pinakes_tamia)
+destroy(this.m_pinakes_tmimata)
+destroy(this.m_pinakes_idiotites)
+destroy(this.m_èÝóåéòâáèìïßõðáëëÞëùí)
+destroy(this.m_pinakes_oikog)
+end on
+
+type m_pinakes_zpstath from menu within m_pinakes
+end type
+
+event clicked;if not fn_perm("misth_zpstath", "openlist") then return
+OpenSheet(w_misth_zpstath_grid, w_app, 0, Original!)
+
+end event
+
+on m_pinakes_zpstath.create
+call super::create
+this.text = trn(590)
+end on
+
+on m_pinakes_zpstath.destroy
+call super::destroy
+end on
+
+type m_pinakes_zpyvar from menu within m_pinakes
+end type
+
+event clicked;if not fn_perm("misth_zpyvar", "openlist") then return
+OpenSheet(w_misth_zpyvar_list, w_app, 0, Original!)
+
+end event
+
+on m_pinakes_zpyvar.create
+call super::create
+this.text = trn(433)
+end on
+
+on m_pinakes_zpyvar.destroy
+call super::destroy
+end on
+
+type m_pinakes_zpepidom from menu within m_pinakes
+end type
+
+event clicked;if not fn_perm("misth_zpepidom", "openlist") then return
+OpenSheet(w_misth_zpepidom_list, w_app, 0, Original!)
+end event
+
+on m_pinakes_zpepidom.create
+call super::create
+this.text = trn(97)
+end on
+
+on m_pinakes_zpepidom.destroy
+call super::destroy
+end on
+
+type m_pinakes_zpkrat from menu within m_pinakes
+end type
+
+event clicked;if not fn_perm("misth_zpkrat", "openlist") then return
+OpenSheet(w_misth_zpkrat_list, w_app, 0, Original!)
+end event
+
+on m_pinakes_zpkrat.create
+call super::create
+this.text = trn(411)
+end on
+
+on m_pinakes_zpkrat.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_pinakes
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_pinakes_zpperiod from menu within m_pinakes
+end type
+
+event clicked;if not fn_perm("misth_zpperiod", "openlist") then return
+OpenSheet(w_misth_zpperiod_grid, w_app, 0, Original!)
+end event
+
+on m_pinakes_zpperiod.create
+call super::create
+this.text = trn(529)
+this.microhelp = trn(529)
+end on
+
+on m_pinakes_zpperiod.destroy
+call super::destroy
+end on
+
+type m_pinakes_zpkat from menu within m_pinakes
+end type
+
+event clicked;if not fn_perm("misth_zpkat", "openlist") then return
+OpenSheet(w_misth_zpkat_grid, w_app, 0, Original!)
+
+end event
+
+on m_pinakes_zpkat.create
+call super::create
+this.text = trn(399)
+end on
+
+on m_pinakes_zpkat.destroy
+call super::destroy
+end on
+
+type m_pinakes_tamia from menu within m_pinakes
+end type
+
+on m_pinakes_tamia.create
+call super::create
+this.text = trn(118)
+end on
+
+on m_pinakes_tamia.destroy
+call super::destroy
+end on
+
+event clicked;if not fn_perm("misth_zptamio", "openlist") then return
+OpenSheet(w_misth_zptamio_grid, w_app, 0, Original!)
+end event
+
+type m_pinakes_tmimata from menu within m_pinakes
+end type
+
+on m_pinakes_tmimata.create
+call super::create
+this.text = trn(644)
+end on
+
+on m_pinakes_tmimata.destroy
+call super::destroy
+end on
+
+event clicked;if not fn_perm("misth_zptmima", "openlist") then return
+OpenSheet(w_misth_zptmima_grid, w_app, 0, Original!)
+
+end event
+
+type m_pinakes_idiotites from menu within m_pinakes
+end type
+
+on m_pinakes_idiotites.create
+call super::create
+this.text = trn(250)
+end on
+
+on m_pinakes_idiotites.destroy
+call super::destroy
+end on
+
+event clicked;if not fn_perm("misth_zpidikot", "openlist") then return
+OpenSheet(w_misth_zpidikot_grid, w_app, 0, Original!)
+
+end event
+
+type m_èÝóåéòâáèìïßõðáëëÞëùí from menu within m_pinakes
+end type
+
+on m_èÝóåéòâáèìïßõðáëëÞëùí.create
+call super::create
+this.text = trn(378)
+end on
+
+on m_èÝóåéòâáèìïßõðáëëÞëùí.destroy
+call super::destroy
+end on
+
+event clicked;if not fn_perm("misth_zpthesi", "openlist") then return
+OpenSheet(w_misth_zpthesi_grid, w_app, 0, Original!)
+
+end event
+
+type m_pinakes_oikog from menu within m_pinakes
+end type
+
+on m_pinakes_oikog.create
+call super::create
+this.text = trn(475)
+end on
+
+on m_pinakes_oikog.destroy
+call super::destroy
+end on
+
+event clicked;if not fn_perm("misth_zpoikog", "openlist") then return
+OpenSheet(w_misth_zpoikog_grid, w_app, 0, Original!)
+
+
+end event
+
+type m_prints from menu within m_popups
+m_print_ypal_final m_print_ypal_final
+m_print_final_tobepaid m_print_final_tobepaid
+m_print_final_tobepaid_ana_ypal m_print_final_tobepaid_ana_ypal
+m_print_ypal_period m_print_ypal_period
+m_print_analisi_ypal m_print_analisi_ypal
+m_print_krat_period m_print_krat_period
+m_print_krat_noapod m_print_krat_noapod
+m_ypal_changeklim m_ypal_changeklim
+end type
+
+on m_prints.create
+call super::create
+this.text = trn(16)
+this.m_print_ypal_final=create m_print_ypal_final
+this.m_print_final_tobepaid=create m_print_final_tobepaid
+this.m_print_final_tobepaid_ana_ypal=create m_print_final_tobepaid_ana_ypal
+this.m_print_ypal_period=create m_print_ypal_period
+this.m_print_analisi_ypal=create m_print_analisi_ypal
+this.m_print_krat_period=create m_print_krat_period
+this.m_print_krat_noapod=create m_print_krat_noapod
+this.m_ypal_changeklim=create m_ypal_changeklim
+this.Item[UpperBound(this.Item)+1]=this.m_print_ypal_final
+this.Item[UpperBound(this.Item)+1]=this.m_print_final_tobepaid
+this.Item[UpperBound(this.Item)+1]=this.m_print_final_tobepaid_ana_ypal
+this.Item[UpperBound(this.Item)+1]=this.m_print_ypal_period
+this.Item[UpperBound(this.Item)+1]=this.m_print_analisi_ypal
+this.Item[UpperBound(this.Item)+1]=this.m_print_krat_period
+this.Item[UpperBound(this.Item)+1]=this.m_print_krat_noapod
+this.Item[UpperBound(this.Item)+1]=this.m_ypal_changeklim
+end on
+
+on m_prints.destroy
+call super::destroy
+destroy(this.m_print_ypal_final)
+destroy(this.m_print_final_tobepaid)
+destroy(this.m_print_final_tobepaid_ana_ypal)
+destroy(this.m_print_ypal_period)
+destroy(this.m_print_analisi_ypal)
+destroy(this.m_print_krat_period)
+destroy(this.m_print_krat_noapod)
+destroy(this.m_ypal_changeklim)
+end on
+
+type m_print_ypal_final from menu within m_prints
+end type
+
+on m_print_ypal_final.create
+call super::create
+this.text = trn(543)
+this.microhelp = trn(543)
+end on
+
+on m_print_ypal_final.destroy
+call super::destroy
+end on
+
+event clicked;if not fn_perm("misth_final", "openlist") then return
+OpenSheet(wprn_ypal_final, w_app, 0, Original!)
+
+end event
+
+type m_print_final_tobepaid from menu within m_prints
+end type
+
+on m_print_final_tobepaid.create
+call super::create
+this.text = trn(90)
+this.microhelp = trn(90)
+end on
+
+on m_print_final_tobepaid.destroy
+call super::destroy
+end on
+
+event clicked;if not fn_perm("misth_final", "openlist") then return
+OpenSheet(wprn_final_nopaid_ana_katast, w_app, 0, Original!)
+
+end event
+
+type m_print_final_tobepaid_ana_ypal from menu within m_prints
+end type
+
+on m_print_final_tobepaid_ana_ypal.create
+call super::create
+this.text = trn(89)
+this.microhelp = trn(89)
+end on
+
+on m_print_final_tobepaid_ana_ypal.destroy
+call super::destroy
+end on
+
+event clicked;if not fn_perm("misth_final", "openlist") then return
+OpenSheet(wprn_final_nopaid_ana_ypal, w_app, 0, Original!)
+
+end event
+
+type m_print_ypal_period from menu within m_prints
+end type
+
+event clicked;if not fn_perm("misth_final", "openlist") then return
+OpenSheet(wprn_ypal_total_dates, w_app, 0, Original!)
+
+end event
+
+on m_print_ypal_period.create
+call super::create
+this.text = trn(605)
+this.microhelp = trn(605)
+end on
+
+on m_print_ypal_period.destroy
+call super::destroy
+end on
+
+type m_print_analisi_ypal from menu within m_prints
+end type
+
+on m_print_analisi_ypal.create
+call super::create
+this.text = trn(74)
+this.microhelp = trn(74)
+end on
+
+on m_print_analisi_ypal.destroy
+call super::destroy
+end on
+
+event clicked;if not fn_perm("misth_final", "openlist") then return
+OpenSheet(wprn_analisi_ypal, w_app, 0, Original!)
+end event
+
+type m_print_krat_period from menu within m_prints
+end type
+
+event clicked;if not fn_perm("misth_final", "openlist") then return
+OpenSheet(wprn_krat_total, w_app, 0, Original!)
+end event
+
+on m_print_krat_period.create
+call super::create
+this.text = trn(613)
+this.microhelp = trn(613)
+end on
+
+on m_print_krat_period.destroy
+call super::destroy
+end on
+
+type m_print_krat_noapod from menu within m_prints
+end type
+
+on m_print_krat_noapod.create
+call super::create
+this.text = trn(394)
+this.microhelp = trn(394)
+end on
+
+on m_print_krat_noapod.destroy
+call super::destroy
+end on
+
+event clicked;if not fn_perm("misth_final", "openlist") then return
+OpenSheet(wprn_krat_noapod, w_app, 0, Original!)
+end event
+
+type m_ypal_changeklim from menu within m_prints
+end type
+
+event clicked;if not fn_perm("misth_ypal", "openlist") then return
+OpenSheet(wprn_ypal_newklimakio, w_app, 0, Original!)
+
+end event
+
+on m_ypal_changeklim.create
+call super::create
+this.text = trn(338)
+this.microhelp = trn(338)
+end on
+
+on m_ypal_changeklim.destroy
+call super::destroy
+end on
+
+type m_misth_final from menu within m_popups
+m_misth_final_total m_misth_final_total
+m_misth_final_details m_misth_final_details
+end type
+
+on m_misth_final.create
+call super::create
+this.text = trn(390)
+this.m_misth_final_total=create m_misth_final_total
+this.m_misth_final_details=create m_misth_final_details
+this.Item[UpperBound(this.Item)+1]=this.m_misth_final_total
+this.Item[UpperBound(this.Item)+1]=this.m_misth_final_details
+end on
+
+on m_misth_final.destroy
+call super::destroy
+destroy(this.m_misth_final_total)
+destroy(this.m_misth_final_details)
+end on
+
+type m_misth_final_total from menu within m_misth_final
+end type
+
+on m_misth_final_total.create
+call super::create
+this.text = trn(45)
+this.microhelp = trn(607)
+end on
+
+on m_misth_final_total.destroy
+call super::destroy
+end on
+
+event clicked;if not fn_perm("misth_final", "openlist") then return
+OpenSheet(w_misth_final_list, w_app, 0, Original!)		
+
+end event
+
+type m_misth_final_details from menu within m_misth_final
+end type
+
+on m_misth_final_details.create
+call super::create
+this.text = trn(4)
+this.microhelp = trn(77)
+end on
+
+on m_misth_final_details.destroy
+call super::destroy
+end on
+
+event clicked;if not fn_perm("misth_final", "openlist") then return
+OpenSheet(w_misth_final_details_list, w_app, 0, Original!)		
+
+end event
+
+type m_transfer from menu within m_popups
+m_transfer_xrisi m_transfer_xrisi
+m_transfer_nopaid m_transfer_nopaid
+end type
+
+on m_transfer.create
+call super::create
+this.text = trn(443)
+this.m_transfer_xrisi=create m_transfer_xrisi
+this.m_transfer_nopaid=create m_transfer_nopaid
+this.Item[UpperBound(this.Item)+1]=this.m_transfer_xrisi
+this.Item[UpperBound(this.Item)+1]=this.m_transfer_nopaid
+end on
+
+on m_transfer.destroy
+call super::destroy
+destroy(this.m_transfer_xrisi)
+destroy(this.m_transfer_nopaid)
+end on
+
+type m_transfer_xrisi from menu within m_transfer
+end type
+
+on m_transfer_xrisi.create
+call super::create
+this.text = trn(436)
+this.microhelp = trn(441)
+end on
+
+on m_transfer_xrisi.destroy
+call super::destroy
+end on
+
+event clicked;open(w_transfer_xrisi)
+end event
+
+type m_transfer_nopaid from menu within m_transfer
+end type
+
+on m_transfer_nopaid.create
+call super::create
+this.text = trn(435)
+this.microhelp = trn(437)
+end on
+
+on m_transfer_nopaid.destroy
+call super::destroy
+end on
+
+event clicked;open(w_transfer_nopaid)
+end event
+

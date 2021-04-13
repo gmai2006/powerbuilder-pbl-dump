@@ -1,0 +1,40 @@
+HA$PBExportHeader$fn_check_newklimakio.srf
+$PBExportComments$
+global type fn_check_newklimakio from function_object
+end type
+
+forward prototypes
+global subroutine fn_check_newklimakio ()
+end prototypes
+
+global subroutine fn_check_newklimakio ();// ¸ëåã÷ïò ãéá áëëáãÞ êëéìáêßïõ åñãáæïìÝíùí
+
+// ÌåôñÜìå ôïõò åñãáæïìÝíïõò ðïõ ðñÝðåé íá áëëÜîïõí êëéìÜêéï
+	long	ll_count
+	date	ldt_today
+	
+	ldt_today = today()
+	
+
+	select 
+		count(kodypal) 
+	into
+		:ll_count
+	from	
+		misth_ypal
+	where
+		kodxrisi = :gs_kodxrisi
+	and
+		exeldate <= :ldt_today;
+
+	fn_sqlerror()
+	
+// Áí äåí õðÜñ÷ïõí åñãáæüìåíïé ãéá áëëÜãç, åðéóôñïöÞ
+// Áí õðÜñ÷ïõí ðñïâïëÞ
+	if isnull(ll_count) or ll_count = 0 then
+		return
+	else
+		open(w_misth_ypal_newklimakio)
+	end if
+end subroutine
+

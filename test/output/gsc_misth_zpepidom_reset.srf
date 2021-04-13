@@ -1,0 +1,20 @@
+HA$PBExportHeader$gsc_misth_zpepidom_reset.srf
+$PBExportComments$
+global type gsc_misth_zpepidom_reset from function_object
+end type
+
+forward prototypes
+global subroutine gsc_misth_zpepidom_reset ()
+end prototypes
+
+global subroutine gsc_misth_zpepidom_reset ();setnull(gsc_misth_zpepidom.kodepidom)
+setnull(gsc_misth_zpepidom.kodxrisi)
+setnull(gsc_misth_zpepidom.descepidom)
+setnull(gsc_misth_zpepidom.hasforo)
+setnull(gsc_misth_zpepidom.expr)
+setnull(gsc_misth_zpepidom.isasf)
+setnull(gsc_misth_zpepidom.autoforos)
+setnull(gsc_misth_zpepidom.hasasf)
+
+end subroutine
+

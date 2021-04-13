@@ -1,0 +1,21 @@
+HA$PBExportHeader$fn_param_address.srf
+$PBExportComments$
+global type fn_param_address from function_object
+end type
+
+forward prototypes
+global function string fn_param_address ()
+end prototypes
+
+global function string fn_param_address ();string	ls_address
+
+select address into :ls_address
+from   misth_zpxrisi where kodxrisi = :gs_kodxrisi;
+fn_sqlerror()
+
+if isnull(ls_address) then ls_address = ""
+
+return ls_address
+
+end function
+

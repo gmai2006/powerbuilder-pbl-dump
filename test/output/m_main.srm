@@ -1,0 +1,335 @@
+HA$PBExportHeader$m_main.srm
+$PBExportComments$
+forward
+global type m_main from menu
+end type
+type m_window from menu within m_main
+end type
+type m_window_hor from menu within m_window
+end type
+type m_window_ver from menu within m_window
+end type
+type m_window_cascade from menu within m_window
+end type
+type m_window_icons from menu within m_window
+end type
+type m_l1 from menu within m_window
+end type
+type m_view_tv from menu within m_window
+end type
+type m_window from menu within m_main
+m_window_hor m_window_hor
+m_window_ver m_window_ver
+m_window_cascade m_window_cascade
+m_window_icons m_window_icons
+m_l1 m_l1
+m_view_tv m_view_tv
+end type
+type m_help from menu within m_main
+end type
+type m_help_about from menu within m_help
+end type
+type m_áíáíÝùóçÜäåéáò÷ñÞóçò from menu within m_help
+end type
+type m_help_line1 from menu within m_help
+end type
+type m_help_exit from menu within m_help
+end type
+type m_help from menu within m_main
+m_help_about m_help_about
+m_áíáíÝùóçÜäåéáò÷ñÞóçò m_áíáíÝùóçÜäåéáò÷ñÞóçò
+m_help_line1 m_help_line1
+m_help_exit m_help_exit
+end type
+global type m_main from menu
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_main from menu
+m_window m_window
+m_help m_help
+event ie_checkmenu ( ref datawindow dw )
+event ue_activate pbm_activate
+end type
+global m_main m_main
+
+type variables
+
+end variables
+
+event ie_checkmenu(ref datawindow dw); // Áí äåí õðÜñ÷ïõí áíïé÷ôÜ ðáñÜèõñá
+// áðåíåñãïðïßçóç ôùí åðéëïãþí ôïõ ðáñáèýñïõ
+	
+
+end event
+
+on m_main.create
+m_main=this
+call super::create
+this.text = "m_main"
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_main.destroy
+call super::destroy
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_window from menu within m_main
+m_window_hor m_window_hor
+m_window_ver m_window_ver
+m_window_cascade m_window_cascade
+m_window_icons m_window_icons
+m_l1 m_l1
+m_view_tv m_view_tv
+end type
+
+on m_window.create
+call super::create
+this.text = trn(34)
+this.m_window_hor=create m_window_hor
+this.m_window_ver=create m_window_ver
+this.m_window_cascade=create m_window_cascade
+this.m_window_icons=create m_window_icons
+this.m_l1=create m_l1
+this.m_view_tv=create m_view_tv
+this.Item[UpperBound(this.Item)+1]=this.m_window_hor
+this.Item[UpperBound(this.Item)+1]=this.m_window_ver
+this.Item[UpperBound(this.Item)+1]=this.m_window_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_window_icons
+this.Item[UpperBound(this.Item)+1]=this.m_l1
+this.Item[UpperBound(this.Item)+1]=this.m_view_tv
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_window_hor)
+destroy(this.m_window_ver)
+destroy(this.m_window_cascade)
+destroy(this.m_window_icons)
+destroy(this.m_l1)
+destroy(this.m_view_tv)
+end on
+
+type m_window_hor from menu within m_window
+end type
+
+on m_window_hor.create
+call super::create
+this.text = trn(33)
+this.microhelp = trn(490)
+end on
+
+on m_window_hor.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.ArrangeSheets(TileHorizontal!)
+end event
+
+type m_window_ver from menu within m_window
+end type
+
+on m_window_ver.create
+call super::create
+this.text = trn(27)
+this.microhelp = trn(388)
+end on
+
+on m_window_ver.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.ArrangeSheets(Tile!)
+end event
+
+type m_window_cascade from menu within m_window
+end type
+
+on m_window_cascade.create
+call super::create
+this.text = trn(579)
+this.microhelp = trn(627)
+end on
+
+on m_window_cascade.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.ArrangeSheets(Cascade!)
+end event
+
+type m_window_icons from menu within m_window
+end type
+
+on m_window_icons.create
+call super::create
+this.text = trn(46)
+this.microhelp = trn(628)
+end on
+
+on m_window_icons.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.ArrangeSheets(Icons!)
+end event
+
+type m_l1 from menu within m_window
+end type
+
+on m_l1.create
+call super::create
+this.text = "-"
+end on
+
+on m_l1.destroy
+call super::destroy
+end on
+
+type m_view_tv from menu within m_window
+end type
+
+on m_view_tv.create
+call super::create
+this.text = trn(41)
+this.checked = true
+this.microhelp = trn(281)
+this.toolbaritemname = "TreeView!"
+this.toolbaritemtext = trn(559)
+this.toolbaritemspace = 1
+end on
+
+on m_view_tv.destroy
+call super::destroy
+end on
+
+event clicked;if this.checked = true then
+	w_app.tv.width = 0
+	this.checked = false
+	w_app.triggerevent("ie_sizebar")
+else
+	w_app.tv.width = w_app.il_tvwidth
+	this.checked = true
+	w_app.triggerevent("ie_sizebar")
+end if
+end event
+
+type m_help from menu within m_main
+m_help_about m_help_about
+m_áíáíÝùóçÜäåéáò÷ñÞóçò m_áíáíÝùóçÜäåéáò÷ñÞóçò
+m_help_line1 m_help_line1
+m_help_exit m_help_exit
+end type
+
+on m_help.create
+call super::create
+this.text = trn(10)
+this.m_help_about=create m_help_about
+this.m_áíáíÝùóçÜäåéáò÷ñÞóçò=create m_áíáíÝùóçÜäåéáò÷ñÞóçò
+this.m_help_line1=create m_help_line1
+this.m_help_exit=create m_help_exit
+this.Item[UpperBound(this.Item)+1]=this.m_help_about
+this.Item[UpperBound(this.Item)+1]=this.m_áíáíÝùóçÜäåéáò÷ñÞóçò
+this.Item[UpperBound(this.Item)+1]=this.m_help_line1
+this.Item[UpperBound(this.Item)+1]=this.m_help_exit
+end on
+
+on m_help.destroy
+call super::destroy
+destroy(this.m_help_about)
+destroy(this.m_áíáíÝùóçÜäåéáò÷ñÞóçò)
+destroy(this.m_help_line1)
+destroy(this.m_help_exit)
+end on
+
+type m_help_about from menu within m_help
+end type
+
+on m_help_about.create
+call super::create
+this.text = trn(38) + "..."
+this.microhelp = trn(538)
+this.toolbaritemname = "Asterisk!"
+this.toolbaritemtext = trn(624)
+end on
+
+on m_help_about.destroy
+call super::destroy
+end on
+
+event clicked;// ¢íïéãìá ôïõ ðáñáèýñïõ "Ó÷åôéêÜ"
+	open(w_about)
+end event
+
+type m_áíáíÝùóçÜäåéáò÷ñÞóçò from menu within m_help
+end type
+
+on m_áíáíÝùóçÜäåéáò÷ñÞóçò.create
+call super::create
+this.visible = false
+this.text = trn(6) + "..."
+end on
+
+on m_áíáíÝùóçÜäåéáò÷ñÞóçò.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.TriggerEvent("me_updatexrisi")
+
+/*
+// ÁíáíÝùóç Üäåéá ÷ñÞóçò 
+	uo_lock aLock
+	aLock = create uo_lock
+	aLock.OpenFile("printer.cfg")
+	
+	if not aLock.GetKey() then 
+		destroy(aLock)
+		return
+	end if
+
+	destroy(aLock)
+
+*/
+end event
+
+type m_help_line1 from menu within m_help
+end type
+
+on m_help_line1.create
+call super::create
+this.text = "-"
+end on
+
+on m_help_line1.destroy
+call super::destroy
+end on
+
+type m_help_exit from menu within m_help
+end type
+
+on m_help_exit.create
+call super::create
+this.text = trn(20)
+this.microhelp = trn(296)
+this.toolbaritemtext = trn(295)
+end on
+
+on m_help_exit.destroy
+call super::destroy
+end on
+
+event clicked;// ¸îïäïò áðü ôçí åöáñìïãÞ
+	
+parentwindow.TriggerEvent("ie_exit")
+
+	
+
+end event
+

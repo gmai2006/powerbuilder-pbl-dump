@@ -1,0 +1,46 @@
+HA$PBExportHeader$fn_ypal_krat_sum.srf
+$PBExportComments$
+global type fn_ypal_krat_sum from function_object
+end type
+
+forward prototypes
+global function double fn_ypal_krat_sum (long al_kodypal, string as_fromdate, string as_todate)
+end prototypes
+
+global function double fn_ypal_krat_sum (long al_kodypal, string as_fromdate, string as_todate);// Óýíïëï åðéäïìÜôùí ôïõ õðáëëÞëïõ áðü ðëçñùìÝíåò ìéóèïäïóßåò
+
+	double		ld_total
+	
+	date		ldt_fromdate, ldt_todate
+	
+	ldt_fromdate = date(as_fromdate)
+	ldt_todate = date(as_todate)
+	
+		
+	select 
+		sum(poso) 
+	into 
+		:ld_total 
+	from 
+		misth_final,
+		misth_final_ypal,
+		misth_final_ypal_krat
+	where
+		misth_final.kodfinal = misth_final_ypal.kodfinal and
+		misth_final.kodxrisi = misth_final_ypal.kodxrisi and
+		misth_final_ypal.kodfinal = misth_final_ypal_krat.kodfinal and
+		misth_final_ypal.kodypal = misth_final_ypal_krat.kodypal and
+		misth_final_ypal.kodxrisi = misth_final_ypal_krat.kodxrisi and
+		misth_final_ypal.kodypal = :al_kodypal and
+		misth_final.kodxrisi = :gs_kodxrisi and
+		misth_final_ypal.plirdate >= :ldt_fromdate and
+		misth_final_ypal.plirdate <= :ldt_todate; 
+
+	fn_sqlerror()
+	
+	if isnull(ld_total) then ld_total = 0
+
+	
+	return ld_total
+end function
+

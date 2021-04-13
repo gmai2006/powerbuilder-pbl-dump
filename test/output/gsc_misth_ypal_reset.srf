@@ -1,0 +1,53 @@
+HA$PBExportHeader$gsc_misth_ypal_reset.srf
+$PBExportComments$
+global type gsc_misth_ypal_reset from function_object
+end type
+
+forward prototypes
+global subroutine gsc_misth_ypal_reset ()
+end prototypes
+
+global subroutine gsc_misth_ypal_reset ();setnull(gsc_misth_ypal.kodypal)
+setnull(gsc_misth_ypal.kodxrisi)
+setnull(gsc_misth_ypal.surname)
+setnull(gsc_misth_ypal.name)
+setnull(gsc_misth_ypal.fathername)
+setnull(gsc_misth_ypal.mothername)
+setnull(gsc_misth_ypal.adt)
+setnull(gsc_misth_ypal.mitroo)
+setnull(gsc_misth_ypal.afm)
+setnull(gsc_misth_ypal.doy)
+setnull(gsc_misth_ypal.birthdate)
+setnull(gsc_misth_ypal.homephone)
+setnull(gsc_misth_ypal.mobilphone)
+setnull(gsc_misth_ypal.sex)
+setnull(gsc_misth_ypal.kodoikog)
+setnull(gsc_misth_ypal.spouse)
+setnull(gsc_misth_ypal.childs)
+setnull(gsc_misth_ypal.prostmeli)
+setnull(gsc_misth_ypal.city)
+setnull(gsc_misth_ypal.area)
+setnull(gsc_misth_ypal.address)
+setnull(gsc_misth_ypal.tk)
+setnull(gsc_misth_ypal.email)
+setnull(gsc_misth_ypal.kodtmima)
+setnull(gsc_misth_ypal.kodidikot)
+setnull(gsc_misth_ypal.kodthesi)
+setnull(gsc_misth_ypal.jobtitle)
+setnull(gsc_misth_ypal.hireddate)
+setnull(gsc_misth_ypal.exeldate)
+setnull(gsc_misth_ypal.rehireddate)
+setnull(gsc_misth_ypal.termdate)
+setnull(gsc_misth_ypal.termreason)
+setnull(gsc_misth_ypal.jobphone)
+setnull(gsc_misth_ypal.intphone)
+setnull(gsc_misth_ypal.klimakio)
+setnull(gsc_misth_ypal.bathmos)
+setnull(gsc_misth_ypal.klados)
+setnull(gsc_misth_ypal.bank)
+setnull(gsc_misth_ypal.bankno)
+setnull(gsc_misth_ypal.kodtamio)
+setnull(gsc_misth_ypal.newexeldate)
+
+end subroutine
+

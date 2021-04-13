@@ -1,0 +1,68 @@
+HA$PBExportHeader$fn_parseall_krat.srf
+$PBExportComments$
+global type fn_parseall_krat from function_object
+end type
+
+forward prototypes
+global function datastore fn_parseall_krat (string as_kodfylo, long al_kodypal)
+end prototypes
+
+global function datastore fn_parseall_krat (string as_kodfylo, long al_kodypal);// Ðáßñíïõìå ìßá ðñïò ìßá ôéò êñáôÞóåéò ôïõ öýëëïõ as_kodfylo
+// ãéá ôïí õðÜëëçëï al_kodypal êáé ôá õðïëïãßæïõìå
+// ÅðéóôñÝöïõìå Ýíá datastore ìå ôá æåýãç kodkrat, poso ãéá ôïí õðÜëëçëï al_kodypal
+
+// Äçìéïõñãßá datastore ôï ïðïßï èá åðéóôñáöåß ìå ôá õðïëïãéóèÝíôá 
+	datastore	lds_krat
+	lds_krat = create datastore
+	lds_krat.dataobject = "dw_var"
+	
+// Äçìéïõñãßá datastore ôïõ dw_misth_fylo_krat_list
+// ãéá íá ðÜñïõìå üëåò ôéò êñáôÞóåéò ôïõ öýëëïõ as_kodfylo
+	datastore	lds_fylo_krat
+	long			ll_rows
+	lds_fylo_krat = create datastore
+	lds_fylo_krat.dataobject = "dw_misth_fylo_krat_list"
+	lds_fylo_krat.settransobject(sqlca)
+	ll_rows = lds_fylo_krat.retrieve(as_kodfylo, gs_kodxrisi)
+	
+// Õðïëïãéóìüò üëùí ôùí ìåôáâëçôþí ôïõ õðáëëÞëïõ al_kodypal
+	datastore	lds_ypal_yvar
+	lds_ypal_yvar = fn_parseall_yvar(al_kodypal)
+	
+// Õðïëïãéóìüò üëùí ôùí åðéäïìÜôùí ôïõ õðáëëÞëïõ al_kodypal
+	datastore 	lds_ypal_epidom
+	lds_ypal_epidom = fn_parseall_epidom(as_kodfylo, al_kodypal)
+
+// Õðïëïãéóìüò êÜèå êñÜôçóçò ãéá ôïí õðÜëëçëï al_kodypal 
+// êáé ðñïóèÞêç óôï lds_krat
+	long		i, row
+	string	ls_kodkrat
+	string	ls_expr
+	double	ld_poso
+	string	ls_notes
+	
+	for i = 1 to ll_rows
+		ls_kodkrat = lds_fylo_krat.object.kodkrat[i]
+		ls_notes = lds_fylo_krat.object.notes[i]
+		ls_expr = lds_fylo_krat.object.expr[i]
+		ls_expr = fn_parse_stath(ls_expr)
+		ls_expr = fn_parse_yvar(ls_expr, lds_ypal_yvar)
+		ls_expr = fn_parse_epidom(ls_expr, lds_ypal_epidom)
+		ls_expr = fn_parse_krat(ls_expr, lds_krat)
+		ld_poso = round(fn_mathparser(ls_expr), fn_param_round())
+		row = lds_krat.insertrow(0)
+		lds_krat.object.kodvar[row] = ls_kodkrat
+		lds_krat.object.poso[row] = ld_poso
+		lds_krat.object.notes[row] = ls_notes
+	next
+	
+// destroy datastores and return
+	destroy	lds_fylo_krat
+	destroy	lds_ypal_yvar
+	destroy	lds_ypal_epidom
+	
+	return lds_krat
+	
+		
+end function
+

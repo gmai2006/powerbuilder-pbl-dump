@@ -1,0 +1,18 @@
+HA$PBExportHeader$sc_misth_report.srs
+$PBExportComments$
+global type sc_misth_report from structure
+	string		kodreport
+	string		kodxrisi
+	string		descreport
+	integer		print_margin_top
+	integer		print_margin_bottom
+	integer		print_margin_left
+	integer		print_margin_right
+	integer		print_orientation
+	integer		print_paper_size
+	integer		print_scale
+	string		subtitle
+	string		prn_notes1
+	string		prn_notes2
+end type
+

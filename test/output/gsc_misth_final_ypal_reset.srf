@@ -1,0 +1,17 @@
+HA$PBExportHeader$gsc_misth_final_ypal_reset.srf
+$PBExportComments$
+global type gsc_misth_final_ypal_reset from function_object
+end type
+
+forward prototypes
+global subroutine gsc_misth_final_ypal_reset ()
+end prototypes
+
+global subroutine gsc_misth_final_ypal_reset ();setnull(gsc_misth_final_ypal.kodfinal)
+setnull(gsc_misth_final_ypal.kodypal)
+setnull(gsc_misth_final_ypal.kodxrisi)
+setnull(gsc_misth_final_ypal.plirdate)
+
+
+end subroutine
+

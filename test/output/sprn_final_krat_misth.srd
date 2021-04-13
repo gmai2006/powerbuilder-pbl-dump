@@ -1,0 +1,30 @@
+HA$PBExportHeader$sprn_final_krat_misth.srd
+$PBExportComments$
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 grid.columnmove=no selected.mouse=no )
+header(height=80 color="536870912" )
+summary(height=80 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=misth_zpkrat_desckrat dbname="misth_zpkrat.desckrat" )
+ column=(type=number updatewhereclause=yes name=sum_poso dbname="sum_poso" )
+ retrieve="SELECT  misth_zpkrat.desckrat ,
+           sum(misth_final_ypal_krat.poso) as sum_poso
+    
+        FROM misth_final_ypal_krat ,
+           misth_zpkrat     
+        WHERE ( misth_final_ypal_krat.kodkrat = misth_zpkrat.kodkrat ) and          ( misth_zpkrat.kodxrisi = misth_final_ypal_krat.kodxrisi ) and          ( ( misth_final_ypal_krat.kodfinal = :arg_kodfinal ) and          ( misth_final_ypal_krat.kodxrisi = :arg_kodxrisi ) ) 
+        GROUP BY misth_zpkrat.kodkrat ,
+           misth_zpkrat.desckrat   " arguments=(("arg_kodfinal", string),("arg_kodxrisi", string)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="1536" format="[general]" html.valueishtml="0"  name=misth_zpkrat_desckrat visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="1554" y="8" height="64" width="517" format="[general]~tfn_param_maskposo()" html.valueishtml="0"  name=sum_poso visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="ÊñáôÞóåéò~ttrn(411)" border="0" color="33554432" x="9" y="8" height="60" width="1536" html.valueishtml="0"  name=misth_zpkrat_desckrat_t visible="1"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Óýíïëï~ttrn(614)" border="0" color="33554432" x="1554" y="8" height="60" width="517" html.valueishtml="0"  name=sum_poso_t visible="1"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="553648127" )
+text(band=summary alignment="2" text="Ãåíéêü Óýíïëï~ttrn(145)" border="0" color="33554432" x="9" y="8" height="60" width="1536" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum( sum_poso )"border="0" color="33554432" x="1554" y="8" height="60" width="517" format="[GENERAL]~tfn_param_maskposo()" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="553648127" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+ 

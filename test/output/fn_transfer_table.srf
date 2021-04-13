@@ -1,0 +1,70 @@
+HA$PBExportHeader$fn_transfer_table.srf
+$PBExportComments$
+global type fn_transfer_table from function_object
+end type
+
+forward prototypes
+global subroutine fn_transfer_table (string as_table, string as_fromxrisi, string as_toxrisi)
+end prototypes
+
+global subroutine fn_transfer_table (string as_table, string as_fromxrisi, string as_toxrisi);// ÌåôáöïñÜ ôïõ ðßíáêá as_table áðü ÷ñÞóç óå ÷ñÞóç
+
+	string	ls_sql
+
+// Äçìéïõñãßá datastore fromxrisi êáé retrieve
+// Also count columns
+	datastore	lds_fromxrisi
+	long			ll_rows, ll_cols
+	
+	ls_sql = "select * from " + as_table + &
+				" where kodxrisi = '" + as_fromxrisi + "'"
+				
+	lds_fromxrisi = fn_createds_fromsql(ls_sql)
+	ll_rows = lds_fromxrisi.retrieve()
+	ll_cols = long(lds_fromxrisi.Describe("DataWindow.Column.Count"))
+	
+// Äçìéïõñãßá datastore toxrisi ãéá Insert.
+// No retrieve
+	datastore	lds_toxrisi
+	
+	lds_toxrisi = fn_createds_fromsql("select * from " + as_table)
+	
+// ÄéáãñáöÞ äåäïìÝíùí áðü ôïí ðßíáêá as_table
+// ôçò ôñÝ÷ïõóáò ÷ñÞóçò
+	ls_sql = "delete from " + as_table + &
+				" where kodxrisi = '" + as_toxrisi + "'"
+	execute immediate :ls_sql;
+	commit;
+
+// ÅéóáãùãÞ áðü lds_fromxrisi óå lds_toxrisi
+	long	i, j
+	long	ll_row
+
+	
+	for i = 1 to ll_rows
+		
+		ll_row = lds_toxrisi.insertrow(0)
+		
+		for j = 1 to ll_cols
+			lds_toxrisi.SetItem(ll_row, j, lds_fromxrisi.object.data[i, j])
+		next
+
+	next
+	
+// change kodxrisi of lds_toxrisi to the new one (as_toxrisi)
+// update
+	ll_rows = lds_toxrisi.rowcount()
+	
+	for i = 1 to ll_rows
+		lds_toxrisi.object.kodxrisi[i] = as_toxrisi
+	next
+	
+	lds_toxrisi.update()
+	commit;
+	
+// clean-up
+	destroy	lds_fromxrisi
+	destroy 	lds_toxrisi
+
+end subroutine
+

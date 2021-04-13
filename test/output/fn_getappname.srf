@@ -1,0 +1,14 @@
+HA$PBExportHeader$fn_getappname.srf
+$PBExportComments$
+global type fn_getappname from function_object
+end type
+
+forward prototypes
+global function string fn_getappname ()
+end prototypes
+
+global function string fn_getappname ();// Return application name
+
+	return gs_app_name
+end function
+

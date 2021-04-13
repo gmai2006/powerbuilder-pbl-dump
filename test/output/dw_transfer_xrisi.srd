@@ -1,0 +1,22 @@
+HA$PBExportHeader$dw_transfer_xrisi.srd
+$PBExportComments$
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=536 color="536870912" )
+table(column=(type=char(4) updatewhereclause=no name=fromxrisi dbname="fromxrisi" )
+ )
+groupbox(band=detail text=""border="5" color="33554432" x="55" y="348" height="148" width="1646"  name=gb_1 visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="553648127" )
+groupbox(band=detail text=""border="5" color="33554432" x="55" y="20" height="284" width="1646"  name=gb_2 visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="553648127" )
+text(band=detail alignment="2" text="Ìå ôçí åðéëïãÞ áõôÞ èá ìåôáöåñèïýí ôá óôáèåñÜ óôïé÷åßá áðü ôçí ÷ñÞóç ðïõ èá åðéëÝîåôå ðáñáêÜôù óôçí ôñÝ÷ïõóá.
+ÐÑÏÓÏ×Ç!!!
+¼ëá ôá óôáèåñÜ óôïé÷åßá ôçò ôñÝ÷ïõóáò ÷ñÞóçò èá äéáãñáöïýí!~ttrn(428) + ~".~~n~" + trn(571) + ~"!!!~~n~" + trn(479) + ~"!~"" border="0" color="255" x="82" y="40" height="244" width="1591" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="2" color="128" x="631" y="388" height="60" width="1029" format="[general]" html.valueishtml="0"  name=fromxrisi visible="1" dddw.name=pick_zpxrisi_nocurrent dddw.displaycolumn=descxrisi dddw.datacolumn=kodxrisi dddw.percentwidth=0 dddw.lines=10 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.imemode=0 dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="ÌåôáöïñÜ áðü ÷ñÞóç:~ttrn(439) + ~":~"" border="0" color="8388608" x="101" y="388" height="60" width="494" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+ 

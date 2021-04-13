@@ -1,0 +1,26 @@
+HA$PBExportHeader$dw_misth_kratapod_list.srd
+$PBExportComments$
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 grid.columnmove=no selected.mouse=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=72 color="65535" )
+detail(height=72 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes key=yes name=kodkratapod dbname="misth_kratapod.kodkratapod" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=kodxrisi dbname="misth_kratapod.kodxrisi" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=desckratapod dbname="misth_kratapod.desckratapod" )
+ column=(type=date update=yes updatewhereclause=yes name=apoddate dbname="misth_kratapod.apoddate" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"misth_kratapod~" ) COLUMN(NAME=~"misth_kratapod.kodkratapod~") COLUMN(NAME=~"misth_kratapod.kodxrisi~") COLUMN(NAME=~"misth_kratapod.desckratapod~") COLUMN(NAME=~"misth_kratapod.apoddate~")WHERE(    EXP1 =~"misth_kratapod.kodxrisi~"   OP =~"=~"    EXP2 =~":arg_kodxrisi~" ) ) ARG(NAME = ~"arg_kodxrisi~" TYPE = string) " update="misth_kratapod" updatewhere=1 updatekeyinplace=no arguments=(("arg_kodxrisi", string)) )
+text(band=header alignment="2" text="Çì/íßá áðüä.~ttrn(362)" border="6" color="8388608" x="9" y="8" height="56" width="338" html.valueishtml="0"  name=apoddate_t visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="ÐåñéãñáöÞ áðüäïóçò~ttrn(512)" border="6" color="8388608" x="357" y="8" height="56" width="1714" html.valueishtml="0"  name=desckratapod_t visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Óýíïëï~ttrn(614)" border="6" color="8388608" x="2080" y="8" height="56" width="338" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="2" background.color="12639424" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="357" y="8" height="56" width="1714" format="[general]" html.valueishtml="0"  name=desckratapod visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="56" width="338" format="[general]~tfn_param_maskdate()" html.valueishtml="0"  name=apoddate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="fn_misth_kratapod_total( kodkratapod )"border="0" color="33554432" x="2080" y="8" height="56" width="338" format="[GENERAL]~tfn_param_maskposo()" html.valueishtml="0"  name=cm_poso visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="1" expression="sum( cm_poso )"border="0" color="255" x="2080" y="8" height="56" width="338" format="[GENERAL]~tfn_param_maskposo()" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial Greek" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="161" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+ 

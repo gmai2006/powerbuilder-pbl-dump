@@ -1,0 +1,25 @@
+HA$PBExportHeader$fn_getfile.srf
+$PBExportComments$
+global type fn_getfile from function_object
+end type
+
+forward prototypes
+global function string fn_getfile (string as_caption, string as_type, string as_extent)
+end prototypes
+
+global function string fn_getfile (string as_caption, string as_type, string as_extent);// ¢íïéãìá áñ÷åßïõ ôýðïõ as_type	
+	string	ls_filename, ls_filepath
+	integer	ret
+	ret = GetFileOpenName(as_caption, &
+    						 ls_filepath, ls_filename, as_extent, &				
+    						 as_type + "(*." + as_extent + "),*." + as_extent)
+							  
+	
+	if ret = 1 then
+		return ls_filepath
+	else
+		return ""
+	end if
+	
+end function
+

@@ -1,0 +1,44 @@
+HA$PBExportHeader$fn_createds_zpkrat.srf
+$PBExportComments$
+global type fn_createds_zpkrat from function_object
+end type
+
+forward prototypes
+global function datastore fn_createds_zpkrat (ref datawindow adw)
+end prototypes
+
+global function datastore fn_createds_zpkrat (ref datawindow adw);// Äçìéïõñãßá datastore ìå ôéò êñáôÞóåéò
+// ðïõ Þäç Ý÷ïõìå êáôá÷ùñÞóåé óôï adw ðñéí ôçí ôñÝ÷ïõóá ãñáììÞ
+
+// Ðáßñíïõìå ôçí ôñÝ÷ïõóá åããñáöÞ
+	long	ll_row
+	ll_row = adw.getrow()
+
+// Äçìéïõñãßá datastore ôïõ ôýðïõ edw_var
+	datastore		lds_krat
+	lds_krat = fn_createds("edw_var")
+	
+// ÌåôáöïñÜ áðü dw ãéá üëåò ôéò ãñáììÝò ðïõ ðñïçãïýíôáé
+	string	ls_kodkrat, ls_desckrat
+	long		i, ll_newrow
+	
+	for i = 1 to ll_row - 1
+		
+		ll_newrow = lds_krat.insertrow(0)
+		
+		ls_kodkrat = adw.object.kodkrat[i]
+				
+		select desckrat into :ls_desckrat
+		from   misth_zpkrat
+		where  kodkrat = :ls_kodkrat and kodxrisi = :gs_kodxrisi;
+		fn_sqlerror()
+		
+		lds_krat.object.kodvar[ll_newrow] = ls_kodkrat
+		lds_krat.object.descvar[ll_newrow] = ls_desckrat
+		
+	next
+	
+// ÅðéóôñïöÞ
+	return lds_krat
+end function
+

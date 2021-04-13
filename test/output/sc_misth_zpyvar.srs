@@ -1,0 +1,9 @@
+HA$PBExportHeader$sc_misth_zpyvar.srs
+$PBExportComments$
+global type sc_misth_zpyvar from structure
+	string		kodyvar
+	string		kodxrisi
+	string		descyvar
+	string		expr
+end type
+
