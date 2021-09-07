@@ -1,5 +1,5 @@
 #PowerBuilder pbl file extraction
-This program extracts the PB source code from PowerBuilder pbl (PowerBuilder binary) files.
+This program extracts the PB source code from PowerBuilder pbl (PowerBuilder binary) files.  The program is based on the PB specification attached below.
 
 #Instruction
 To extract source from PowerBuilder pbl files
@@ -14,6 +14,9 @@ pbl_extractor <input dir> <output dir>
 .srf - Function Object
 .srs - Structure Object (Structure definition)
 .srq - Query Object
+
+The following is the PB specification written by Arnd Schmidt.
+
 
 #PowerBuilder pbl specification
 +--------------------------------------------------------------+
