@@ -2,7 +2,7 @@
 This program extracts the PB source code from PowerBuilder pbl (PowerBuilder binary) files.  The program is based on the PB specification attached below.
 
 #Instruction
-To extract the source from PowerBuilder pbl files: Run the following pythong program 
+To extract the source from PowerBuilder pbl files: Run the following python program 
 python pbl_extractor.py <input dir> <output dir>
 
 #A list of all source files
